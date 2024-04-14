@@ -2,5 +2,50 @@
     <string name="app_name">EnvioRapido_PDM</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_notifications">Notificaciones</string>
+    /* Login */
+    <string name="login">Inicio de Sesión</string>
+    <string name="iniciar">Iniciar</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="rastreoBoton">Rastrear Paquete</string>
+    /* RASTREO */
+    <string name="rastreo">Rastreo de Paquete</string>
+    <string name="codigo">Cod. Paquete</string>
+    <string name="consultaPaquete">Consultar Paquete</string>
+    <string name="consultaBoton">Consultar</string>
+    <string name="horaS">Hora de salida: </string>
+    <string name="fechaS">Fecha de salida: </string>
+    <string name="destino">Destinatario: </string>
+    <string name="ubicacion">Ubicación actual: </string>
+    /* REGISTRAR ENVIO NUEVO */
+    <string name="registroE">Registrar Envío: </string>
+    <string name="datos">Datos del Destinatario: </string>
+    <string name="nombre">Nombre: </string>
+    <string name="apellido">Apellido: </string>
+    <string name="contacto">Contacto: </string>
+    <string name="dui">DUI: </string>
+    <string name="depto">Departamento: </string>
+    <string name="municipio">Municipio: </string>
+    <string name="datosPaquete">Datos del Paquete: </string>
+    <string name="tamaño">Tamaño (cm): </string>
+    <string name="peso">Peso (lb): </string>
+    <string name="fechaPedido">Fecha del pedido: </string>
+    <string name="fechaEntrega">Fecha de entrega: </string>
+    <string name="asignacion">Asignar Repartidor: </string>
+    <string name="exito">Envío Exitoso: </string>
+    <string name="compartir">Compartir</string>
+    /* HISTORIAL DE ENVIOS */
+    <string name="historial">Historial de Envíos</string>
+    /* DATOS DE ENVIOS */
+    <string name="paquete">Paquete: </string>
+    <string name="repartidor">Repartidor: </string>
+    <string name="estado">Estado: </string>
+    <string name="comentario">Comentarios: </string>
+    /* ATENCION AL CLIENTE */
+    <string name="atencion">Atención al Cliente: </string>
+    <string name="chatBoton">Iniciar Chat: </string>
+    <string name="chat">Chat de EnvioRapido: </string>
+    /* MI USUARIO */
+    <string name="usuario">Usuario: </string>
+    <string name="total">Total de Envíos: </string>
 </resources>
