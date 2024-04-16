@@ -26,6 +26,7 @@
     <string name="dui">DUI: </string>
     <string name="depto">Departamento: </string>
     <string name="municipio">Municipio: </string>
+    <string name="direc">Dirección: </string>
     <string name="datosPaquete">Datos del Paquete: </string>
     <string name="tamaño">Tamaño (cm): </string>
     <string name="peso">Peso (lb): </string>

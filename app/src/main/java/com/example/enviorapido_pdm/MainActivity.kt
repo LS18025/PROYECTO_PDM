@@ -1,6 +1,7 @@
 package com.example.enviorapido_pdm
 
 import android.os.Bundle
+import android.widget.Button
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -31,5 +32,12 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        // Obtener referencia al botón
+        val button: Button = findViewById(R.id.button2)
+        // Agregar OnClickListener al botón
+        button.setOnClickListener {
+            // Navegar al fragmento RegistrarEnvioFragment
+            navController.navigate(R.id.registrarEnvioFragment)
+        }
     }
 }

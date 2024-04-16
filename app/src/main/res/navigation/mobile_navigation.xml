@@ -22,4 +22,9 @@
         android:name="com.example.enviorapido_pdm.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/registrarEnvioFragment"
+        android:name="com.example.enviorapido_pdm.ui.envios.RegistrarEnvioFragment"
+        android:label="fragment_registrar_envio"
+        tools:layout="@layout/fragment_registrar_envio" />
 </navigation>
