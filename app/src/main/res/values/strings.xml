@@ -33,7 +33,7 @@
     <string name="fechaPedido">Fecha del pedido: </string>
     <string name="fechaEntrega">Fecha de entrega: </string>
     <string name="asignacion">Asignar Repartidor: </string>
-    <string name="exito">Envío Exitoso: </string>
+    <string name="exito">Envío Exitoso!</string>
     <string name="compartir">Compartir</string>
     /* HISTORIAL DE ENVIOS */
     <string name="historial">Historial de Envíos</string>

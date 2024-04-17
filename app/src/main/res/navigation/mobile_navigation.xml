@@ -27,4 +27,9 @@
         android:name="com.example.enviorapido_pdm.ui.envios.RegistrarEnvioFragment"
         android:label="fragment_registrar_envio"
         tools:layout="@layout/fragment_registrar_envio" />
+    <fragment
+        android:id="@+id/envioExitosoFragment"
+        android:name="com.example.enviorapido_pdm.ui.envios.EnvioExitosoFragment"
+        android:label="fragment_envio_exitoso"
+        tools:layout="@layout/fragment_envio_exitoso" />
 </navigation>
