@@ -32,4 +32,9 @@
         android:name="com.example.enviorapido_pdm.ui.envios.EnvioExitosoFragment"
         android:label="fragment_envio_exitoso"
         tools:layout="@layout/fragment_envio_exitoso" />
+    <fragment
+        android:id="@+id/historialFragment"
+        android:name="com.example.enviorapido_pdm.ui.envios.HistorialFragment"
+        android:label="fragment_historial"
+        tools:layout="@layout/fragment_historial" />
 </navigation>
