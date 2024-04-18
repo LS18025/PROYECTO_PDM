@@ -10,7 +10,7 @@
     <string name="rastreoBoton">Rastrear Paquete</string>
     /* RASTREO */
     <string name="rastreo">Rastreo de Paquete</string>
-    <string name="codigo">Cod. Paquete</string>
+    <string name="codigo">Cod. Paquete:</string>
     <string name="consultaPaquete">Consultar Paquete</string>
     <string name="consultaBoton">Consultar</string>
     <string name="horaS">Hora de salida: </string>
@@ -42,6 +42,7 @@
     <string name="paquete">Paquete: </string>
     <string name="repartidor">Repartidor: </string>
     <string name="estado">Estado: </string>
+    <string name="completado">Completado: </string>
     <string name="comentario">Comentarios: </string>
     /* ATENCION AL CLIENTE */
     <string name="atencion">Atención al Cliente: </string>
