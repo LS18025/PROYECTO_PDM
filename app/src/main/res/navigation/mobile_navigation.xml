@@ -37,4 +37,9 @@
         android:name="com.example.enviorapido_pdm.ui.envios.HistorialFragment"
         android:label="fragment_historial"
         tools:layout="@layout/fragment_historial" />
+    <fragment
+        android:id="@+id/datosDestinatarioFragment"
+        android:name="com.example.enviorapido_pdm.ui.envios.DatosDestinatarioFragment"
+        android:label="fragment_datos_destinatario"
+        tools:layout="@layout/fragment_datos_destinatario" />
 </navigation>
