@@ -42,4 +42,24 @@
         android:name="com.example.enviorapido_pdm.ui.envios.DatosDestinatarioFragment"
         android:label="fragment_datos_destinatario"
         tools:layout="@layout/fragment_datos_destinatario" />
+    <fragment
+        android:id="@+id/pedidosEntregaFragment"
+        android:name="com.example.enviorapido_pdm.ui.envios.PedidosEntregaFragment"
+        android:label="fragment_pedidos_entrega"
+        tools:layout="@layout/fragment_pedidos_entrega" />
+    <fragment
+        android:id="@+id/rastrearPaqueteFragment"
+        android:name="com.example.enviorapido_pdm.ui.rastreo.RastrearPaqueteFragment"
+        android:label="fragment_rastrear_paquete"
+        tools:layout="@layout/fragment_rastrear_paquete" />
+    <fragment
+        android:id="@+id/datosRastreoPaqueteFragment"
+        android:name="com.example.enviorapido_pdm.ui.rastreo.DatosRastreoPaqueteFragment"
+        android:label="fragment_datos_rastreo_paquete"
+        tools:layout="@layout/fragment_datos_rastreo_paquete" />
+    <fragment
+        android:id="@+id/registrarUsuarioFragment"
+        android:name="com.example.enviorapido_pdm.ui.administracion.RegistrarUsuarioFragment"
+        android:label="fragment_registrar_usuario"
+        tools:layout="@layout/fragment_registrar_usuario" />
 </navigation>

@@ -24,8 +24,9 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="241dp"
-            android:layout_height="49dp"
+            style="@style/titulo"
+            android:layout_width="264dp"
+            android:layout_height="50dp"
             android:text="@string/registroE"
             android:textColor="#000000"
             android:textSize="34sp"

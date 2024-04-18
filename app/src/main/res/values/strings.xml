@@ -37,6 +37,7 @@
     <string name="compartir">Compartir</string>
     /* HISTORIAL DE ENVIOS */
     <string name="historial">Historial de Envíos</string>
+    <string name="historialPendientes">Pedidos por entregar</string>
     /* DATOS DE ENVIOS */
     <string name="paquete">Paquete: </string>
     <string name="repartidor">Repartidor: </string>
