@@ -49,4 +49,16 @@
     /* MI USUARIO */
     <string name="usuario">Usuario: </string>
     <string name="total">Total de Envíos: </string>
+    /* Login */
+    <string name="logout">Cerrar Sesión</string>
+    /* Datos de usuario */
+    <string name="correo">Correo: </string>
+    <string name="contrasena">Contrasena: </string>
+    <string name="repContrasena">Repetir Contrasena: </string>
+    <string name="datosUsuario">Datos del Usuario</string>
+    <string name="registarUs">Registar Usuario</string>
+    /* Inf de prueba */
+    <string name="pruebaHoraS">10:00 AM</string>
+    <string name="pruebaFechaS">09/04/2024</string>
+    <string name="pruebaDestinat">Laminio Echegoyen</string>
 </resources>

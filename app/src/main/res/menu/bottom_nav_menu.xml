@@ -5,16 +5,21 @@
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/title_home" />
-
     <item
-        android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
-
+        android:id="@+id/navigation_chat"
+        android:icon="@drawable/chat"
+        android:title="@string/chat" />
     <item
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/ic_notifications_black_24dp"
         android:title="@string/title_notifications" />
+    <item
+        android:id="@+id/logoutFragment"
+        android:icon="@drawable/exit"
+        android:title="@string/logout" />
+
+
+
 
 
 </menu>
