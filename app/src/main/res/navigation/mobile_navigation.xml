@@ -28,15 +28,25 @@
         android:label="fragment_registrar_envio"
         tools:layout="@layout/fragment_registrar_envio" />
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.enviorapido_pdm.ui.administracion.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        android:id="@+id/envioExitosoFragment"
+        android:name="com.example.enviorapido_pdm.ui.envios.EnvioExitosoFragment"
+        android:label="fragment_envio_exitoso"
+        tools:layout="@layout/fragment_envio_exitoso" />
     <fragment
-        android:id="@+id/logoutFragment"
-        android:name="com.example.enviorapido_pdm.ui.administracion.LogoutFragment"
-        android:label="fragment_logout"
-        tools:layout="@layout/fragment_logout" />
+        android:id="@+id/historialFragment"
+        android:name="com.example.enviorapido_pdm.ui.envios.HistorialFragment"
+        android:label="fragment_historial"
+        tools:layout="@layout/fragment_historial" />
+    <fragment
+        android:id="@+id/datosDestinatarioFragment"
+        android:name="com.example.enviorapido_pdm.ui.envios.DatosDestinatarioFragment"
+        android:label="fragment_datos_destinatario"
+        tools:layout="@layout/fragment_datos_destinatario" />
+    <fragment
+        android:id="@+id/pedidosEntregaFragment"
+        android:name="com.example.enviorapido_pdm.ui.envios.PedidosEntregaFragment"
+        android:label="fragment_pedidos_entrega"
+        tools:layout="@layout/fragment_pedidos_entrega" />
     <fragment
         android:id="@+id/rastrearPaqueteFragment"
         android:name="com.example.enviorapido_pdm.ui.rastreo.RastrearPaqueteFragment"
@@ -47,4 +57,14 @@
         android:name="com.example.enviorapido_pdm.ui.rastreo.DatosRastreoPaqueteFragment"
         android:label="fragment_datos_rastreo_paquete"
         tools:layout="@layout/fragment_datos_rastreo_paquete" />
+    <fragment
+        android:id="@+id/registrarUsuarioFragment"
+        android:name="com.example.enviorapido_pdm.ui.administracion.RegistrarUsuarioFragment"
+        android:label="fragment_registrar_usuario"
+        tools:layout="@layout/fragment_registrar_usuario" />
+    <fragment
+        android:id="@+id/historialCompletadosFragment"
+        android:name="com.example.enviorapido_pdm.ui.envios.HistorialCompletadosFragment"
+        android:label="fragment_historial_completados"
+        tools:layout="@layout/fragment_historial_completados" />
 </navigation>
