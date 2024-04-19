@@ -1,4 +1,4 @@
-package com.example.enviorapido_pdm.ui.administracion
+package com.example.enviorapido_pdm.ui.chat
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -10,24 +10,24 @@ import android.widget.Button
 import com.example.enviorapido_pdm.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class LogoutFragment : Fragment() {
+class ChatFragment : Fragment() {
 
     companion object {
-        fun newInstance() = LogoutFragment()
+        fun newInstance() = ChatFragment()
     }
 
-    private lateinit var viewModel: LogoutViewModel
+    private lateinit var viewModel: ChatViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_logout, container, false)
+        return inflater.inflate(R.layout.fragment_chat, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(LogoutViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
         // TODO: Use the ViewModel
         // Ocultar la barra de navegación inferior al navegar al fragmento RegistrarEnvioFragment
         val navView: BottomNavigationView? = activity?.findViewById(R.id.nav_view)

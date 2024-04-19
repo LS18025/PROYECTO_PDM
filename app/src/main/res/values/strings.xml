@@ -49,8 +49,10 @@
     <string name="comentario">Comentarios: </string>
     /* ATENCION AL CLIENTE */
     <string name="atencion">Atención al Cliente: </string>
-    <string name="chatBoton">Iniciar Chat: </string>
+    <string name="chatBoton">Iniciar Chat </string>
     <string name="chat">Chat de EnvioRapido: </string>
+    <string name="enviarMens">Enviar </string>
+    <string name="chatTitutlo">Chat rapido </string>
     /* MI USUARIO */
     <string name="usuario">Usuario: </string>
     <string name="perfil">Mi Perfil</string>
