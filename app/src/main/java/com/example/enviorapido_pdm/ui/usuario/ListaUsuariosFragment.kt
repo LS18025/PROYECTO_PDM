@@ -1,4 +1,4 @@
-package com.example.enviorapido_pdm.ui.envios
+package com.example.enviorapido_pdm.ui.usuario
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle

@@ -69,7 +69,7 @@
         tools:layout="@layout/fragment_historial_completados" />
     <fragment
         android:id="@+id/listaUsuariosFragment"
-        android:name="com.example.enviorapido_pdm.ui.envios.ListaUsuariosFragment"
+        android:name="com.example.enviorapido_pdm.ui.usuario.ListaUsuariosFragment"
         android:label="fragment_lista_usuarios"
         tools:layout="@layout/fragment_lista_usuarios" />
     <fragment
