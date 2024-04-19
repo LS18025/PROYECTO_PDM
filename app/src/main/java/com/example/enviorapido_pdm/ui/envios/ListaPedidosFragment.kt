@@ -1,4 +1,4 @@
-package com.example.enviorapido_pdm.ui.usuario
+package com.example.enviorapido_pdm.ui.envios
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -9,24 +9,24 @@ import android.view.ViewGroup
 import android.widget.Button
 import com.example.enviorapido_pdm.R
 
-class PerfilUsuarioFragment : Fragment() {
+class ListaPedidosFragment : Fragment() {
 
     companion object {
-        fun newInstance() = PerfilUsuarioFragment()
+        fun newInstance() = ListaPedidosFragment()
     }
 
-    private lateinit var viewModel: PerfilUsuarioViewModel
+    private lateinit var viewModel: ListaPedidosViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_perfil_usuario, container, false)
+        return inflater.inflate(R.layout.fragment_lista_pedidos, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(PerfilUsuarioViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(ListaPedidosViewModel::class.java)
         // TODO: Use the ViewModel
         // Ocultar el botón en el fragmento
         val button: Button? = activity?.findViewById(R.id.button2)
