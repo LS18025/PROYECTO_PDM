@@ -67,4 +67,14 @@
         android:name="com.example.enviorapido_pdm.ui.envios.HistorialCompletadosFragment"
         android:label="fragment_historial_completados"
         tools:layout="@layout/fragment_historial_completados" />
+    <fragment
+        android:id="@+id/listaUsuariosFragment"
+        android:name="com.example.enviorapido_pdm.ui.envios.ListaUsuariosFragment"
+        android:label="fragment_lista_usuarios"
+        tools:layout="@layout/fragment_lista_usuarios" />
+    <fragment
+        android:id="@+id/listaPedidosFragment"
+        android:name="com.example.enviorapido_pdm.ui.envios.ListaPedidosFragment"
+        android:label="fragment_lista_pedidos"
+        tools:layout="@layout/fragment_lista_pedidos" />
 </navigation>

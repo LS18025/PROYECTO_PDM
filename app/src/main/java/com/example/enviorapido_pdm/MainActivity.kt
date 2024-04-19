@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         // Agregar OnClickListener al botón
         button.setOnClickListener {
             // Navegar al fragmento RegistrarEnvioFragment
-            navController.navigate(R.id.historialCompletadosFragment)
+            navController.navigate(R.id.listaPedidosFragment)
         }
     }
 }
