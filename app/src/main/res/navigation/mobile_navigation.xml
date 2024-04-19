@@ -82,4 +82,9 @@
         android:name="com.example.enviorapido_pdm.ui.usuario.PerfilUsuarioFragment"
         android:label="fragment_perfil_usuario"
         tools:layout="@layout/fragment_perfil_usuario" />
+    <fragment
+        android:id="@+id/editarUsuarioFragment"
+        android:name="com.example.enviorapido_pdm.ui.usuario.EditarUsuarioFragment"
+        android:label="fragment_editar_usuario"
+        tools:layout="@layout/fragment_editar_usuario" />
 </navigation>
