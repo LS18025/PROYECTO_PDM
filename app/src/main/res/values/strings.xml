@@ -53,6 +53,7 @@
     <string name="chat">Chat de EnvioRapido: </string>
     /* MI USUARIO */
     <string name="usuario">Usuario: </string>
+    <string name="perfil">Mi Perfil</string>
     <string name="listaUsuario">Usuarios </string>
     <string name="vendedor">Vendedor </string>
     <string name="repartidorRol">Repartidor </string>
@@ -61,8 +62,8 @@
     <string name="logout">Cerrar Sesión</string>
     /* Datos de usuario */
     <string name="correo">Correo: </string>
-    <string name="contrasena">Contrasena: </string>
-    <string name="repContrasena">Repetir Contrasena: </string>
+    <string name="contrasena">Contraseña: </string>
+    <string name="repContrasena">Repetir Contraseña: </string>
     <string name="datosUsuario">Datos del Usuario</string>
     <string name="registarUs">Registar Usuario</string>
     /* Inf de prueba */

@@ -77,4 +77,9 @@
         android:name="com.example.enviorapido_pdm.ui.envios.ListaPedidosFragment"
         android:label="fragment_lista_pedidos"
         tools:layout="@layout/fragment_lista_pedidos" />
+    <fragment
+        android:id="@+id/perfilUsuarioFragment"
+        android:name="com.example.enviorapido_pdm.ui.usuario.PerfilUsuarioFragment"
+        android:label="fragment_perfil_usuario"
+        tools:layout="@layout/fragment_perfil_usuario" />
 </navigation>
