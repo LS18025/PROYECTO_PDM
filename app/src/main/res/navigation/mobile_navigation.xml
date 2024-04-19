@@ -67,4 +67,18 @@
         android:name="com.example.enviorapido_pdm.ui.envios.HistorialCompletadosFragment"
         android:label="fragment_historial_completados"
         tools:layout="@layout/fragment_historial_completados" />
+    <fragment
+        android:id="@+id/atencionClienteFragment"
+        android:name="com.example.enviorapido_pdm.ui.chat.AtencionClienteFragment"
+        android:label="fragment_atencion_cliente"
+        tools:layout="@layout/fragment_atencion_cliente" />
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.enviorapido_pdm.ui.chat.ChatFragment"
+        android:label="ChatFragment" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.enviorapido_pdm.ui.administracion.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
 </navigation>

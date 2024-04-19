@@ -10,9 +10,11 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.enviorapido_pdm.databinding.ActivityMainBinding
 
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         // Agregar OnClickListener al botón
         button.setOnClickListener {
             // Navegar al fragmento RegistrarEnvioFragment
-            navController.navigate(R.id.rastrearPaqueteFragment)
+            navController.navigate(R.id.registrarUsuarioFragment)
         }
     }
 }
