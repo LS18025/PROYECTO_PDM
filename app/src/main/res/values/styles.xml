@@ -3,6 +3,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Personaliza los atributos del tema -->
         <item name="android:windowBackground">@drawable/fondo_degradado</item>
+        <item name="bottomNavigationStyle">@style/AppBottomNavigation</item>
         <!-- Otros atributos del tema -->
     </style>
 
@@ -27,5 +28,11 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">18sp</item>
     </style>
+    <style name="AppBottomNavigation" parent="Widget.Design.BottomNavigationView">
+        <item name="android:background">#00FC28</item>
+
+    </style>
+
+
 
 </resources>
