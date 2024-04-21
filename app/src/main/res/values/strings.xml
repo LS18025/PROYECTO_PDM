@@ -10,7 +10,7 @@
     <string name="rastreoBoton">Rastrear Paquete</string>
     /* RASTREO */
     <string name="rastreo">Rastreo de Paquete</string>
-    <string name="codigo">Cod. Paquete</string>
+    <string name="codigo">Cod. Paquete:</string>
     <string name="consultaPaquete">Consultar Paquete</string>
     <string name="consultaBoton">Consultar</string>
     <string name="horaS">Hora de salida: </string>
@@ -33,20 +33,46 @@
     <string name="fechaPedido">Fecha del pedido: </string>
     <string name="fechaEntrega">Fecha de entrega: </string>
     <string name="asignacion">Asignar Repartidor: </string>
-    <string name="exito">Envío Exitoso: </string>
+    <string name="exito">Envío Exitoso!</string>
     <string name="compartir">Compartir</string>
     /* HISTORIAL DE ENVIOS */
     <string name="historial">Historial de Envíos</string>
+    <string name="historialPendientes">Pedidos por entregar</string>
+    <string name="listaPedidos">Pedidos</string>
     /* DATOS DE ENVIOS */
     <string name="paquete">Paquete: </string>
     <string name="repartidor">Repartidor: </string>
     <string name="estado">Estado: </string>
+    <string name="completado">Completado: </string>
+    <string name="camino">En Camino: </string>
+    <string name="pendiente">Pendiente: </string>
     <string name="comentario">Comentarios: </string>
     /* ATENCION AL CLIENTE */
     <string name="atencion">Atención al Cliente: </string>
-    <string name="chatBoton">Iniciar Chat: </string>
+    <string name="chatBoton">Iniciar Chat </string>
     <string name="chat">Chat de EnvioRapido: </string>
+    <string name="enviarMens">Enviar </string>
+    <string name="chatTitutlo">Chat rapido </string>
     /* MI USUARIO */
     <string name="usuario">Usuario: </string>
+    <string name="perfil">Mi Perfil</string>
+    <string name="editar">Editar Perfil</string>
+    <string name="listaUsuario">Usuarios </string>
+    <string name="vendedor">Vendedor </string>
+    <string name="repartidorRol">Repartidor </string>
     <string name="total">Total de Envíos: </string>
+    /* Login */
+    <string name="logout">Cerrar Sesión</string>
+    /* Datos de usuario */
+    <string name="correo">Correo: </string>
+    <string name="contrasena">Contraseña: </string>
+    <string name="repContrasena">Repetir Contraseña: </string>
+    <string name="datosUsuario">Datos del Usuario</string>
+    <string name="registarUs">Registar Usuario</string>
+    /* Inf de prueba */
+    <string name="pruebaHoraS">10:00 AM</string>
+    <string name="pruebaFechaS">09/04/2024</string>
+    <string name="pruebaDestinat">Laminio Echegoyen</string>
+
+
 </resources>

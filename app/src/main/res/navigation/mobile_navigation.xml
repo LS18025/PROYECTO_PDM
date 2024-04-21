@@ -27,4 +27,64 @@
         android:name="com.example.enviorapido_pdm.ui.envios.RegistrarEnvioFragment"
         android:label="fragment_registrar_envio"
         tools:layout="@layout/fragment_registrar_envio" />
+    <fragment
+        android:id="@+id/envioExitosoFragment"
+        android:name="com.example.enviorapido_pdm.ui.envios.EnvioExitosoFragment"
+        android:label="fragment_envio_exitoso"
+        tools:layout="@layout/fragment_envio_exitoso" />
+    <fragment
+        android:id="@+id/historialFragment"
+        android:name="com.example.enviorapido_pdm.ui.envios.HistorialFragment"
+        android:label="fragment_historial"
+        tools:layout="@layout/fragment_historial" />
+    <fragment
+        android:id="@+id/datosDestinatarioFragment"
+        android:name="com.example.enviorapido_pdm.ui.envios.DatosDestinatarioFragment"
+        android:label="fragment_datos_destinatario"
+        tools:layout="@layout/fragment_datos_destinatario" />
+    <fragment
+        android:id="@+id/pedidosEntregaFragment"
+        android:name="com.example.enviorapido_pdm.ui.envios.PedidosEntregaFragment"
+        android:label="fragment_pedidos_entrega"
+        tools:layout="@layout/fragment_pedidos_entrega" />
+    <fragment
+        android:id="@+id/rastrearPaqueteFragment"
+        android:name="com.example.enviorapido_pdm.ui.rastreo.RastrearPaqueteFragment"
+        android:label="fragment_rastrear_paquete"
+        tools:layout="@layout/fragment_rastrear_paquete" />
+    <fragment
+        android:id="@+id/datosRastreoPaqueteFragment"
+        android:name="com.example.enviorapido_pdm.ui.rastreo.DatosRastreoPaqueteFragment"
+        android:label="fragment_datos_rastreo_paquete"
+        tools:layout="@layout/fragment_datos_rastreo_paquete" />
+    <fragment
+        android:id="@+id/registrarUsuarioFragment"
+        android:name="com.example.enviorapido_pdm.ui.administracion.RegistrarUsuarioFragment"
+        android:label="fragment_registrar_usuario"
+        tools:layout="@layout/fragment_registrar_usuario" />
+    <fragment
+        android:id="@+id/historialCompletadosFragment"
+        android:name="com.example.enviorapido_pdm.ui.envios.HistorialCompletadosFragment"
+        android:label="fragment_historial_completados"
+        tools:layout="@layout/fragment_historial_completados" />
+    <fragment
+        android:id="@+id/listaUsuariosFragment"
+        android:name="com.example.enviorapido_pdm.ui.usuario.ListaUsuariosFragment"
+        android:label="fragment_lista_usuarios"
+        tools:layout="@layout/fragment_lista_usuarios" />
+    <fragment
+        android:id="@+id/listaPedidosFragment"
+        android:name="com.example.enviorapido_pdm.ui.envios.ListaPedidosFragment"
+        android:label="fragment_lista_pedidos"
+        tools:layout="@layout/fragment_lista_pedidos" />
+    <fragment
+        android:id="@+id/perfilUsuarioFragment"
+        android:name="com.example.enviorapido_pdm.ui.usuario.PerfilUsuarioFragment"
+        android:label="fragment_perfil_usuario"
+        tools:layout="@layout/fragment_perfil_usuario" />
+    <fragment
+        android:id="@+id/editarUsuarioFragment"
+        android:name="com.example.enviorapido_pdm.ui.usuario.EditarUsuarioFragment"
+        android:label="fragment_editar_usuario"
+        tools:layout="@layout/fragment_editar_usuario" />
 </navigation>

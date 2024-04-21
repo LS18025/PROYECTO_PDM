@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="LISTA_ROLES">
+        <item>TODOS</item>
+        <item>REPARTIDORES</item>
+        <item>VENDEDORES</item>
+    </string-array>
+    <string-array name="LISTA_ESTADOS">
+        <item>TODOS</item>
+        <item>COMPLETADOS</item>
+        <item>EN CAMINO</item>
+        <item>PENDIENTES</item>
+    </string-array>
+</resources>
