@@ -9,6 +9,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.enviorapido_pdm.databinding.ActivityMainBinding
+import android.os.Build
+import androidx.core.content.ContextCompat
 
 
 class MainActivity : AppCompatActivity() {
@@ -20,6 +22,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+        // Configurar el color de la barra de estado
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.statusBarColor = ContextCompat.getColor(this, R.color.colorStatusBar)
+        }
+
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
@@ -39,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         // Agregar OnClickListener al botón
         button.setOnClickListener {
             // Navegar al fragmento RegistrarEnvioFragment
-            navController.navigate(R.id.registrarUsuarioFragment)
+            navController.navigate(R.id.loginFragment)
         }
     }
 }
