@@ -56,6 +56,7 @@
     /* MI USUARIO */
     <string name="usuario">Usuario: </string>
     <string name="perfil">Mi Perfil</string>
+    <string name="editar">Editar Perfil</string>
     <string name="listaUsuario">Usuarios </string>
     <string name="vendedor">Vendedor </string>
     <string name="repartidorRol">Repartidor </string>

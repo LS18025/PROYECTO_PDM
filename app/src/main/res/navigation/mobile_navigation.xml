@@ -68,17 +68,23 @@
         android:label="fragment_historial_completados"
         tools:layout="@layout/fragment_historial_completados" />
     <fragment
-        android:id="@+id/atencionClienteFragment"
-        android:name="com.example.enviorapido_pdm.ui.chat.AtencionClienteFragment"
-        android:label="fragment_atencion_cliente"
-        tools:layout="@layout/fragment_atencion_cliente" />
+        android:id="@+id/listaUsuariosFragment"
+        android:name="com.example.enviorapido_pdm.ui.usuario.ListaUsuariosFragment"
+        android:label="fragment_lista_usuarios"
+        tools:layout="@layout/fragment_lista_usuarios" />
     <fragment
-        android:id="@+id/chatFragment"
-        android:name="com.example.enviorapido_pdm.ui.chat.ChatFragment"
-        android:label="ChatFragment" />
+        android:id="@+id/listaPedidosFragment"
+        android:name="com.example.enviorapido_pdm.ui.envios.ListaPedidosFragment"
+        android:label="fragment_lista_pedidos"
+        tools:layout="@layout/fragment_lista_pedidos" />
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.enviorapido_pdm.ui.administracion.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        android:id="@+id/perfilUsuarioFragment"
+        android:name="com.example.enviorapido_pdm.ui.usuario.PerfilUsuarioFragment"
+        android:label="fragment_perfil_usuario"
+        tools:layout="@layout/fragment_perfil_usuario" />
+    <fragment
+        android:id="@+id/editarUsuarioFragment"
+        android:name="com.example.enviorapido_pdm.ui.usuario.EditarUsuarioFragment"
+        android:label="fragment_editar_usuario"
+        tools:layout="@layout/fragment_editar_usuario" />
 </navigation>

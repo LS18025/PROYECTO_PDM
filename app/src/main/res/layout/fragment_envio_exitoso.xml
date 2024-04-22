@@ -20,16 +20,16 @@
 
     <TextView
         android:id="@+id/textView15"
+        style="@style/titulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="@string/exito"
         android:textColor="#000000"
         android:textSize="48sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/imageButton5"
@@ -55,9 +55,10 @@
 
     <TextView
         android:id="@+id/textView16"
+        style="@style/textNormal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:text="@string/codigo"
         android:textColor="#191616"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,22 +67,16 @@
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="391dp"
-        android:layout_height="73dp"
-        android:layout_marginTop="88dp"
-        android:background="#00FF00"
-        android:backgroundTint="@color/teal_200"
-        android:drawableTint="#78DF1D"
-        android:foregroundTint="#57BA19"
+        style="@style/EstiloBoton"
+        android:layout_width="264dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="32dp"
         android:text="Ok"
-        android:textColorHint="#75D55B"
-        android:textColorLink="#83C342"
-        app:iconTint="#67DD1C"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView18"
-        app:layout_constraintVertical_bias="1.0"
-        app:rippleColor="#50D132"
-        tools:layout_editor_absoluteX="1dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
