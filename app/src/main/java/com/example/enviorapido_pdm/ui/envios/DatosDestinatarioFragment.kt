@@ -31,9 +31,7 @@ class DatosDestinatarioFragment : Fragment() {
         // TODO: Use the ViewModel
         val navView: BottomNavigationView? = activity?.findViewById(R.id.nav_view)
         navView?.visibility = View.GONE
-        // Ocultar el botón en el fragmento
-        val button: Button? = activity?.findViewById(R.id.button2)
-        button?.visibility = View.GONE
+
     }
 
 }
