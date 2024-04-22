@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         // Agregar OnClickListener al botón
         button.setOnClickListener {
             // Navegar al fragmento RegistrarEnvioFragment
-            navController.navigate(R.id.loginFragment)
+            navController.navigate(R.id.registrarUsuarioFragment)
         }
     }
 }
