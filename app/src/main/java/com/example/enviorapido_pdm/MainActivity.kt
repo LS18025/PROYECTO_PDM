@@ -1,5 +1,6 @@
 package com.example.enviorapido_pdm
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -9,6 +10,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.enviorapido_pdm.databinding.ActivityMainBinding
+import com.example.enviorapido_pdm.ui.departamentos.VistaInsertarDepartamento
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,10 +36,19 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
         // Obtener referencia al botón
         val button: Button = findViewById(R.id.button2)
+
         // Agregar OnClickListener al botón
         button.setOnClickListener {
             // Navegar al fragmento RegistrarEnvioFragment
             navController.navigate(R.id.envioExitosoFragment)
+        }
+
+        val btnDepa:Button = findViewById(R.id.btnDepa)
+
+        btnDepa.setOnClickListener()
+        {
+            val Intent = Intent(this,VistaInsertarDepartamento::class.java)
+            startActivity(Intent)
         }
     }
 }
