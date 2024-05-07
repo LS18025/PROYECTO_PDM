@@ -68,7 +68,10 @@
     <string name="contrasena">Contraseña: </string>
     <string name="repContrasena">Repetir Contraseña: </string>
     <string name="datosUsuario">Datos del Usuario</string>
-    <string name="registarUs">Registar Usuario</string>
+    <string name="registarUs">Registrar Usuario</string>
+    <string name="olvidarPass">Olvidé mi contraseña</string>
+    <string name="recuperarPass">Recuperar Contraseña</string>
+    <string name="recuperarPassEnviar">Enviar</string>
     /* Inf de prueba */
     <string name="pruebaHoraS">10:00 AM</string>
     <string name="pruebaFechaS">09/04/2024</string>

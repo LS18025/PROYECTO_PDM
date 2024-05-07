@@ -12,7 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="31">
-
+        <activity
+            android:name=".RecordarContrasena"
+            android:exported="false" />
+        <activity
+            android:name=".RegistrarCuenta"
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="true"
@@ -23,15 +28,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.departamentos.VistaInsertarDepartamento"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>

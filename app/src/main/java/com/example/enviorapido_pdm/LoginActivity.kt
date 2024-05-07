@@ -21,6 +21,9 @@ class LoginActivity : AppCompatActivity() {
         val btnAcceder : Button = findViewById(R.id.btnAcceder)
         val txtusername : TextView = findViewById(R.id.txtusername)
         val txtcontraseña : TextView = findViewById(R.id.txtContraseña)
+        val btnRegistrar: Button = findViewById(R.id.btnRegistrar)
+        val btnOlvidar: TextView = findViewById(R.id.btnOlvidar)
+
         firebaseAuth = Firebase.auth
 
         btnAcceder.setOnClickListener() {
@@ -28,6 +31,16 @@ class LoginActivity : AppCompatActivity() {
             signIn(txtusername.text.toString(),txtcontraseña.text.toString())
 
         }
+        btnRegistrar.setOnClickListener(){
+            val i = Intent (this,RegistrarCuenta::class.java)
+            startActivity(i)
+        }
+        btnOlvidar.setOnClickListener()
+        {
+            val i = Intent (this,RecordarContrasena::class.java)
+            startActivity(i)
+        }
+
     }
 
     private fun signIn(email: String, password:String)

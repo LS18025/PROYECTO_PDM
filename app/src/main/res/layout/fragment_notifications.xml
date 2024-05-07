@@ -72,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/btnCancelarRegistro"
         android:layout_width="42dp"
         android:layout_height="43dp"
         android:layout_marginTop="36dp"
@@ -149,7 +149,7 @@
         app:layout_constraintEnd_toStartOf="@+id/view3"
         app:layout_constraintHorizontal_bias="0.71"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+        app:layout_constraintTop_toBottomOf="@+id/btnCancelarRegistro" />
 
     <View
         android:id="@+id/view2"
