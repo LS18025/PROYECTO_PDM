@@ -1,5 +1,6 @@
 package com.example.enviorapido_pdm
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -9,24 +10,16 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.enviorapido_pdm.databinding.ActivityMainBinding
-import android.os.Build
-import androidx.core.content.ContextCompat
-
+import com.example.enviorapido_pdm.ui.departamentos.VistaInsertarDepartamento
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
-        // Configurar el color de la barra de estado
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor = ContextCompat.getColor(this, R.color.colorStatusBar)
-        }
-
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
@@ -42,7 +35,20 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         // Obtener referencia al botón
-        // Agregar OnClickListener al botón
+        val button: Button = findViewById(R.id.button2)
 
+        // Agregar OnClickListener al botón
+        button.setOnClickListener {
+            // Navegar al fragmento RegistrarEnvioFragment
+            navController.navigate(R.id.envioExitosoFragment)
+        }
+
+        val btnDepa:Button = findViewById(R.id.btnDepa)
+
+        btnDepa.setOnClickListener()
+        {
+            val Intent = Intent(this,VistaInsertarDepartamento::class.java)
+            startActivity(Intent)
+        }
     }
 }

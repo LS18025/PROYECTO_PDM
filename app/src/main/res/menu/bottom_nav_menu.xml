@@ -7,7 +7,7 @@
         android:title="@string/title_home"
         />
     <item
-        android:id="@+id/navigation_chat"
+        android:id="@+id/fragment_chat"
         android:icon="@drawable/chat"
         android:title="@string/chat"
         />
@@ -21,7 +21,6 @@
         android:icon="@drawable/exit"
         android:title="@string/logout"
         />
-
 
 
 

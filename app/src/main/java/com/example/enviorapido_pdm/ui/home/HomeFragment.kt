@@ -4,17 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.enviorapido_pdm.databinding.FragmentHomeBinding
+import com.example.enviorapido_pdm.R
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -22,13 +21,34 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        
+        // Encuentra el ImageButton
+        val imageButton4: ImageButton = binding.imageButton4
+        val imageButton6: ImageButton = binding.imageButton6
+        val imageButton8: ImageButton = binding.imageButton8
+
+
+        // Establecer el OnClickListener
+        imageButton4.setOnClickListener {
+            // Navega hacia el fragmento RegistrarEnvioFragment
+            findNavController().navigate(R.id.registrarEnvioFragment)
+        }
+
+        // Establecer el OnClickListener
+        imageButton6.setOnClickListener {
+            // Navega hacia el fragmento RegistrarEnvioFragment
+            findNavController().navigate(R.id.historialFragment)
+        }
+
+        // Establecer el OnClickListener
+        imageButton8.setOnClickListener {
+            // Navega hacia el fragmento RegistrarEnvioFragment
+            findNavController().navigate(R.id.perfilUsuarioFragment)
+        }
+
+
         return root
     }
 
