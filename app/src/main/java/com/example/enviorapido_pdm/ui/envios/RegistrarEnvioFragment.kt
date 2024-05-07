@@ -54,5 +54,7 @@ class RegistrarEnvioFragment : Fragment() {
         // Ocultar el botón en el fragmento
         val button: Button? = activity?.findViewById(R.id.button2)
         button?.visibility = View.GONE
+
+
     }
 }
