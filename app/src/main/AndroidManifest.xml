@@ -13,13 +13,13 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
-            android:name=".RecordarContrasena"
+            android:name=".ui.administracion.RecordarContrasena"
             android:exported="false" />
         <activity
-            android:name=".RegistrarCuenta"
+            android:name=".ui.administracion.RegistrarCuenta"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.administracion.LoginActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>

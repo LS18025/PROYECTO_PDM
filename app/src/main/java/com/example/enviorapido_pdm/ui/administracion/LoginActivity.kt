@@ -1,4 +1,4 @@
-package com.example.enviorapido_pdm
+package com.example.enviorapido_pdm.ui.administracion
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import com.google.firebase.FirebaseApp
+import com.example.enviorapido_pdm.MainActivity
+import com.example.enviorapido_pdm.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -32,12 +33,12 @@ class LoginActivity : AppCompatActivity() {
 
         }
         btnRegistrar.setOnClickListener(){
-            val i = Intent (this,RegistrarCuenta::class.java)
+            val i = Intent (this, RegistrarCuenta::class.java)
             startActivity(i)
         }
         btnOlvidar.setOnClickListener()
         {
-            val i = Intent (this,RecordarContrasena::class.java)
+            val i = Intent (this, RecordarContrasena::class.java)
             startActivity(i)
         }
 
@@ -53,7 +54,7 @@ class LoginActivity : AppCompatActivity() {
 
                     //Vamos hacia el Dashboard
 
-                    val i = Intent(this,MainActivity::class.java)
+                    val i = Intent(this, MainActivity::class.java)
                     startActivity(i)
                 }
                 else{

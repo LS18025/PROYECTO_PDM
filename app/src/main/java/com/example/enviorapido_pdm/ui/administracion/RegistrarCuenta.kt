@@ -1,13 +1,12 @@
-package com.example.enviorapido_pdm
+package com.example.enviorapido_pdm.ui.administracion
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
-import android.widget.Toast.makeText
+import com.example.enviorapido_pdm.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -48,7 +47,7 @@ class RegistrarCuenta : AppCompatActivity() {
         val btnRegresar: ImageButton = findViewById(R.id.btnCancelarRegistro)
         btnRegresar.setOnClickListener()
         {
-            val i = Intent (this,LoginActivity::class.java)
+            val i = Intent (this, LoginActivity::class.java)
             startActivity(i)
         }
     }
