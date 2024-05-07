@@ -200,7 +200,7 @@
         app:layout_constraintVertical_bias="0.039" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/txtContraseña"
         style="@style/EditTextStyle"
         android:layout_width="226dp"
         android:layout_height="34dp"
@@ -229,7 +229,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.617"
         app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        app:layout_constraintTop_toBottomOf="@+id/txtContraseña"
         app:layout_constraintVertical_bias="0.007" />
 
 

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "35936565502",
+    "project_id": "proyectopdm-9fc66",
+    "storage_bucket": "proyectopdm-9fc66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:35936565502:android:03c81d3c94067774f9cdaf",
+        "android_client_info": {
+          "package_name": "com.example.enviorapido_pdm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-x-fDC1QWx50sTL8F8N9F8LXxtLGEkM4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
