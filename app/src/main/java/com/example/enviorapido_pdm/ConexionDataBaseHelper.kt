@@ -16,7 +16,11 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         private const val TABLE_DEPARTAMENTO = "Departamento"
         private const val COL_ID_DEPARTAMENTO = "id_departamento"
         private const val COL_NOMBRE_DEPARTAMENTO = "nombre_departamento"
-
+        //Tabla Direccion
+        private const val TABLE_DIRECCION = "Direccion"
+        private const val COL_ID_DIRECCION = "ID_DIRECCION"
+        private const val COL_ID_MUNICIPIO = "ID_MUNICIPIO"
+        private const val COL_DIRECCION = "DIRECCION"
         //Tabla Envíos
         private const val TABLE_ENVIO = "Envio"
         private const val COL_ID_ENVIO = "ID_ENVIO"
@@ -27,7 +31,6 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         private const val COL_FECHA_PROGRAMADA = "FECHA_PROGRAMADA"
         private const val COL_NUMERO_CONF = "NUMERO_CONF"
     }
-
     override fun onCreate(db: SQLiteDatabase) {
         val createTableDepartamentoSQL= "CREATE TABLE $TABLE_DEPARTAMENTO ("+
                 "$COL_ID_DEPARTAMENTO INTEGER PRIMARY KEY, "+
@@ -45,11 +48,19 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
                 "$COL_NUMERO_CONF TEXT NOT NULL)"
 
         db.execSQL(createTableEnvioSQL)
+
+        val createTableDireccionSQL = "CREATE TABLE $TABLE_DIRECCION (" +
+                "$COL_ID_DIRECCION INTEGER PRIMARY KEY, " +
+                "$COL_ID_MUNICIPIO INTEGER NOT NULL, " +
+                "$COL_DIRECCION TEXT NOT NULL)"
+
+        db.execSQL(createTableDireccionSQL)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS $TABLE_DEPARTAMENTO")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_ENVIO")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_DIRECCION")
         onCreate(db)
     }
 
