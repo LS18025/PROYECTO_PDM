@@ -16,6 +16,16 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         private const val TABLE_DEPARTAMENTO = "Departamento"
         private const val COL_ID_DEPARTAMENTO = "id_departamento"
         private const val COL_NOMBRE_DEPARTAMENTO = "nombre_departamento"
+
+        //Tabla Envíos
+        private const val TABLE_ENVIO = "Envio"
+        private const val COL_ID_ENVIO = "ID_ENVIO"
+        private const val COL_ID_PERSONA = "ID_PERSONA"
+        private const val COL_ETIQUETA = "ETIQUETA"
+        private const val COL_COSTO_TOTAL_ENVIO = "COSTO_TOTAL_ENVIO"
+        private const val COL_FECHA_ENVIO = "FECHA_ENVIO"
+        private const val COL_FECHA_PROGRAMADA = "FECHA_PROGRAMADA"
+        private const val COL_NUMERO_CONF = "NUMERO_CONF"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -24,10 +34,22 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
                 "$COL_NOMBRE_DEPARTAMENTO TEXT NOT NULL)"
 
         db.execSQL(createTableDepartamentoSQL)
+
+        val createTableEnvioSQL = "CREATE TABLE $TABLE_ENVIO (" +
+                "$COL_ID_ENVIO INTEGER PRIMARY KEY, " +
+                "$COL_ID_PERSONA INTEGER NOT NULL, " +
+                "$COL_ETIQUETA BLOB NOT NULL, " +
+                "$COL_COSTO_TOTAL_ENVIO REAL, " +
+                "$COL_FECHA_ENVIO TEXT NOT NULL, " +
+                "$COL_FECHA_PROGRAMADA TEXT NOT NULL, " +
+                "$COL_NUMERO_CONF TEXT NOT NULL)"
+
+        db.execSQL(createTableEnvioSQL)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS $TABLE_DEPARTAMENTO")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_ENVIO")
         onCreate(db)
     }
 
@@ -64,6 +86,65 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         cursor.close()
         db.close()
         return DatosDepartamentos
+    }
+
+    //FUNCIONES DE ENVIO
+    fun AgregarEnvio(
+        id_envio: Int,
+        id_persona: Int,
+        etiqueta: ByteArray,
+        costo_total_envio: Double,
+        fecha_envio: String,
+        fecha_programada: String,
+        numero_conf: String
+    ): Long {
+        val db = writableDatabase
+        val valores = ContentValues().apply {
+            put(COL_ID_ENVIO, id_envio)
+            put(COL_ID_PERSONA, id_persona)
+            put(COL_ETIQUETA, etiqueta)
+            put(COL_COSTO_TOTAL_ENVIO, costo_total_envio)
+            put(COL_FECHA_ENVIO, fecha_envio)
+            put(COL_FECHA_PROGRAMADA, fecha_programada)
+            put(COL_NUMERO_CONF, numero_conf)
+        }
+        val IdResultado = db.insert(TABLE_ENVIO, null, valores)
+
+        db.close()
+        return IdResultado
+    }
+    fun RecuperarTodoslosEnvios(): ArrayList<Envios> {
+        val query: String = "SELECT * FROM $TABLE_ENVIO"
+        val db = readableDatabase
+        val cursor: Cursor
+        var DatosEnvios = ArrayList<Envios>()
+
+        cursor = db.rawQuery(query, null)
+
+        while (cursor.moveToNext()) {
+            val id = cursor.getInt(0)
+            val id_persona = cursor.getInt(1)
+            val etiqueta = cursor.getBlob(2)
+            val costo_total_envio = cursor.getDouble(3)
+            val fecha_envio = cursor.getString(4)
+            val fecha_programada = cursor.getString(5)
+            val numero_conf = cursor.getString(6)
+
+            val envio = Envios(
+                id,
+                id_persona,
+                etiqueta,
+                costo_total_envio,
+                fecha_envio,
+                fecha_programada,
+                numero_conf
+            )
+
+            DatosEnvios.add(envio)
+        }
+        cursor.close()
+        db.close()
+        return DatosEnvios
     }
 
 

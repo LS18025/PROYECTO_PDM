@@ -66,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnAcceder"
         style="@style/EstiloBoton"
         android:layout_width="264dp"
         android:layout_height="62dp"

@@ -32,13 +32,13 @@ class RegistrarEnvioFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Configurar el listener para el ImageButton
-        view.findViewById<ImageButton>(R.id.imageButton).setOnClickListener {
+        view.findViewById<ImageButton>(R.id.btnRegistrarUsuario).setOnClickListener {
             // Navegar al fragmento EnvioExitosoFragment
             findNavController().navigate(R.id.envioExitosoFragment)
         }
 
         // Configurar el listener para el ImageButton2
-        view.findViewById<ImageButton>(R.id.imageButton2).setOnClickListener {
+        view.findViewById<ImageButton>(R.id.btnCancelarRegistro).setOnClickListener {
             // Navegar hacia atrás
             findNavController().navigateUp()
         }
@@ -54,5 +54,7 @@ class RegistrarEnvioFragment : Fragment() {
         // Ocultar el botón en el fragmento
         val button: Button? = activity?.findViewById(R.id.button2)
         button?.visibility = View.GONE
+
+
     }
 }

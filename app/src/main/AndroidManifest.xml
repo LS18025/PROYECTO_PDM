@@ -13,10 +13,13 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
-            android:name=".ui.departamentos.VistaInsertarDepartamento"
+            android:name=".ui.administracion.RecordarContrasena"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.administracion.RegistrarCuenta"
+            android:exported="false" />
+        <activity
+            android:name=".ui.administracion.LoginActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
@@ -25,6 +28,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.departamentos.VistaInsertarDepartamento"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
