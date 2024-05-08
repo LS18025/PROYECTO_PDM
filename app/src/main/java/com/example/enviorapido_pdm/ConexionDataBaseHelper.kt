@@ -30,6 +30,17 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         private const val COL_FECHA_ENVIO = "FECHA_ENVIO"
         private const val COL_FECHA_PROGRAMADA = "FECHA_PROGRAMADA"
         private const val COL_NUMERO_CONF = "NUMERO_CONF"
+
+        //Tabla Usuarios
+        private const val TABLE_USUARIO = "USUARIO"
+        private const val COL_ID_USUARIO = "ID_PERSONA"
+        private const val COL_ID_ROL = "ID_ROL"
+        private const val COL_PRIMER_NOMBRE_PERSONA = "PRIMER_NOMBRE_PERSONA"
+        private const val COL_PRIMER_APELLIDO_PERSONA = "PRIMER_APELLIDO_PERSONA"
+        private const val COL_EMAIL_PERSONA = "EMAIL_PERSONA"
+        private const val COL_TELEFONO_PERSONA  = "TELEFONO_PERSONA"
+        private const val COL_USUARIO  = "USUARIO"
+        private const val COL_CONTRASENA = "CONTRASENA"
     }
     override fun onCreate(db: SQLiteDatabase) {
         val createTableDepartamentoSQL= "CREATE TABLE $TABLE_DEPARTAMENTO ("+
@@ -55,12 +66,27 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
                 "$COL_DIRECCION TEXT NOT NULL)"
 
         db.execSQL(createTableDireccionSQL)
+
+        //USUARIOS
+
+        val createTableUsuarioSQL = "CREATE TABLE $TABLE_USUARIO (" +
+                "$COL_ID_USUARIO INTEGER PRIMARY KEY, " +
+                "$COL_ID_ROL integer not null," +
+                "$COL_PRIMER_NOMBRE_PERSONA text not null," +
+                "$COL_PRIMER_APELLIDO_PERSONA text not null," +
+                "$COL_EMAIL_PERSONA text not null," +
+                "$COL_TELEFONO_PERSONA text not null," +
+                "$COL_USUARIO text," +
+                "$COL_CONTRASENA text)"
+
+        db.execSQL(createTableUsuarioSQL)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS $TABLE_DEPARTAMENTO")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_ENVIO")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_DIRECCION")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_USUARIO")
         onCreate(db)
     }
 
@@ -156,6 +182,36 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         cursor.close()
         db.close()
         return DatosEnvios
+    }
+
+    //recuperar la lista de usuarios
+    fun RecuperarTodoslosUsuarios():ArrayList<Usuarios>
+    {
+        val query:String = "SELECT * FROM $TABLE_USUARIO"
+        val db= readableDatabase
+        val cursor:Cursor
+        var DatosUsuarios=ArrayList<Usuarios>()
+
+        cursor = db.rawQuery(query,null)
+
+        while(cursor.moveToNext())
+        {
+            val Id = cursor.getString(0).toInt()
+            val Nombre = cursor.getString(2)
+            val Apellido = cursor.getString(3)
+            val Email=cursor.getString(4)
+            val Telefono=cursor.getString(5)
+            val Usuario=cursor.getString(6)
+            val rol=cursor.getString(1)
+
+
+            val usuario = Usuarios(Id,Nombre,Apellido,Email,Telefono,Usuario,rol)
+
+            DatosUsuarios.add(usuario)
+        }
+        cursor.close()
+        db.close()
+        return DatosUsuarios
     }
 
 
