@@ -4,10 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import com.example.enviorapido_pdm.MainActivity
 import com.example.enviorapido_pdm.R
+import com.example.enviorapido_pdm.ui.rastreo.DatosRastreoPaqueteFragment
+import com.example.enviorapido_pdm.ui.rastreo.RastrearPaqueteFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -24,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
         val txtcontraseña : TextView = findViewById(R.id.txtContraseña)
         val btnRegistrar: Button = findViewById(R.id.btnRegistrar)
         val btnOlvidar: TextView = findViewById(R.id.btnOlvidar)
+        val btnRastreo : ImageButton = findViewById(R.id.imagebuttonRastreo)
 
         firebaseAuth = Firebase.auth
 
@@ -50,16 +54,23 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this){ task ->
                 if (task.isSuccessful){
                     val user = firebaseAuth.currentUser
-                    Toast.makeText(baseContext,"Autenticacion Exitosa",Toast.LENGTH_SHORT).show()
+                    val verifica = user?.isEmailVerified
+                    if (verifica==true)
+                    {
+                        Toast.makeText(baseContext,"Autenticacion Exitosa",Toast.LENGTH_SHORT).show()
 
-                    //Vamos hacia el Dashboard
+                        //Vamos hacia el Dashboard
 
-                    val i = Intent(this, MainActivity::class.java)
-                    startActivity(i)
-                }
-                else{
+                        val i = Intent(this, MainActivity::class.java)
+                        startActivity(i)
+                    }
+                    else
+                    {
+                        Toast.makeText(baseContext,"No ha verificado su corre electronico",Toast.LENGTH_SHORT).show()
+                    }
+            } else
+                {
                     Toast.makeText(baseContext,"Error en las credenciales",Toast.LENGTH_SHORT).show()
                 }
-            }
     }
-}
+}}

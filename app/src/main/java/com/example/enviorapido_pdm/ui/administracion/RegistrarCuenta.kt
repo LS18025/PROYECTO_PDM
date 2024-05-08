@@ -58,7 +58,8 @@ class RegistrarCuenta : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if(task.isSuccessful)
                 {
-                    Toast.makeText(baseContext,"Usuario registrado satisfactoriamente",Toast.LENGTH_SHORT).show()
+                    ConfirmarEmail()
+                    Toast.makeText(baseContext,"Usuario registrado satisfactoriamente, se necesita verificacion",Toast.LENGTH_SHORT).show()
                 }
                 else
                 {
@@ -68,5 +69,20 @@ class RegistrarCuenta : AppCompatActivity() {
 
 
             }
+    }
+
+    private fun ConfirmarEmail()
+    {
+        val user = firebaseAuth.currentUser!!
+        user.sendEmailVerification().addOnCompleteListener(this) { task ->
+            if (task.isSuccessful)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
     }
 }

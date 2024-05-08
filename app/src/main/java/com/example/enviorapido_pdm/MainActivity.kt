@@ -10,10 +10,16 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.enviorapido_pdm.databinding.ActivityMainBinding
+import com.example.enviorapido_pdm.ui.administracion.LoginActivity
+import com.example.enviorapido_pdm.ui.chat.ChatFragment
 import com.example.enviorapido_pdm.ui.departamentos.VistaInsertarDepartamento
+import com.example.enviorapido_pdm.ui.notifications.NotificationsFragment
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
-
+    private lateinit var firebaseAuth : FirebaseAuth
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
         // Obtener referencia al botón
         val button: Button = findViewById(R.id.button2)
 
@@ -50,5 +57,48 @@ class MainActivity : AppCompatActivity() {
             val Intent = Intent(this,VistaInsertarDepartamento::class.java)
             startActivity(Intent)
         }
+
+
+        firebaseAuth = Firebase.auth
+
+        //
+        navView.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId)
+            {
+                R.id.navigation_home -> {
+
+                    navController.navigate(R.id.navigation_home)
+                    true
+                }
+
+                R.id.fragment_chat -> {
+
+                    navController.navigate(R.id.fragment_chat)
+                    true
+                }
+
+                R.id.navigation_notifications -> {
+
+                    navController.navigate(R.id.navigation_notifications)
+                    true
+                }
+
+                R.id.logoutFragment ->
+                    {
+                        CerrarSesion()
+                        true
+                    }
+                else -> false
+
+
+            }
+        }
+
+    }
+    private fun CerrarSesion ()
+    {
+        firebaseAuth.signOut()
+        val i = Intent(this, LoginActivity::class.java)
+        startActivity(i)
     }
 }

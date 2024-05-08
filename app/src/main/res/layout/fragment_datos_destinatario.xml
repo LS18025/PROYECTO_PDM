@@ -150,7 +150,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/imagebuttonRastreo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
