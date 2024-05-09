@@ -2,6 +2,7 @@ package com.example.enviorapido_pdm
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.Spinner
@@ -27,14 +28,35 @@ class RegistrarEnvio : AppCompatActivity() {
         val spinnerDestinatario : Spinner = findViewById(R.id.spinnerDestinatario)
         val spinnerTransportista : Spinner = findViewById(R.id.spinnerTransportista)
 
+        //Configuramos los adaptadores para los Spinner
+        configurarAdaptadores(spinnerDireccion,dbHelper.RecuperarTodaslasDirecciones()){
+            direccion -> direccion.direccion
+        }
+        configurarAdaptadores(spinnerDestinatario, dbHelper.RecuperarTodoslosDestinatarios()){
+            destinatarios -> destinatarios.nombre_Destinatario + " " + destinatarios.apellido_Destinatario
+        }
+
+        configurarAdaptadores(spinnerTransportista, dbHelper.recuperarTodosLosTransportistas()){
+            transportista -> transportista.nombreTransportista + " " + transportista.apellidoTransportista
+        }
+
         //Configuramos el click listener para el boton de registro
 
         buttonRegistrarEnvio.setOnClickListener() {
 
             //Obtenemos los valores de los campos
-            val idDireccion = spinnerDireccion.selectedItemId.toInt()
-            val idDestinatario = spinnerDestinatario.selectedItemId.toInt()
-            val idTransportista = spinnerTransportista.selectedItemId.toInt()
+            val direccionSeleccionadaIndex = spinnerDireccion.selectedItemPosition
+            val direccionSeleccionada = dbHelper.RecuperarTodaslasDirecciones()[direccionSeleccionadaIndex]
+            val idDireccion = direccionSeleccionada.id_direccion
+
+            val destinatarioSeleccionadoIndex = spinnerDestinatario.selectedItemPosition
+            val destinatarioSeleccionado = dbHelper.RecuperarTodoslosDestinatarios()[destinatarioSeleccionadoIndex]
+            val idDestinatario = destinatarioSeleccionado.id_Destinatario
+
+            val transportistaSeleccionadoIndex = spinnerTransportista.selectedItemPosition
+            val transportistaSeleccionado = dbHelper.recuperarTodosLosTransportistas()[transportistaSeleccionadoIndex]
+            val idTransportista = transportistaSeleccionado.idTransportista
+
             val etiqueta = "etiqueta_prueba"
             val costoTotalEnvio = 5.0
             val fechaProgramada = obtenerFechaProgramada(datePickerFechaProgramada)
@@ -64,16 +86,21 @@ class RegistrarEnvio : AppCompatActivity() {
 
             if (idResultado != -1L)
             {
-                Toast.makeText(this,"Envio regitrado con exito",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Envio registrado con exito",Toast.LENGTH_SHORT).show()
 
             } else {
-                Toast.makeText(this,"Envio regitrado con exito",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Error al registrar el Envio",Toast.LENGTH_SHORT).show()
             }
 
 
         }
 
 
+    }
+    private fun <T> configurarAdaptadores(spinner: Spinner, lista: List<T>, campoAMostrar: (T) -> String) {
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, lista.map { campoAMostrar(it) })
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
     }
 
     private fun obtenerFechaProgramada(datePicker: DatePicker): Date {

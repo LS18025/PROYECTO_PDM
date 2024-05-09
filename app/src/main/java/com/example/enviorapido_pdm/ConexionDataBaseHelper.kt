@@ -160,6 +160,19 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
 
         db.execSQL(createTableEnvioSQL)
 
+
+        // Datos de prueba en la tabla Direccion
+        db.execSQL("INSERT INTO " + TABLE_DIRECCION + " (" + COL_ID_MUNICIPIO + ", " + COL_DIRECCION + ") VALUES (1, 'Calle Principal #123')");
+        db.execSQL("INSERT INTO " + TABLE_DIRECCION + " (" + COL_ID_MUNICIPIO + ", " + COL_DIRECCION + ") VALUES (2, 'Avenida Central #456')");
+
+        // Datos de prueba en la tabla Destinatario
+        db.execSQL("INSERT INTO " + TABLE_DESTINATARIO + " (" + COL_NOMBRE_DESTINATARIO + ", " + COL_APELLIDO_DESTINATARIO + ", " + COL_TELEFONO_DESTINATARIO + ", " + COL_EMAIL_DESTINATARIO + ") VALUES ('Juan', 'Pérez', '555123456', 'juanperez@example.com')");
+        db.execSQL("INSERT INTO " + TABLE_DESTINATARIO + " (" + COL_NOMBRE_DESTINATARIO + ", " + COL_APELLIDO_DESTINATARIO + ", " + COL_TELEFONO_DESTINATARIO + ", " + COL_EMAIL_DESTINATARIO + ") VALUES ('María', 'Gómez', '555987654', 'mariagomez@example.com')");
+
+        // Datos de prueba en la tabla Transportista
+        db.execSQL("INSERT INTO " + TABLE_TRANSPORTISTA + " (" + COL_NOMBRE_TRANSPORTISTA + ", " + COL_APELLIDO_TRANSPORTISTA + ", " + COL_TELEFONO_TRANSPORTISTA + ") VALUES ('Carlos', 'Martínez', '555111222')");
+        db.execSQL("INSERT INTO " + TABLE_TRANSPORTISTA + " (" + COL_NOMBRE_TRANSPORTISTA + ", " + COL_APELLIDO_TRANSPORTISTA + ", " + COL_TELEFONO_TRANSPORTISTA + ") VALUES ('Ana', 'López', '555333444')");
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -384,6 +397,7 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         db.close()
         return DatosDirecciones
     }
+
     //FUNCIONES DE DESTINATARIO
     fun AgregarDestinatario(
         id_Destinatario: Int,
@@ -432,6 +446,33 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         cursor.close()
         db.close()
         return DatosDestinatarios
+    }
+
+    fun recuperarTodosLosTransportistas(): ArrayList<Transportista> {
+        val query = "SELECT * FROM $TABLE_TRANSPORTISTA"
+        val db = readableDatabase
+        val cursor: Cursor
+        val datosTransportistas = ArrayList<Transportista>()
+
+        cursor = db.rawQuery(query, null)
+
+        while (cursor.moveToNext()) {
+            val idTransportista = cursor.getInt(0)
+            val nombreTransportista = cursor.getString(1)
+            val apellidoTransportista = cursor.getString(2)
+            val telefonoTransportista = cursor.getString(3)
+
+            val transportista = Transportista(
+                idTransportista,
+                nombreTransportista,
+                apellidoTransportista,
+                telefonoTransportista
+            )
+            datosTransportistas.add(transportista)
+        }
+        cursor.close()
+        db.close()
+        return datosTransportistas
     }
 
 
