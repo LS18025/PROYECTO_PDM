@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import com.example.enviorapido_pdm.ConexionDataBaseHelper
 import com.example.enviorapido_pdm.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -59,7 +60,14 @@ class RegistrarCuenta : AppCompatActivity() {
                 if(task.isSuccessful)
                 {
                     ConfirmarEmail()
+
+                    val firebaseUser = firebaseAuth.currentUser
+                    val uid = firebaseUser?.uid ?: ""
                     Toast.makeText(baseContext,"Usuario registrado satisfactoriamente, se necesita verificacion",Toast.LENGTH_SHORT).show()
+
+                    val conexionDB = ConexionDataBaseHelper(this)
+                    conexionDB.AgregarUsuario(uid,"PrimerNombre","PrimerApellido",email,"Telefono","Usuario","Contrasena")
+
                     val i = Intent (this, LoginActivity::class.java)
                     startActivity(i)
                 }
@@ -67,8 +75,6 @@ class RegistrarCuenta : AppCompatActivity() {
                 {
                     Toast.makeText(baseContext,"Algo salió mal, Error: "+task.exception,Toast.LENGTH_SHORT).show()
                 }
-
-
 
             }
     }

@@ -19,14 +19,15 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         private const val COL_NOMBRE_DEPARTAMENTO = "nombre_departamento"
 
         //Municipio
-        private const val TABLE_MUNICIPIO = "Departamento"
-        private const val COL_ID_DEPARTAMENTO_MUNICIPIO = "ID_DEPARTAMENTO_MUNICIPIO"
+        private const val TABLE_MUNICIPIO = "Municipio"
+        private const val COL_ID_MUNICIPIO = "ID_MUNICIPIO"
+        // private const val COL_ID_DEPARTAMENTO_MUNICIPIO = "ID_DEPARTAMENTO_MUNICIPIO"
         private const val COL_NOMBRE_MUNICIPIO = "NOMBRE_MUNICIPIO"
 
         //Tabla Direccion
         private const val TABLE_DIRECCION = "Direccion"
         private const val COL_ID_DIRECCION = "ID_DIRECCION"
-        private const val COL_ID_MUNICIPIO = "ID_MUNICIPIO"
+        //private const val COL_ID_MUNICIPIO = "ID_MUNICIPIO"
         private const val COL_DIRECCION = "DIRECCION"
 
         //Destinatario
@@ -43,6 +44,22 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         private const val COL_NOMBRE_TRANSPORTISTA = "NOMBRE_TRANSPORTISTA"
         private const val COL_APELLIDO_TRANSPORTISTA = "APELLIDO_TRANSPORTISTA"
         private const val COL_TELEFONO_TRANSPORTISTA = "TELEFONO_TRANSPORTISTA"
+
+        //Tabla Rol
+        private const val TABLE_ROL = "ROL"
+        private const val COL_ID_ROL = "ID_ROL"
+        private const val COL_NOMBRE_ROL = "NOMBRE_ROL"
+        private const val COL_DECRIPCION_ROL = "DESCRIPCION_ROL"
+
+        //Tabla Usuarios
+        private const val TABLE_USUARIO = "Usuario"
+        private const val COL_ID_USUARIO = "ID_USUARIO"
+        private const val COL_PRIMER_NOMBRE_PERSONA = "PRIMER_NOMBRE_PERSONA"
+        private const val COL_PRIMER_APELLIDO_PERSONA = "PRIMER_APELLIDO_PERSONA"
+        private const val COL_EMAIL_PERSONA = "EMAIL_PERSONA"
+        private const val COL_TELEFONO_PERSONA  = "TELEFONO_PERSONA"
+        private const val COL_USUARIO  = "USUARIO"
+        private const val COL_CONTRASENA = "CONTRASENA"
 
         //Tabla Envíos
         private const val TABLE_ENVIO = "Envio"
@@ -70,9 +87,9 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         // Municipios
         val createTableMunicipioSQL= "CREATE TABLE $TABLE_MUNICIPIO ("+
                 "$COL_ID_MUNICIPIO INTEGER PRIMARY KEY, "+
-                "$COL_ID_DEPARTAMENTO_MUNICIPIO INTEGER NOT NULL,"+
+                "$COL_ID_DEPARTAMENTO INTEGER NOT NULL,"+
                 "$COL_NOMBRE_MUNICIPIO TEXT NOT NULL,"+
-                "FOREIGN KEY($COL_ID_DEPARTAMENTO_MUNICIPIO) REFERENCES $TABLE_DEPARTAMENTO($COL_ID_DEPARTAMENTO))"
+                "FOREIGN KEY($COL_ID_DEPARTAMENTO) REFERENCES $TABLE_DEPARTAMENTO($COL_ID_DEPARTAMENTO))"
 
         db.execSQL(createTableMunicipioSQL)
 
@@ -95,6 +112,26 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
 
         db.execSQL(createTableDestinatarioSQL)
 
+        val createTableRolSQL = "CREATE TABLE $TABLE_ROL (" +
+                "$COL_ID_ROL INTEGER PRIMARY KEY, " +
+                "$COL_NOMBRE_ROL TEXT NOT NULL, " +
+                "$COL_DECRIPCION_ROL TEXT NOT NULL," +
+                "$COL_EMAIL_DESTINATARIO TEXT NOT NULL)"
+
+        db.execSQL(createTableRolSQL)
+
+        //USUARIOS
+
+        val createTableUsuarioSQL = "CREATE TABLE $TABLE_USUARIO (" +
+                "$COL_ID_USUARIO text PRIMARY KEY, " +
+                "$COL_PRIMER_NOMBRE_PERSONA text," +
+                "$COL_PRIMER_APELLIDO_PERSONA text," +
+                "$COL_EMAIL_PERSONA text," +
+                "$COL_TELEFONO_PERSONA text," +
+                "$COL_USUARIO text," +
+                "$COL_CONTRASENA text)"
+
+        db.execSQL(createTableUsuarioSQL)
 
         //Transportista
         val createTableTransportistaSQL = "CREATE TABLE $TABLE_TRANSPORTISTA (" +
@@ -108,17 +145,17 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         //Envios
         val createTableEnvioSQL = "CREATE TABLE $TABLE_ENVIO (" +
                 "$COL_ID_ENVIO INTEGER PRIMARY KEY, " +
-                "$COL_ID_USUARIO_ENVIO INTEGER NOT NULL, " +
-                "$COL_ID_DIRECCION_ENVIO INTEGER NOT NULL,"+
-                "$COL_ID_DESTINATARIO_ENVIO INTEGER NOT NULL,"+
-                "$COL_ID_TRANSPORTISTA_ENVIO INTEGER NOT NULL,"+
+                "$COL_ID_USUARIO text NOT NULL, " +
+                "$COL_ID_DIRECCION INTEGER NOT NULL,"+
+                "$COL_ID_DESTINATARIO INTEGER NOT NULL,"+
+                "$COL_ID_TRANSPORTISTA INTEGER NOT NULL,"+
                 "$COL_ETIQUETA TEXT NOT NULL, " +
                 "$COL_COSTO_TOTAL_ENVIO REAL, " +
                 "$COL_FECHA_ENVIO DATE NOT NULL, " +
                 "$COL_FECHA_PROGRAMADA DATE NOT NULL, " +
                 "$COL_NUMERO_CONF TEXT NOT NULL,"+
-                "FOREIGN KEY($COL_ID_DIRECCION_ENVIO) REFERENCES $TABLE_DIRECCION($COL_ID_DIRECCION), " +
-                "FOREIGN KEY($COL_ID_DESTINATARIO_ENVIO) REFERENCES $TABLE_DESTINATARIO($COL_ID_DESTINATARIO),"+
+                "FOREIGN KEY($COL_ID_DIRECCION) REFERENCES $TABLE_DIRECCION($COL_ID_DIRECCION), " +
+                "FOREIGN KEY($COL_ID_DESTINATARIO) REFERENCES $TABLE_DESTINATARIO($COL_ID_DESTINATARIO),"+
                 "FOREIGN KEY($COL_ID_TRANSPORTISTA) REFERENCES $TABLE_TRANSPORTISTA($COL_ID_TRANSPORTISTA))"
 
         db.execSQL(createTableEnvioSQL)
@@ -127,11 +164,13 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS $TABLE_DEPARTAMENTO")
-        db.execSQL("DROP TABLE IF EXISTS $TABLE_ENVIO")
-        db.execSQL("DROP TABLE IF EXISTS $TABLE_DIRECCION")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_MUNICIPIO")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_DIRECCION")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_ROL")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_USUARIO")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_DESTINATARIO")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_TRANSPORTISTA")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_ENVIO")
         onCreate(db)
     }
 
@@ -243,16 +282,43 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         return DatosEnvios
     }
 
+    //FUNCIONES DE USUARIOS
+    fun AgregarUsuario(
+        IdUsuario: String,
+        primerNombre: String,
+        primerApellido: String,
+        email: String,
+        telefono: String,
+        usuario: String?,
+        contrasena: String?
+    ): Long {
+        val db = writableDatabase
+        val valores = ContentValues()
+
+        valores.put(COL_ID_USUARIO, IdUsuario)
+        valores.put(COL_PRIMER_NOMBRE_PERSONA, primerNombre)
+        valores.put(COL_PRIMER_APELLIDO_PERSONA, primerApellido)
+        valores.put(COL_EMAIL_PERSONA, email)
+        valores.put(COL_TELEFONO_PERSONA, telefono)
+        valores.put(COL_USUARIO, usuario)
+        valores.put(COL_CONTRASENA, contrasena)
+
+        val idResultado = db.insert(TABLE_USUARIO, null, valores)
+        db.close()
+        return idResultado
+    }
+
+
     //FUNCIONES DE MUNICIPIO
     fun AgregarMunicipio(
         idMunicipio: Int,
-        idDepartamentoMunicipio: Int,
+        idDepartamento: Int,
         nombreMunicipio: String
     ): Long {
         val db = writableDatabase
         val valores = ContentValues().apply {
             put(COL_ID_MUNICIPIO, idMunicipio)
-            put(COL_ID_DEPARTAMENTO_MUNICIPIO, idDepartamentoMunicipio)
+            put(COL_ID_DEPARTAMENTO, idDepartamento)
             put(COL_NOMBRE_MUNICIPIO, nombreMunicipio)
         }
         val IdResultado = db.insert(TABLE_MUNICIPIO, null, valores)
@@ -367,5 +433,6 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         db.close()
         return DatosDestinatarios
     }
+
 
 }
