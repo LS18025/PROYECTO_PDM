@@ -55,6 +55,10 @@ class RegistrarCuenta : AppCompatActivity() {
 
     private fun crearCuenta(email:String,password:String)
     {
+        val txtNombreUsuario : TextView = findViewById(R.id.txtNombre)
+        val txtApellidoUsuario : TextView = findViewById(R.id.txtApellido)
+        val usuario : TextView = findViewById(R.id.txtUsuario)
+
         firebaseAuth.createUserWithEmailAndPassword(email,password)
             .addOnCompleteListener(this) { task ->
                 if(task.isSuccessful)
@@ -66,7 +70,7 @@ class RegistrarCuenta : AppCompatActivity() {
                     Toast.makeText(baseContext,"Usuario registrado satisfactoriamente, se necesita verificacion",Toast.LENGTH_SHORT).show()
 
                     val conexionDB = ConexionDataBaseHelper(this)
-                    conexionDB.AgregarUsuario(uid,"PrimerNombre","PrimerApellido",email,"Telefono","Usuario","Contrasena")
+                    conexionDB.AgregarUsuario(uid,txtNombreUsuario.text.toString(),txtApellidoUsuario.text.toString(),email,"Telefono",usuario.text.toString(),"Contrasena")
 
                     val i = Intent (this, LoginActivity::class.java)
                     startActivity(i)
