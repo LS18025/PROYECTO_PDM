@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import java.util.Date
 
 class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null,DATABASE_VERSION)
 {
@@ -64,7 +65,6 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         //Tabla Envíos
         private const val TABLE_ENVIO = "Envio"
         private const val COL_ID_ENVIO = "ID_ENVIO"
-        private const val COL_ID_USUARIO_ENVIO = "ID_USUARIO_ENVIO"
         private const val COL_ID_DIRECCION_ENVIO = "ID_DIRECCION_ENVIO"
         private const val COL_ID_DESTINATARIO_ENVIO = "ID_DESTINATARIO_ENVIO"
         private const val COL_ID_TRANSPORTISTA_ENVIO = "ID_TRANSPORTISTA_ENVIO"
@@ -145,15 +145,15 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         //Envios
         val createTableEnvioSQL = "CREATE TABLE $TABLE_ENVIO (" +
                 "$COL_ID_ENVIO INTEGER PRIMARY KEY, " +
-                "$COL_ID_USUARIO text NOT NULL, " +
-                "$COL_ID_DIRECCION INTEGER NOT NULL,"+
-                "$COL_ID_DESTINATARIO INTEGER NOT NULL,"+
-                "$COL_ID_TRANSPORTISTA INTEGER NOT NULL,"+
-                "$COL_ETIQUETA TEXT NOT NULL, " +
+                "$COL_ID_USUARIO text, " +
+                "$COL_ID_DIRECCION INTEGER,"+
+                "$COL_ID_DESTINATARIO INTEGER,"+
+                "$COL_ID_TRANSPORTISTA INTEGER,"+
+                "$COL_ETIQUETA TEXT, " +
                 "$COL_COSTO_TOTAL_ENVIO REAL, " +
-                "$COL_FECHA_ENVIO DATE NOT NULL, " +
-                "$COL_FECHA_PROGRAMADA DATE NOT NULL, " +
-                "$COL_NUMERO_CONF TEXT NOT NULL,"+
+                "$COL_FECHA_ENVIO DATE, " +
+                "$COL_FECHA_PROGRAMADA DATE, " +
+                "$COL_NUMERO_CONF TEXT,"+
                 "FOREIGN KEY($COL_ID_DIRECCION) REFERENCES $TABLE_DIRECCION($COL_ID_DIRECCION), " +
                 "FOREIGN KEY($COL_ID_DESTINATARIO) REFERENCES $TABLE_DESTINATARIO($COL_ID_DESTINATARIO),"+
                 "FOREIGN KEY($COL_ID_TRANSPORTISTA) REFERENCES $TABLE_TRANSPORTISTA($COL_ID_TRANSPORTISTA))"
@@ -212,27 +212,27 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
     //FUNCIONES DE ENVIO
     fun AgregarEnvio(
         id_Envio: Int,
-        id_Usuario_Envio: Int,
-        id_Direccion_Envio: Int,
-        id_Destinatario_Envio: Int,
-        id_Transportista_Envio: Int,
+        id_Usuario: String,
+        id_Direccion: Int,
+        id_Destinatario: Int,
+        id_Transportista: Int,
         etiqueta: String,
         costo_Total_Envio: Double,
-        fecha_Envio: String,
-        fecha_Programada: String,
+        fecha_Envio: Date,
+        fecha_Programada: Date,
         numero_Conf: String
     ): Long {
         val db = writableDatabase
         val valores = ContentValues().apply {
             put(COL_ID_ENVIO, id_Envio)
-            put(COL_ID_USUARIO_ENVIO, id_Usuario_Envio)
-            put(COL_ID_DIRECCION_ENVIO, id_Direccion_Envio)
-            put(COL_ID_DESTINATARIO_ENVIO, id_Destinatario_Envio)
-            put(COL_ID_TRANSPORTISTA_ENVIO, id_Transportista_Envio)
+            put(COL_ID_USUARIO, id_Usuario)
+            put(COL_ID_DIRECCION, id_Direccion)
+            put(COL_ID_DESTINATARIO, id_Destinatario)
+            put(COL_ID_TRANSPORTISTA, id_Transportista)
             put(COL_ETIQUETA, etiqueta)
             put(COL_COSTO_TOTAL_ENVIO, costo_Total_Envio)
-            put(COL_FECHA_ENVIO, fecha_Envio)
-            put(COL_FECHA_PROGRAMADA, fecha_Programada)
+            put(COL_FECHA_ENVIO, fecha_Envio.time)
+            put(COL_FECHA_PROGRAMADA, fecha_Programada.time)
             put(COL_NUMERO_CONF, numero_Conf)
         }
         val IdResultado = db.insert(TABLE_ENVIO, null, valores)

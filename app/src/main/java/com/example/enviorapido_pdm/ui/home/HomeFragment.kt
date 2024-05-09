@@ -1,5 +1,6 @@
 package com.example.enviorapido_pdm.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.enviorapido_pdm.databinding.FragmentHomeBinding
 import com.example.enviorapido_pdm.R
+import com.example.enviorapido_pdm.RegistrarEnvio
 
 class HomeFragment : Fragment() {
 
@@ -32,8 +34,8 @@ class HomeFragment : Fragment() {
 
         // Establecer el OnClickListener
         imageButton4.setOnClickListener {
-            // Navega hacia el fragmento RegistrarEnvioFragment
-            findNavController().navigate(R.id.registrarEnvioFragment)
+            val intent = Intent(requireContext(), RegistrarEnvio::class.java)
+            startActivity(intent)
         }
 
         // Establecer el OnClickListener
