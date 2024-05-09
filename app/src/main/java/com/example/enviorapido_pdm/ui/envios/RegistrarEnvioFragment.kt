@@ -48,9 +48,7 @@ class RegistrarEnvioFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(RegistrarEnvioViewModel::class.java)
         // TODO: Use the ViewModel
-        // Ocultar la barra de navegación inferior al navegar al fragmento RegistrarEnvioFragment
-        val navView: BottomNavigationView? = activity?.findViewById(R.id.nav_view)
-        navView?.visibility = View.GONE
+
         // Ocultar el botón en el fragmento
         val button: Button? = activity?.findViewById(R.id.button2)
         button?.visibility = View.GONE
