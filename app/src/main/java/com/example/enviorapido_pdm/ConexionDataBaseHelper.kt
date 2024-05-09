@@ -129,6 +129,9 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         db.execSQL("DROP TABLE IF EXISTS $TABLE_DEPARTAMENTO")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_ENVIO")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_DIRECCION")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_MUNICIPIO")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_DESTINATARIO")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_TRANSPORTISTA")
         onCreate(db)
     }
 
@@ -169,29 +172,36 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
 
     //FUNCIONES DE ENVIO
     fun AgregarEnvio(
-        id_envio: Int,
-        id_persona: Int,
-        etiqueta: ByteArray,
-        costo_total_envio: Double,
-        fecha_envio: String,
-        fecha_programada: String,
-        numero_conf: String
+        id_Envio: Int,
+        id_Usuario_Envio: Int,
+        id_Direccion_Envio: Int,
+        id_Destinatario_Envio: Int,
+        id_Transportista_Envio: Int,
+        etiqueta: String,
+        costo_Total_Envio: Double,
+        fecha_Envio: String,
+        fecha_Programada: String,
+        numero_Conf: String
     ): Long {
         val db = writableDatabase
         val valores = ContentValues().apply {
-            put(COL_ID_ENVIO, id_envio)
-            put(COL_ID_USUARIO_ENVIO, id_persona)
+            put(COL_ID_ENVIO, id_Envio)
+            put(COL_ID_USUARIO_ENVIO, id_Usuario_Envio)
+            put(COL_ID_DIRECCION_ENVIO, id_Direccion_Envio)
+            put(COL_ID_DESTINATARIO_ENVIO, id_Destinatario_Envio)
+            put(COL_ID_TRANSPORTISTA_ENVIO, id_Transportista_Envio)
             put(COL_ETIQUETA, etiqueta)
-            put(COL_COSTO_TOTAL_ENVIO, costo_total_envio)
-            put(COL_FECHA_ENVIO, fecha_envio)
-            put(COL_FECHA_PROGRAMADA, fecha_programada)
-            put(COL_NUMERO_CONF, numero_conf)
+            put(COL_COSTO_TOTAL_ENVIO, costo_Total_Envio)
+            put(COL_FECHA_ENVIO, fecha_Envio)
+            put(COL_FECHA_PROGRAMADA, fecha_Programada)
+            put(COL_NUMERO_CONF, numero_Conf)
         }
         val IdResultado = db.insert(TABLE_ENVIO, null, valores)
 
         db.close()
         return IdResultado
     }
+
     fun RecuperarTodoslosEnvios(): ArrayList<Envios> {
         val query: String = "SELECT * FROM $TABLE_ENVIO"
         val db = readableDatabase
@@ -200,23 +210,30 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
 
         cursor = db.rawQuery(query, null)
 
-        while (cursor.moveToNext()) {
+        while (cursor.moveToNext())
+        {
             val id = cursor.getInt(0)
-            val id_persona = cursor.getInt(1)
-            val etiqueta = cursor.getBlob(2)
-            val costo_total_envio = cursor.getDouble(3)
-            val fecha_envio = cursor.getString(4)
-            val fecha_programada = cursor.getString(5)
-            val numero_conf = cursor.getString(6)
+            val idUsuario = cursor.getInt(1)
+            val idDireccion = cursor.getInt(2)
+            val idDestinatario = cursor.getInt(3)
+            val idTransportista = cursor.getInt(4)
+            val etiqueta = cursor.getString(5)
+            val costoTotal = cursor.getDouble(6)
+            val fechaEnvio = cursor.getString(7)
+            val fechaProgramada = cursor.getString(8)
+            val numeroConf = cursor.getString(9)
 
             val envio = Envios(
                 id,
-                id_persona,
+                idUsuario,
+                idDireccion,
+                idDestinatario,
+                idTransportista,
                 etiqueta,
-                costo_total_envio,
-                fecha_envio,
-                fecha_programada,
-                numero_conf
+                costoTotal,
+                fechaEnvio,
+                fechaProgramada,
+                numeroConf
             )
 
             DatosEnvios.add(envio)
@@ -226,5 +243,129 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         return DatosEnvios
     }
 
+    //FUNCIONES DE MUNICIPIO
+    fun AgregarMunicipio(
+        idMunicipio: Int,
+        idDepartamentoMunicipio: Int,
+        nombreMunicipio: String
+    ): Long {
+        val db = writableDatabase
+        val valores = ContentValues().apply {
+            put(COL_ID_MUNICIPIO, idMunicipio)
+            put(COL_ID_DEPARTAMENTO_MUNICIPIO, idDepartamentoMunicipio)
+            put(COL_NOMBRE_MUNICIPIO, nombreMunicipio)
+        }
+        val IdResultado = db.insert(TABLE_MUNICIPIO, null, valores)
+        db.close()
+        return IdResultado
+    }
+
+    fun RecuperarTodoslosMunicipios(): ArrayList<Municipios> {
+        val query: String = "SELECT * FROM $TABLE_MUNICIPIO"
+        val db = readableDatabase
+        val cursor: Cursor
+        val DatosMunicipios = ArrayList<Municipios>()
+
+        cursor = db.rawQuery(query, null)
+
+        while (cursor.moveToNext()) {
+            val idMunicipio = cursor.getInt(0)
+            val idDepartamento = cursor.getInt(1)
+            val nombreMunicipio = cursor.getString(2)
+
+            val municipio = Municipios(idMunicipio, idDepartamento, nombreMunicipio)
+            DatosMunicipios.add(municipio)
+        }
+        cursor.close()
+        db.close()
+        return DatosMunicipios
+    }
+
+    //FUNCIONES DE DIRECCION
+    fun AgregarDireccion(
+        id_Direccion: Int,
+        id_Municipio: Int,
+        direccion: String
+    ): Long {
+        val db = writableDatabase
+        val valores = ContentValues().apply {
+            put(COL_ID_DIRECCION, id_Direccion)
+            put(COL_ID_MUNICIPIO, id_Municipio)
+            put(COL_DIRECCION, direccion)
+        }
+        val IdResultado = db.insert(TABLE_DIRECCION, null, valores)
+        db.close()
+        return IdResultado
+    }
+
+    fun RecuperarTodaslasDirecciones(): ArrayList<Direccion> {
+        val query: String = "SELECT * FROM $TABLE_DIRECCION"
+        val db = readableDatabase
+        val cursor: Cursor
+        val DatosDirecciones = ArrayList<Direccion>()
+
+        cursor = db.rawQuery(query, null)
+
+        while (cursor.moveToNext()) {
+            val idDireccion = cursor.getInt(0)
+            val idMunicipio = cursor.getInt(1)
+            val direccion = cursor.getString(2)
+
+            val direccionObj = Direccion(idDireccion, idMunicipio, direccion)
+            DatosDirecciones.add(direccionObj)
+        }
+        cursor.close()
+        db.close()
+        return DatosDirecciones
+    }
+    //FUNCIONES DE DESTINATARIO
+    fun AgregarDestinatario(
+        id_Destinatario: Int,
+        nombre_Destinatario: String,
+        apellido_Destinatario: String,
+        telefono_Destinatario: String,
+        email_Destinatario: String
+    ): Long {
+        val db = writableDatabase
+        val valores = ContentValues().apply {
+            put(COL_ID_DESTINATARIO, id_Destinatario)
+            put(COL_NOMBRE_DESTINATARIO, nombre_Destinatario)
+            put(COL_APELLIDO_DESTINATARIO, apellido_Destinatario)
+            put(COL_TELEFONO_DESTINATARIO, telefono_Destinatario)
+            put(COL_EMAIL_DESTINATARIO, email_Destinatario)
+        }
+        val IdResultado = db.insert(TABLE_DESTINATARIO, null, valores)
+        db.close()
+        return IdResultado
+    }
+
+    fun RecuperarTodoslosDestinatarios(): ArrayList<Destinatarios> {
+        val query: String = "SELECT * FROM $TABLE_DESTINATARIO"
+        val db = readableDatabase
+        val cursor: Cursor
+        val DatosDestinatarios = ArrayList<Destinatarios>()
+
+        cursor = db.rawQuery(query, null)
+
+        while (cursor.moveToNext()) {
+            val id_Destinatario = cursor.getInt(0)
+            val nombre_Destinatario = cursor.getString(1)
+            val apellido_Destinatario = cursor.getString(2)
+            val telefono_Destinatario = cursor.getString(3)
+            val email_Destinatario = cursor.getString(4)
+
+            val destinatario = Destinatarios(
+                id_Destinatario,
+                nombre_Destinatario,
+                apellido_Destinatario,
+                telefono_Destinatario,
+                email_Destinatario
+            )
+            DatosDestinatarios.add(destinatario)
+        }
+        cursor.close()
+        db.close()
+        return DatosDestinatarios
+    }
 
 }
