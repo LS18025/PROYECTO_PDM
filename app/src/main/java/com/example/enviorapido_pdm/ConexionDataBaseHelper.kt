@@ -146,46 +146,6 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         return IdResultado
         db.close()
     }
-    fun AgregarTransportistas(
-        idTransportista: Int,
-        nombre: String,
-        apellido: String,
-        telefono: String
-    ): Long {
-        val db = writableDatabase
-        val valores = ContentValues().apply {
-            put(COL_ID_TRANSPORTISTA, idTransportista)
-            put(COL_NOMBRE_TRANSPORTISTA, nombre)
-            put(COL_APELLIDO_TRANSPORTISTA, apellido)
-            put(COL_TELEFONO_TRANSPORTISTA, telefono)
-        }
-        val idResultado = db.insert(TABLE_TRANSPORTISTA, null, valores)
-        db.close()
-        return idResultado
-    }
-
-    fun RecuperarTransportistas(): ArrayList<Transportistas> {
-        val query = "SELECT * FROM $TABLE_TRANSPORTISTA"
-        val db = readableDatabase
-        val cursor: Cursor
-        val listaTransportistas = ArrayList<Transportistas>()
-
-        cursor = db.rawQuery(query, null)
-
-        while (cursor.moveToNext()) {
-            val id = cursor.getInt(0)
-            val nombre = cursor.getString(1)
-            val apellido = cursor.getString(2)
-            val telefono = cursor.getString(3)
-
-            val transportista = Transportistas(id, nombre, apellido, telefono)
-            listaTransportistas.add(transportista)
-        }
-        cursor.close()
-        db.close()
-        return listaTransportistas
-    }
-
 
     fun RecuperarTodoslosDepartamentos():ArrayList<Departamentos>
     {
