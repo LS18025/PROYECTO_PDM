@@ -80,6 +80,14 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         private const val COL_FECHA_SEGUIMIENTO = "FECHA_SEGUIMIENTO"
         private const val COL_ESTADO_SEGUIMIENTO = "ESTADO_SEGUIMIENTO"
         private const val COL_UBICACION_SEGUIMIENTO = "UBICACION_SEGUIMIENTO"
+
+        //Tabla Paquete
+        private const val TABLE_PAQUETE = "Paquete"
+        private const val COL_ID_PAQUETE = "ID_PAQUETE"
+        private const val COLUMNA_ID_ENVIO = "ID_ENVIO"
+        private const val COL_COSTO_PAQUETE = "COSTO_PAQUETE"
+        private const val COL_PESO_PAQUETE = "PESO_PAQUETE"
+        private const val COL_TAMANO_PAQUETE = "TAMANO_PAQUETE"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -565,5 +573,84 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         db.close()
         return IdResultado
     }
+
+    //FUNCIONES DE PAQUETE
+    fun AgregarPaquete(
+        id_Paquete: Int,
+        id_Envio: Int,
+        costo_Paquete: Double,
+        peso_Paquete: Double,
+        tamano_Paquete: Double
+    ): Long {
+        val db = writableDatabase
+        val valores = ContentValues().apply {
+            put(COL_ID_PAQUETE, id_Paquete)
+            put(COLUMNA_ID_ENVIO, id_Envio)
+            put(COL_COSTO_PAQUETE, costo_Paquete)
+            put(COL_PESO_PAQUETE, peso_Paquete)
+            put(COL_TAMANO_PAQUETE, tamano_Paquete)
+        }
+        val IdResultado = db.insert(TABLE_PAQUETE, null, valores)
+        db.close()
+        return IdResultado
+    }
+
+    fun RecuperarTodoslosPaquetes(): ArrayList<Paquete> {
+        val query: String = "SELECT * FROM $TABLE_PAQUETE"
+        val db = readableDatabase
+        val cursor: Cursor
+        val datosPaquetes = ArrayList<Paquete>()
+
+        cursor = db.rawQuery(query, null)
+
+        while (cursor.moveToNext()) {
+            val id_Paquete = cursor.getInt(0)
+            val id_Envio = cursor.getInt(1)
+            val costo_Paquete = cursor.getDouble(2)
+            val peso_Paquete = cursor.getDouble(3)
+            val tamano_Paquete = cursor.getDouble(4)
+
+            val paquete = Paquete(
+                id_Paquete,
+                id_Envio,
+                costo_Paquete,
+                peso_Paquete,
+                tamano_Paquete
+            )
+            datosPaquetes.add(paquete)
+        }
+        cursor.close()
+        db.close()
+        return datosPaquetes
+    }
+
+    fun ActualizarPaquete(
+        id_Paquete: Int,
+        id_Envio: Int,
+        costo_Paquete: Double,
+        peso_Paquete: Double,
+        tamano_Paquete: Double
+    ): Int {
+        val db = writableDatabase
+        val valores = ContentValues().apply {
+            put(COLUMNA_ID_ENVIO, id_Envio)
+            put(COL_COSTO_PAQUETE, costo_Paquete)
+            put(COL_PESO_PAQUETE, peso_Paquete)
+            put(COL_TAMANO_PAQUETE, tamano_Paquete)
+        }
+        val parametros = arrayOf(id_Paquete.toString())
+        val IdResultado = db.update(TABLE_PAQUETE, valores, "$COL_ID_PAQUETE=?", parametros)
+        db.close()
+        return IdResultado
+    }
+
+    fun EliminarPaquete(id_Paquete: Int): Int {
+        val db = writableDatabase
+        val parametros = arrayOf(id_Paquete.toString())
+        val IdResultado = db.delete(TABLE_PAQUETE, "$COL_ID_PAQUETE=?", parametros)
+        db.close()
+        return IdResultado
+    }
+
 
 }
