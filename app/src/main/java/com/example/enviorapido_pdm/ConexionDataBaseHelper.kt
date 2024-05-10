@@ -540,7 +540,13 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
 
     //actualizar usuarios
 
-    fun ActualizarUsuario(id_persona:String,primer_nombre_persona:String,primer_apellido_persona:String,email_persona:String,telefono_persona:String,usuario:String):Int
+    fun ActualizarUsuario(
+        id_persona:String,
+        primer_nombre_persona:String,
+        primer_apellido_persona:String,
+        email_persona:String,
+        telefono_persona: String?,
+        usuario:String):Int
     {
         val db=writableDatabase
         val valores=ContentValues()
