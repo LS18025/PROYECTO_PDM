@@ -474,62 +474,23 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         db.close()
         return datosTransportistas
     }
-    //recuperar usuario o buscar
-
-    fun RecuperarUsuario(id_persona: String):ArrayList<Usuarios>
-    {
-        val query="SELECT * FROM $TABLE_USUARIO WHERE $COL_ID_USUARIO='id_persona'"
-        val db=readableDatabase
-        val cursor:Cursor
-        var DatosUsuario=ArrayList<Usuarios>()
-        cursor=db.rawQuery(query,null)
-        if (cursor.count==1)
-        {
-            if (cursor.moveToFirst())
-            {
-                val id=cursor.getString(0)
-                val Nombre=cursor.getString(1)
-                val Apellido=cursor.getString(2)
-                val Email=cursor.getString(3)
-                val Telefono=cursor.getString(4)
-                val Usuario=cursor.getString(5)
-                //val Rol=cursor.getString(6)
-            }
-        }else
-        {
-            println("No encontrado")
+    fun AgregarTransportistas(
+        idTransportista: Int,
+        nombre: String,
+        apellido: String,
+        telefono: String
+    ): Long {
+        val db = writableDatabase
+        val valores = ContentValues().apply {
+            put(COL_ID_TRANSPORTISTA, idTransportista)
+            put(COL_NOMBRE_TRANSPORTISTA, nombre)
+            put(COL_APELLIDO_TRANSPORTISTA, apellido)
+            put(COL_TELEFONO_TRANSPORTISTA, telefono)
         }
-        cursor.close()
+        val idResultado = db.insert(TABLE_TRANSPORTISTA, null, valores)
         db.close()
-        return DatosUsuario
+        return idResultado
     }
 
-    //actualizar usuarios
-
-    fun ActualizarUsuario(id_persona:String,primer_nombre_persona:String,primer_apellido_persona:String,email_persona:String,telefono_persona:String,usuario:String):Int
-    {
-        val db=writableDatabase
-        val valores=ContentValues()
-        val parametros=arrayOf(id_persona)
-        valores.put(COL_PRIMER_NOMBRE_PERSONA,primer_nombre_persona)
-        valores.put(COL_PRIMER_APELLIDO_PERSONA, primer_apellido_persona)
-        valores.put(COL_EMAIL_PERSONA,email_persona)
-        valores.put(COL_TELEFONO_PERSONA,telefono_persona)
-        valores.put(COL_USUARIO,usuario)
-        val IdResultado=db.update (TABLE_USUARIO,valores,"COL_ID_USUARIO=?",parametros)
-        db.close()
-        return IdResultado
-    }
-
-    //eliminar usuario
-
-    fun EliminarUsuario(id_usuario:String):Int
-    {
-        val db=writableDatabase
-        val parametros=arrayOf(id_usuario)
-        val IdResultado=db.delete(TABLE_USUARIO,"COL_ID_USUARIO=?",parametros)
-        db.close()
-        return IdResultado
-    }
 
 }
