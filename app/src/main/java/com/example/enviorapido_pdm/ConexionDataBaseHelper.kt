@@ -474,6 +474,23 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         db.close()
         return datosTransportistas
     }
+    fun AgregarTransportistas(
+        idTransportista: Int,
+        nombre: String,
+        apellido: String,
+        telefono: String
+    ): Long {
+        val db = writableDatabase
+        val valores = ContentValues().apply {
+            put(COL_ID_TRANSPORTISTA, idTransportista)
+            put(COL_NOMBRE_TRANSPORTISTA, nombre)
+            put(COL_APELLIDO_TRANSPORTISTA, apellido)
+            put(COL_TELEFONO_TRANSPORTISTA, telefono)
+        }
+        val idResultado = db.insert(TABLE_TRANSPORTISTA, null, valores)
+        db.close()
+        return idResultado
+    }
 
 
 }
