@@ -199,6 +199,20 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         db.execSQL("INSERT INTO " + TABLE_TRANSPORTISTA + " (" + COL_NOMBRE_TRANSPORTISTA + ", " + COL_APELLIDO_TRANSPORTISTA + ", " + COL_TELEFONO_TRANSPORTISTA + ") VALUES ('Carlos', 'Martínez', '555111222')");
         db.execSQL("INSERT INTO " + TABLE_TRANSPORTISTA + " (" + COL_NOMBRE_TRANSPORTISTA + ", " + COL_APELLIDO_TRANSPORTISTA + ", " + COL_TELEFONO_TRANSPORTISTA + ") VALUES ('Ana', 'López', '555333444')");
 
+        val insertEnvio = "INSERT INTO $TABLE_ENVIO ($COL_ID_ENVIO, $COL_ID_USUARIO, $COL_ID_DIRECCION, $COL_ID_DESTINATARIO, $COL_ID_TRANSPORTISTA, $COL_ETIQUETA, $COL_COSTO_TOTAL_ENVIO, $COL_FECHA_ENVIO, $COL_FECHA_PROGRAMADA, $COL_NUMERO_CONF) " +
+                "VALUES (86153528, 'id_usuario_ejemplo', 1, 1, 1, 'etiqueta_ejemplo', 50.0, '2024-05-10', '2024-05-15', 'numero_conf_ejemplo')"
+        db.execSQL(insertEnvio)
+
+
+        val insertSeguimiento1 = "INSERT INTO $TABLE_SEGUIMIENTO ($COL_ID_ENVIO, $COL_FECHA_SEGUIMIENTO, $COL_ESTADO_SEGUIMIENTO, $COL_UBICACION_SEGUIMIENTO) " +
+                "VALUES (86153528, '2024-05-10', 'En tránsito', 'Ciudad A')"
+        db.execSQL(insertSeguimiento1)
+
+        val insertSeguimiento2 = "INSERT INTO $TABLE_SEGUIMIENTO ($COL_ID_ENVIO, $COL_FECHA_SEGUIMIENTO, $COL_ESTADO_SEGUIMIENTO, $COL_UBICACION_SEGUIMIENTO) " +
+                "VALUES (86153528, '2024-05-09', 'En almacén', 'Ciudad B')"
+        db.execSQL(insertSeguimiento2)
+
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -210,6 +224,7 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         db.execSQL("DROP TABLE IF EXISTS $TABLE_DESTINATARIO")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_TRANSPORTISTA")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_ENVIO")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_SEGUIMIENTO")
         onCreate(db)
     }
 
@@ -732,26 +747,29 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
     }
 
 
-    //Funcion Recuperar Seguimiento por ID de Envio
-    fun recuperarSeguimientoPorIdEnvio(idEnvio: Int): Seguimiento? {
+    //Funcion Recuperar Seguimientos por ID de Envio
+    fun recuperarSeguimientoPorIdEnvio(idEnvio: Int): ArrayList<Seguimiento> {
+        val query = "SELECT * FROM $TABLE_SEGUIMIENTO WHERE $COL_ID_ENVIO = $idEnvio"
         val db = readableDatabase
-        val cursor = db.rawQuery("SELECT * FROM $TABLE_SEGUIMIENTO WHERE $COL_ID_ENVIO = ?", arrayOf(idEnvio.toString()))
-        var seguimiento: Seguimiento? = null
+        val cursor: Cursor
+        val seguimientos = ArrayList<Seguimiento>()
 
-        if (cursor.count == 1) {
-            if (cursor.moveToFirst()) {
-                val idSeguimiento = cursor.getInt(0)
-                val fechaSeguimiento = Date(cursor.getLong(2))
-                val estadoSeguimiento = cursor.getString(3)
-                val ubicacionSeguimiento = cursor.getString(4)
+        cursor = db.rawQuery(query, null)
 
-                seguimiento = Seguimiento(idSeguimiento, idEnvio, fechaSeguimiento, estadoSeguimiento, ubicacionSeguimiento)
-            }
+        while (cursor.moveToNext()) {
+            val idSeguimiento = cursor.getInt(0)
+            val fechaSeguimiento = Date(cursor.getLong(2))
+            val estadoSeguimiento = cursor.getString(3)
+            val ubicacionSeguimiento = cursor.getString(4)
+
+            val seguimiento = Seguimiento(idSeguimiento, idEnvio, fechaSeguimiento, estadoSeguimiento, ubicacionSeguimiento)
+            seguimientos.add(seguimiento)
         }
         cursor.close()
         db.close()
-        return seguimiento
+        return seguimientos
     }
+
 
     //Funcion Eliminar Seguimiento
     fun eliminarSeguimiento(idSeguimiento: Int): Int {
