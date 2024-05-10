@@ -7,7 +7,7 @@
     tools:context=".ui.administracion.RegistrarCuenta">
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/btnConsultar"
         style="@style/titulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
         android:textColor="#2B2727"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView13" />
+        app:layout_constraintTop_toTopOf="@+id/btnConsultar" />
 
     <TextView
         android:id="@+id/textView3"

@@ -658,5 +658,109 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         return IdResultado
     }
 
+    //Funciones de Seguimiento
+
+    //Funcion Agregar Seguimiento
+    fun agregarSeguimiento(
+        idEnvio: Int,
+        fechaSeguimiento: Date,
+        estadoSeguimiento: String,
+        ubicacionSeguimiento: String
+    ): Long {
+        val db = writableDatabase
+        val valores = ContentValues().apply {
+            put(COL_ID_ENVIO, idEnvio)
+            put(COL_FECHA_SEGUIMIENTO, fechaSeguimiento.time)
+            put(COL_ESTADO_SEGUIMIENTO, estadoSeguimiento)
+            put(COL_UBICACION_SEGUIMIENTO, ubicacionSeguimiento)
+        }
+        val idResultado = db.insert(TABLE_SEGUIMIENTO, null, valores)
+        db.close()
+        return idResultado
+    }
+
+    //Funcion Recuperar Todos los Seguimientos
+    fun recuperarTodosLosSeguimientos(): ArrayList<Seguimiento> {
+        val query = "SELECT * FROM $TABLE_SEGUIMIENTO"
+        val db = readableDatabase
+        val cursor: Cursor
+        val seguimientos = ArrayList<Seguimiento>()
+
+        cursor = db.rawQuery(query, null)
+
+        while (cursor.moveToNext()) {
+            val idSeguimiento = cursor.getInt(0)
+            val idEnvio = cursor.getInt(1)
+            val fechaSeguimiento = Date(2)
+            val estadoSeguimiento = cursor.getString(3)
+            val ubicacionSeguimiento = cursor.getString(4)
+
+            val seguimiento = Seguimiento(
+                idSeguimiento,
+                idEnvio,
+                fechaSeguimiento,
+                estadoSeguimiento,
+                ubicacionSeguimiento
+            )
+            seguimientos.add(seguimiento)
+        }
+        cursor.close()
+        db.close()
+        return seguimientos
+    }
+
+    //Funcion Recuperar Seguimiento por ID
+    fun recuperarSeguimientosPorIdEnvio(idEnvio: Int): List<Seguimiento> {
+        val seguimientos = ArrayList<Seguimiento>()
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM $TABLE_SEGUIMIENTO WHERE $COL_ID_ENVIO = ?", arrayOf(idEnvio.toString()))
+
+        while (cursor.moveToNext()) {
+            val idSeguimiento = cursor.getInt(0)
+            val fechaSeguimiento = Date(cursor.getLong(2))
+            val estadoSeguimiento = cursor.getString(3)
+            val ubicacionSeguimiento = cursor.getString(4)
+
+            val seguimiento = Seguimiento(idSeguimiento, idEnvio, fechaSeguimiento, estadoSeguimiento, ubicacionSeguimiento)
+            seguimientos.add(seguimiento)
+        }
+
+        cursor.close()
+        db.close()
+
+        return seguimientos
+    }
+
+
+    //Funcion Recuperar Seguimiento por ID de Envio
+    fun recuperarSeguimientoPorIdEnvio(idEnvio: Int): Seguimiento? {
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM $TABLE_SEGUIMIENTO WHERE $COL_ID_ENVIO = ?", arrayOf(idEnvio.toString()))
+        var seguimiento: Seguimiento? = null
+
+        if (cursor.count == 1) {
+            if (cursor.moveToFirst()) {
+                val idSeguimiento = cursor.getInt(0)
+                val fechaSeguimiento = Date(cursor.getLong(2))
+                val estadoSeguimiento = cursor.getString(3)
+                val ubicacionSeguimiento = cursor.getString(4)
+
+                seguimiento = Seguimiento(idSeguimiento, idEnvio, fechaSeguimiento, estadoSeguimiento, ubicacionSeguimiento)
+            }
+        }
+        cursor.close()
+        db.close()
+        return seguimiento
+    }
+
+    //Funcion Eliminar Seguimiento
+    fun eliminarSeguimiento(idSeguimiento: Int): Int {
+        val db = writableDatabase
+        val parametros = arrayOf(idSeguimiento.toString())
+        val idResultado = db.delete(TABLE_SEGUIMIENTO, "$COL_ID_SEGUIMIENTO=?", parametros)
+        db.close()
+        return idResultado
+    }
+
 
 }
