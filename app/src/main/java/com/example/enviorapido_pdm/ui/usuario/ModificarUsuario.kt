@@ -1,12 +1,16 @@
 package com.example.enviorapido_pdm.ui.usuario
 
+import android.content.ClipData.Item
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.browser.browseractions.BrowserActionsIntent.BrowserActionsItemId
 import com.example.enviorapido_pdm.ConexionDataBaseHelper
 import com.example.enviorapido_pdm.R
 import com.example.enviorapido_pdm.Usuarios
@@ -44,8 +48,24 @@ class ModificarUsuario : AppCompatActivity() {
             }
         }
     }
+//opciones del menu de items
+    override fun onOptionsItemSelected(item:MenuItem): Boolean {
+        when(item.itemId)
+        {
+            R.id.btnUsuarios-> BuscarUsuario()
+        }
+        return super.onOptionsItemSelected(item)
+}
+    fun VerUsuario()
+    {
+        Toast.makeText(this,"Ver Usuarios", Toast.LENGTH_SHORT).show()
+        val intent= Intent(this,ModificarUsuario::class.java)
+        startActivity(intent)
+    }
 
-    fun BuscarUsuario()
+
+
+        fun BuscarUsuario()
     {
         val email_persona:EditText=findViewById(R.id.txtCorreo_persona)
         val NombreRecuperado:EditText=findViewById(R.id.txtNombreUsuario)
@@ -122,7 +142,7 @@ class ModificarUsuario : AppCompatActivity() {
     fun ConfirmacionDialogoEliminar() {
         AlertDialog.Builder(this)
             .setTitle("Eliminar Usuario")
-            .setMessage("Esta seguro de eliminar el Usuario?")
+            .setMessage("¿Esta seguro de eliminar el Usuario?")
             .setPositiveButton(android.R.string.ok,
                 DialogInterface.OnClickListener { dialog, which ->
                     EliminarUsuario()
