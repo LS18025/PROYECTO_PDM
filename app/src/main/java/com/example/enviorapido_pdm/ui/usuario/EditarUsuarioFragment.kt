@@ -11,6 +11,7 @@ import com.example.enviorapido_pdm.R
 
 class EditarUsuarioFragment : Fragment() {
 
+
     companion object {
         fun newInstance() = EditarUsuarioFragment()
     }
@@ -32,5 +33,6 @@ class EditarUsuarioFragment : Fragment() {
         val button: Button? = activity?.findViewById(R.id.button2)
         button?.visibility = View.GONE
     }
+    
 
 }

@@ -168,16 +168,29 @@
         app:layout_constraintTop_toBottomOf="@+id/imageButton10" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/btnAceptar"
+        style="@style/EstiloBoton"
         android:layout_width="115dp"
         android:layout_height="58dp"
         android:layout_marginBottom="16dp"
         android:text="Aceptar"
-        style="@style/EstiloBoton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.854"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText165"
-        app:layout_constraintVertical_bias="0.237" />
+        app:layout_constraintVertical_bias="0.484" />
+
+    <Button
+        android:id="@+id/btnBuscar"
+        style="@style/EstiloBoton"
+        android:layout_width="115dp"
+        android:layout_height="58dp"
+        android:text="Buscar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.135"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText165"
+        app:layout_constraintVertical_bias="0.371" />
 </androidx.constraintlayout.widget.ConstraintLayout>
