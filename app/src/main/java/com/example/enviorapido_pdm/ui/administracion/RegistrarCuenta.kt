@@ -60,6 +60,8 @@ class RegistrarCuenta : AppCompatActivity() {
                 {
                     ConfirmarEmail()
                     Toast.makeText(baseContext,"Usuario registrado satisfactoriamente, se necesita verificacion",Toast.LENGTH_SHORT).show()
+                    val i = Intent (this, LoginActivity::class.java)
+                    startActivity(i)
                 }
                 else
                 {

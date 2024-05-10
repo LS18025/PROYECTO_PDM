@@ -66,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                     else
                     {
-                        Toast.makeText(baseContext,"No ha verificado su corre electronico",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(baseContext,"No ha verificado su correo electronico",Toast.LENGTH_SHORT).show()
                     }
             } else
                 {
