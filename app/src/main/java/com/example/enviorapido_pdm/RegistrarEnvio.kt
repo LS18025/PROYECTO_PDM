@@ -1,5 +1,6 @@
 package com.example.enviorapido_pdm
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -10,6 +11,8 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.UUID
+import kotlin.math.absoluteValue
 
 class RegistrarEnvio : AppCompatActivity() {
 
@@ -57,29 +60,34 @@ class RegistrarEnvio : AppCompatActivity() {
             val transportistaSeleccionado = dbHelper.recuperarTodosLosTransportistas()[transportistaSeleccionadoIndex]
             val idTransportista = transportistaSeleccionado.idTransportista
 
-            val etiqueta = "etiqueta_prueba"
             val costoTotalEnvio = 5.0
             val fechaProgramada = obtenerFechaProgramada(datePickerFechaProgramada)
-            val numeroConf = "numero_confirmacion_prueba"
-
 
             val firebaseAuth = FirebaseAuth.getInstance()
             val currentUser = firebaseAuth.currentUser
             val idUsuario = currentUser?.uid ?: ""
 
+            //Generamos un ID unico para el envio
+            val idEnvio = UUID.randomUUID().hashCode().absoluteValue.toString().take(8).toInt()
+
+            //Generamos un numero de confirmacion unico para el envio
+            val numeroConfi = UUID.randomUUID().hashCode().absoluteValue.toString().take(5)
+
+            //Generamos un numero de etiqueta unico para el envio
+            val numetiqueta = UUID.randomUUID().hashCode().absoluteValue.toString().take(5)
 
             //Llamamos al metodo para agregar el envio a la base de datos
             val idResultado = dbHelper.AgregarEnvio(
-                0,
+                idEnvio,
                 idUsuario,
                 idDireccion,
                 idDestinatario,
                 idTransportista,
-                etiqueta,
+                numetiqueta,
                 costoTotalEnvio,
+                obtenerFechaHoy(),
                 fechaProgramada,
-                fechaProgramada,
-                numeroConf
+                numeroConfi
             )
 
             //Mostrar un mensaje dependiendo del resultado de la insercion
@@ -88,13 +96,14 @@ class RegistrarEnvio : AppCompatActivity() {
             {
                 Toast.makeText(this,"Envio registrado con exito",Toast.LENGTH_SHORT).show()
 
+                val i = Intent (this, MainActivity::class.java)
+                startActivity(i)
+
             } else {
                 Toast.makeText(this,"Error al registrar el Envio",Toast.LENGTH_SHORT).show()
             }
-
-
+            
         }
-
 
     }
     private fun <T> configurarAdaptadores(spinner: Spinner, lista: List<T>, campoAMostrar: (T) -> String) {
@@ -114,5 +123,9 @@ class RegistrarEnvio : AppCompatActivity() {
         val date = sdf.parse(dateString)
 
         return date
+    }
+
+    private fun obtenerFechaHoy(): Date {
+        return Date() // Retorna la fecha actual
     }
 }

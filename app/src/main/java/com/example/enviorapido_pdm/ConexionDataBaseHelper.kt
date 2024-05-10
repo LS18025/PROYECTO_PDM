@@ -73,6 +73,13 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         private const val COL_FECHA_ENVIO = "FECHA_ENVIO"
         private const val COL_FECHA_PROGRAMADA = "FECHA_PROGRAMADA"
         private const val COL_NUMERO_CONF = "NUMERO_CONF"
+
+        //Tabla Seguimiento
+        private const val TABLE_SEGUIMIENTO = "Seguimiento"
+        private const val COL_ID_SEGUIMIENTO = "ID_SEGUIMIENTO"
+        private const val COL_FECHA_SEGUIMIENTO = "FECHA_SEGUIMIENTO"
+        private const val COL_ESTADO_SEGUIMIENTO = "ESTADO_SEGUIMIENTO"
+        private const val COL_UBICACION_SEGUIMIENTO = "UBICACION_SEGUIMIENTO"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -159,6 +166,17 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
                 "FOREIGN KEY($COL_ID_TRANSPORTISTA) REFERENCES $TABLE_TRANSPORTISTA($COL_ID_TRANSPORTISTA))"
 
         db.execSQL(createTableEnvioSQL)
+
+        // Seguimiento
+        val createTableSeguimientoSQL = "CREATE TABLE $TABLE_SEGUIMIENTO (" +
+                "$COL_ID_SEGUIMIENTO INTEGER PRIMARY KEY, " +
+                "$COL_ID_ENVIO INTEGER, " +
+                "$COL_FECHA_SEGUIMIENTO DATE, " +
+                "$COL_ESTADO_SEGUIMIENTO TEXT, " +
+                "$COL_UBICACION_SEGUIMIENTO TEXT,"+
+                "FOREIGN KEY($COL_ID_ENVIO) REFERENCES $TABLE_ENVIO($COL_ID_ENVIO))"
+
+        db.execSQL(createTableSeguimientoSQL)
 
 
         // Datos de prueba en la tabla Direccion
