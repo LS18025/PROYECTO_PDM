@@ -30,8 +30,8 @@ class EnvioExitosoFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(EnvioExitosoViewModel::class.java)
         // TODO: Use the ViewModel
         // Ocultar el botón en el fragmento
-        val button: Button? = activity?.findViewById(R.id.button2)
-        button?.visibility = View.GONE
+        //val button: Button? = activity?.findViewById(R.id.button2)
+        //button?.visibility = View.GONE
     }
 
 }

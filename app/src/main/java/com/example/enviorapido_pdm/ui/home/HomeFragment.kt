@@ -13,6 +13,7 @@ import com.example.enviorapido_pdm.databinding.FragmentHomeBinding
 import com.example.enviorapido_pdm.R
 import com.example.enviorapido_pdm.RegistrarEnvio
 import com.example.enviorapido_pdm.VerPerfilUsuario
+import com.example.enviorapido_pdm.ui.usuario.VerUsuarios
 
 class HomeFragment : Fragment() {
 
@@ -31,7 +32,7 @@ class HomeFragment : Fragment() {
         val imageButton4: ImageButton = binding.imageButton4
         val imageButton6: ImageButton = binding.imageButton6
         val imageButton8: ImageButton = binding.imageButton8
-
+        val btnUsuarios: ImageButton = binding.btnUsuarios
 
         // Establecer el OnClickListener
         imageButton4.setOnClickListener {
@@ -49,6 +50,11 @@ class HomeFragment : Fragment() {
         // Establecer el OnClickListener
         imageButton8.setOnClickListener {
             val intent = Intent(requireContext(), VerPerfilUsuario::class.java)
+            startActivity(intent)
+        }
+
+        btnUsuarios.setOnClickListener {
+            val intent = Intent(requireContext(), VerUsuarios::class.java)
             startActivity(intent)
         }
 

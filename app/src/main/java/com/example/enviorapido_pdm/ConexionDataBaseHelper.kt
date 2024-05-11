@@ -146,8 +146,8 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
                 "$COL_EMAIL_PERSONA text," +
                 "$COL_TELEFONO_PERSONA text," +
                 "$COL_USUARIO text," +
-                "$COL_CONTRASENA text,"+
-                "FOREIGN KEY($COL_ID_ROL) REFERENCES $TABLE_ROL($COL_ID_ROL))"
+                "$COL_CONTRASENA text)"
+
 
         db.execSQL(createTableUsuarioSQL)
 

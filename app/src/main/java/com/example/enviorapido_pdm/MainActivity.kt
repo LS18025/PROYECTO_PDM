@@ -42,21 +42,23 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         // Obtener referencia al botón
-        val button: Button = findViewById(R.id.button2)
+        //val button: Button = findViewById(R.id.button2)
 
         // Agregar OnClickListener al botón
-        button.setOnClickListener {
+        //button.setOnClickListener {
             // Navegar al fragmento RegistrarEnvioFragment
-            navController.navigate(R.id.envioExitosoFragment)
-        }
+            //navController.navigate(R.id.envioExitosoFragment)
+        //}
 
-        val btnDepa:Button = findViewById(R.id.btnDepa)
+        //val btnDepa:Button = findViewById(R.id.btnDepa)
 
-        btnDepa.setOnClickListener()
-        {
-            val Intent = Intent(this,VistaPaquete::class.java)
-            startActivity(Intent)
-        }
+        //btnDepa.setOnClickListener()
+        //{
+          //  val Intent = Intent(this,VistaPaquete::class.java)
+           // startActivity(Intent)
+        //}
+
+
 
 
         firebaseAuth = Firebase.auth
