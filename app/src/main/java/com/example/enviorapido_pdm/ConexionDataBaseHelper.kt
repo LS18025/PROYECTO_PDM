@@ -780,5 +780,30 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         return idResultado
     }
 
+    //Recuperar Usuario por ID
+    fun recuperarUsuarioPorId(idUsuario: String): Usuarios? {
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM $TABLE_USUARIO WHERE $COL_ID_USUARIO = ?", arrayOf(idUsuario))
+
+        if (cursor.moveToFirst()) {
+            val usuario = Usuarios(
+                cursor.getString(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3),
+                cursor.getString(4),
+                cursor.getString(5),
+                cursor.getString(6)
+            )
+            cursor.close()
+            db.close()
+            return usuario
+        }
+
+        cursor.close()
+        db.close()
+        return null
+    }
+
 
 }
