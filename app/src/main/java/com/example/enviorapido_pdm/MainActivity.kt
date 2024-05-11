@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
         btnDepa.setOnClickListener()
         {
-            val Intent = Intent(this,AgregarPaquete::class.java)
+            val Intent = Intent(this,VistaPaquete::class.java)
             startActivity(Intent)
         }
 

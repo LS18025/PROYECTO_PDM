@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textIdPaquete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID Paquete: "
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textIdEnvio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID Envío: " />
+
+    <TextView
+        android:id="@+id/textCosto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Costo: " />
+
+    <TextView
+        android:id="@+id/textPeso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Peso: " />
+
+    <TextView
+        android:id="@+id/textTamano"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tamaño: " />
+
+</LinearLayout>
