@@ -572,4 +572,39 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         return IdResultado
     }
 
+    fun RecuperarTodosLosUsuarios(): ArrayList<Usuarios> {
+        val query = "SELECT * FROM $TABLE_USUARIO"
+        val db = readableDatabase
+        val cursor: Cursor
+        val datosUsuarios = ArrayList<Usuarios>()
+
+        cursor = db.rawQuery(query, null)
+
+        while (cursor.moveToNext())
+        {
+            val idUsuario = cursor.getInt(0)
+            val nombreUsuario = cursor.getString(1)
+            val apellidoUsuario = cursor.getString(2)
+            val emailUsuario = cursor.getString(3)
+            val telefonoUsuario = cursor.getString(4)
+            val usuariousuario = cursor.getString(5)
+            val rolUsuario = cursor.getString(6)
+
+
+            val usuario = Usuarios(
+                idUsuario,
+                nombreUsuario,
+                apellidoUsuario,
+                emailUsuario,
+                telefonoUsuario,
+                usuariousuario,
+                rolUsuario)
+            datosUsuarios.add(usuario)
+        }
+        cursor.close()
+        db.close()
+        return datosUsuarios
+
+    }
+
 }
