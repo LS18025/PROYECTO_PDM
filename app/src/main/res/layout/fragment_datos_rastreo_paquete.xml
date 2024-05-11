@@ -9,7 +9,7 @@
     tools:context=".ui.rastreo.DatosRastreoPaqueteFragment">
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/btnConsultar"
         style="@style/titulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.206"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/btnConsultar" />
 
     <TextView
         android:id="@+id/textView24"
@@ -112,7 +112,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.27"
         app:layout_constraintStart_toEndOf="@+id/textView18"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/btnConsultar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

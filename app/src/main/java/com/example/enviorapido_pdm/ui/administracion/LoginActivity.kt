@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import com.example.enviorapido_pdm.ConsultarSeguimientoPedidos
 import com.example.enviorapido_pdm.MainActivity
 import com.example.enviorapido_pdm.R
 import com.example.enviorapido_pdm.ui.rastreo.DatosRastreoPaqueteFragment
@@ -43,6 +44,11 @@ class LoginActivity : AppCompatActivity() {
         btnOlvidar.setOnClickListener()
         {
             val i = Intent (this, RecordarContrasena::class.java)
+            startActivity(i)
+        }
+        btnRastreo.setOnClickListener()
+        {
+            val i = Intent (this, ConsultarSeguimientoPedidos::class.java)
             startActivity(i)
         }
 

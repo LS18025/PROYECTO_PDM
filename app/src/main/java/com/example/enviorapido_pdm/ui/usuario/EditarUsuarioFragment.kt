@@ -11,6 +11,7 @@ import com.example.enviorapido_pdm.R
 
 class EditarUsuarioFragment : Fragment() {
 
+
     companion object {
         fun newInstance() = EditarUsuarioFragment()
     }
@@ -30,5 +31,6 @@ class EditarUsuarioFragment : Fragment() {
         // TODO: Use the ViewModel
 
     }
+    
 
 }

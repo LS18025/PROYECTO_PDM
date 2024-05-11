@@ -73,6 +73,21 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         private const val COL_FECHA_ENVIO = "FECHA_ENVIO"
         private const val COL_FECHA_PROGRAMADA = "FECHA_PROGRAMADA"
         private const val COL_NUMERO_CONF = "NUMERO_CONF"
+
+        //Tabla Seguimiento
+        private const val TABLE_SEGUIMIENTO = "Seguimiento"
+        private const val COL_ID_SEGUIMIENTO = "ID_SEGUIMIENTO"
+        private const val COL_FECHA_SEGUIMIENTO = "FECHA_SEGUIMIENTO"
+        private const val COL_ESTADO_SEGUIMIENTO = "ESTADO_SEGUIMIENTO"
+        private const val COL_UBICACION_SEGUIMIENTO = "UBICACION_SEGUIMIENTO"
+
+        //Tabla Paquete
+        private const val TABLE_PAQUETE = "Paquete"
+        private const val COL_ID_PAQUETE = "ID_PAQUETE"
+        private const val COLUMNA_ID_ENVIO = "ID_ENVIO"
+        private const val COL_COSTO_PAQUETE = "COSTO_PAQUETE"
+        private const val COL_PESO_PAQUETE = "PESO_PAQUETE"
+        private const val COL_TAMANO_PAQUETE = "TAMANO_PAQUETE"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -160,6 +175,17 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
 
         db.execSQL(createTableEnvioSQL)
 
+        // Seguimiento
+        val createTableSeguimientoSQL = "CREATE TABLE $TABLE_SEGUIMIENTO (" +
+                "$COL_ID_SEGUIMIENTO INTEGER PRIMARY KEY, " +
+                "$COL_ID_ENVIO INTEGER, " +
+                "$COL_FECHA_SEGUIMIENTO DATE, " +
+                "$COL_ESTADO_SEGUIMIENTO TEXT, " +
+                "$COL_UBICACION_SEGUIMIENTO TEXT,"+
+                "FOREIGN KEY($COL_ID_ENVIO) REFERENCES $TABLE_ENVIO($COL_ID_ENVIO))"
+
+        db.execSQL(createTableSeguimientoSQL)
+
 
         // Datos de prueba en la tabla Direccion
         db.execSQL("INSERT INTO " + TABLE_DIRECCION + " (" + COL_ID_MUNICIPIO + ", " + COL_DIRECCION + ") VALUES (1, 'Calle Principal #123')");
@@ -173,6 +199,20 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         db.execSQL("INSERT INTO " + TABLE_TRANSPORTISTA + " (" + COL_NOMBRE_TRANSPORTISTA + ", " + COL_APELLIDO_TRANSPORTISTA + ", " + COL_TELEFONO_TRANSPORTISTA + ") VALUES ('Carlos', 'Martínez', '555111222')");
         db.execSQL("INSERT INTO " + TABLE_TRANSPORTISTA + " (" + COL_NOMBRE_TRANSPORTISTA + ", " + COL_APELLIDO_TRANSPORTISTA + ", " + COL_TELEFONO_TRANSPORTISTA + ") VALUES ('Ana', 'López', '555333444')");
 
+        val insertEnvio = "INSERT INTO $TABLE_ENVIO ($COL_ID_ENVIO, $COL_ID_USUARIO, $COL_ID_DIRECCION, $COL_ID_DESTINATARIO, $COL_ID_TRANSPORTISTA, $COL_ETIQUETA, $COL_COSTO_TOTAL_ENVIO, $COL_FECHA_ENVIO, $COL_FECHA_PROGRAMADA, $COL_NUMERO_CONF) " +
+                "VALUES (86153528, 'id_usuario_ejemplo', 1, 1, 1, 'etiqueta_ejemplo', 50.0, '2024-05-10', '2024-05-15', 'numero_conf_ejemplo')"
+        db.execSQL(insertEnvio)
+
+
+        val insertSeguimiento1 = "INSERT INTO $TABLE_SEGUIMIENTO ($COL_ID_ENVIO, $COL_FECHA_SEGUIMIENTO, $COL_ESTADO_SEGUIMIENTO, $COL_UBICACION_SEGUIMIENTO) " +
+                "VALUES (86153528, '2024-05-10', 'En tránsito', 'Ciudad A')"
+        db.execSQL(insertSeguimiento1)
+
+        val insertSeguimiento2 = "INSERT INTO $TABLE_SEGUIMIENTO ($COL_ID_ENVIO, $COL_FECHA_SEGUIMIENTO, $COL_ESTADO_SEGUIMIENTO, $COL_UBICACION_SEGUIMIENTO) " +
+                "VALUES (86153528, '2024-05-09', 'En almacén', 'Ciudad B')"
+        db.execSQL(insertSeguimiento2)
+
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -184,6 +224,7 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         db.execSQL("DROP TABLE IF EXISTS $TABLE_DESTINATARIO")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_TRANSPORTISTA")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_ENVIO")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_SEGUIMIENTO")
         onCreate(db)
     }
 
@@ -488,6 +529,253 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
             put(COL_TELEFONO_TRANSPORTISTA, telefono)
         }
         val idResultado = db.insert(TABLE_TRANSPORTISTA, null, valores)
+        db.close()
+        return idResultado
+    }
+
+    fun RecuperarUsuario(id_persona: String):ArrayList<Usuarios>
+    {
+        val query="SELECT * FROM $TABLE_USUARIO WHERE $COL_ID_USUARIO='id_persona'"
+        val db=readableDatabase
+        val cursor:Cursor
+        var DatosUsuario=ArrayList<Usuarios>()
+        cursor=db.rawQuery(query,null)
+        if (cursor.count==1)
+        {
+            if (cursor.moveToFirst())
+            {
+                val id=cursor.getString(0)
+                val Nombre=cursor.getString(1)
+                val Apellido=cursor.getString(2)
+                val Email=cursor.getString(3)
+                val Telefono=cursor.getString(4)
+                val Usuario=cursor.getString(5)
+                //val Rol=cursor.getString(6)
+            }
+        }else
+        {
+            println("No encontrado")
+        }
+        cursor.close()
+        db.close()
+        return DatosUsuario
+    }
+
+    //actualizar usuarios
+
+    fun ActualizarUsuario(
+        id_persona:String,
+        primer_nombre_persona:String,
+        primer_apellido_persona:String,
+        email_persona:String,
+        telefono_persona: String?,
+        usuario:String):Int
+    {
+        val db=writableDatabase
+        val valores=ContentValues()
+        val parametros=arrayOf(id_persona)
+        valores.put(COL_PRIMER_NOMBRE_PERSONA,primer_nombre_persona)
+        valores.put(COL_PRIMER_APELLIDO_PERSONA, primer_apellido_persona)
+        valores.put(COL_EMAIL_PERSONA,email_persona)
+        valores.put(COL_TELEFONO_PERSONA,telefono_persona)
+        valores.put(COL_USUARIO,usuario)
+        val IdResultado=db.update (TABLE_USUARIO,valores,"COL_ID_USUARIO=?",parametros)
+        db.close()
+        return IdResultado
+    }
+
+    //eliminar usuario
+
+    fun EliminarUsuario(id_usuario:String):Int
+    {
+        val db=writableDatabase
+        val parametros=arrayOf(id_usuario)
+        val IdResultado=db.delete(TABLE_USUARIO,"COL_ID_USUARIO=?",parametros)
+        db.close()
+        return IdResultado
+    }
+
+    //FUNCIONES DE PAQUETE
+    fun AgregarPaquete(
+        id_Paquete: Int,
+        id_Envio: Int,
+        costo_Paquete: Double,
+        peso_Paquete: Double,
+        tamano_Paquete: Double
+    ): Long {
+        val db = writableDatabase
+        val valores = ContentValues().apply {
+            put(COL_ID_PAQUETE, id_Paquete)
+            put(COLUMNA_ID_ENVIO, id_Envio)
+            put(COL_COSTO_PAQUETE, costo_Paquete)
+            put(COL_PESO_PAQUETE, peso_Paquete)
+            put(COL_TAMANO_PAQUETE, tamano_Paquete)
+        }
+        val IdResultado = db.insert(TABLE_PAQUETE, null, valores)
+        db.close()
+        return IdResultado
+    }
+
+    fun RecuperarTodoslosPaquetes(): ArrayList<Paquete> {
+        val query: String = "SELECT * FROM $TABLE_PAQUETE"
+        val db = readableDatabase
+        val cursor: Cursor
+        val datosPaquetes = ArrayList<Paquete>()
+
+        cursor = db.rawQuery(query, null)
+
+        while (cursor.moveToNext()) {
+            val id_Paquete = cursor.getInt(0)
+            val id_Envio = cursor.getInt(1)
+            val costo_Paquete = cursor.getDouble(2)
+            val peso_Paquete = cursor.getDouble(3)
+            val tamano_Paquete = cursor.getDouble(4)
+
+            val paquete = Paquete(
+                id_Paquete,
+                id_Envio,
+                costo_Paquete,
+                peso_Paquete,
+                tamano_Paquete
+            )
+            datosPaquetes.add(paquete)
+        }
+        cursor.close()
+        db.close()
+        return datosPaquetes
+    }
+
+    fun ActualizarPaquete(
+        id_Paquete: Int,
+        id_Envio: Int,
+        costo_Paquete: Double,
+        peso_Paquete: Double,
+        tamano_Paquete: Double
+    ): Int {
+        val db = writableDatabase
+        val valores = ContentValues().apply {
+            put(COLUMNA_ID_ENVIO, id_Envio)
+            put(COL_COSTO_PAQUETE, costo_Paquete)
+            put(COL_PESO_PAQUETE, peso_Paquete)
+            put(COL_TAMANO_PAQUETE, tamano_Paquete)
+        }
+        val parametros = arrayOf(id_Paquete.toString())
+        val IdResultado = db.update(TABLE_PAQUETE, valores, "$COL_ID_PAQUETE=?", parametros)
+        db.close()
+        return IdResultado
+    }
+
+    fun EliminarPaquete(id_Paquete: Int): Int {
+        val db = writableDatabase
+        val parametros = arrayOf(id_Paquete.toString())
+        val IdResultado = db.delete(TABLE_PAQUETE, "$COL_ID_PAQUETE=?", parametros)
+        db.close()
+        return IdResultado
+    }
+
+    //Funciones de Seguimiento
+
+    //Funcion Agregar Seguimiento
+    fun agregarSeguimiento(
+        idEnvio: Int,
+        fechaSeguimiento: Date,
+        estadoSeguimiento: String,
+        ubicacionSeguimiento: String
+    ): Long {
+        val db = writableDatabase
+        val valores = ContentValues().apply {
+            put(COL_ID_ENVIO, idEnvio)
+            put(COL_FECHA_SEGUIMIENTO, fechaSeguimiento.time)
+            put(COL_ESTADO_SEGUIMIENTO, estadoSeguimiento)
+            put(COL_UBICACION_SEGUIMIENTO, ubicacionSeguimiento)
+        }
+        val idResultado = db.insert(TABLE_SEGUIMIENTO, null, valores)
+        db.close()
+        return idResultado
+    }
+
+    //Funcion Recuperar Todos los Seguimientos
+    fun recuperarTodosLosSeguimientos(): ArrayList<Seguimiento> {
+        val query = "SELECT * FROM $TABLE_SEGUIMIENTO"
+        val db = readableDatabase
+        val cursor: Cursor
+        val seguimientos = ArrayList<Seguimiento>()
+
+        cursor = db.rawQuery(query, null)
+
+        while (cursor.moveToNext()) {
+            val idSeguimiento = cursor.getInt(0)
+            val idEnvio = cursor.getInt(1)
+            val fechaSeguimiento = Date(2)
+            val estadoSeguimiento = cursor.getString(3)
+            val ubicacionSeguimiento = cursor.getString(4)
+
+            val seguimiento = Seguimiento(
+                idSeguimiento,
+                idEnvio,
+                fechaSeguimiento,
+                estadoSeguimiento,
+                ubicacionSeguimiento
+            )
+            seguimientos.add(seguimiento)
+        }
+        cursor.close()
+        db.close()
+        return seguimientos
+    }
+
+    //Funcion Recuperar Seguimiento por ID
+    fun recuperarSeguimientosPorIdEnvio(idEnvio: Int): List<Seguimiento> {
+        val seguimientos = ArrayList<Seguimiento>()
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM $TABLE_SEGUIMIENTO WHERE $COL_ID_ENVIO = ?", arrayOf(idEnvio.toString()))
+
+        while (cursor.moveToNext()) {
+            val idSeguimiento = cursor.getInt(0)
+            val fechaSeguimiento = Date(cursor.getLong(2))
+            val estadoSeguimiento = cursor.getString(3)
+            val ubicacionSeguimiento = cursor.getString(4)
+
+            val seguimiento = Seguimiento(idSeguimiento, idEnvio, fechaSeguimiento, estadoSeguimiento, ubicacionSeguimiento)
+            seguimientos.add(seguimiento)
+        }
+
+        cursor.close()
+        db.close()
+
+        return seguimientos
+    }
+
+
+    //Funcion Recuperar Seguimientos por ID de Envio
+    fun recuperarSeguimientoPorIdEnvio(idEnvio: Int): ArrayList<Seguimiento> {
+        val query = "SELECT * FROM $TABLE_SEGUIMIENTO WHERE $COL_ID_ENVIO = $idEnvio"
+        val db = readableDatabase
+        val cursor: Cursor
+        val seguimientos = ArrayList<Seguimiento>()
+
+        cursor = db.rawQuery(query, null)
+
+        while (cursor.moveToNext()) {
+            val idSeguimiento = cursor.getInt(0)
+            val fechaSeguimiento = Date(cursor.getLong(2))
+            val estadoSeguimiento = cursor.getString(3)
+            val ubicacionSeguimiento = cursor.getString(4)
+
+            val seguimiento = Seguimiento(idSeguimiento, idEnvio, fechaSeguimiento, estadoSeguimiento, ubicacionSeguimiento)
+            seguimientos.add(seguimiento)
+        }
+        cursor.close()
+        db.close()
+        return seguimientos
+    }
+
+
+    //Funcion Eliminar Seguimiento
+    fun eliminarSeguimiento(idSeguimiento: Int): Int {
+        val db = writableDatabase
+        val parametros = arrayOf(idSeguimiento.toString())
+        val idResultado = db.delete(TABLE_SEGUIMIENTO, "$COL_ID_SEGUIMIENTO=?", parametros)
         db.close()
         return idResultado
     }
