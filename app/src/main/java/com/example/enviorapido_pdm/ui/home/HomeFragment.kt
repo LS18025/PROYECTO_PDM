@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.enviorapido_pdm.databinding.FragmentHomeBinding
 import com.example.enviorapido_pdm.R
 import com.example.enviorapido_pdm.RegistrarEnvio
+import com.example.enviorapido_pdm.VerPerfilUsuario
 
 class HomeFragment : Fragment() {
 
@@ -44,10 +45,11 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.historialFragment)
         }
 
+
         // Establecer el OnClickListener
         imageButton8.setOnClickListener {
-            // Navega hacia el fragmento RegistrarEnvioFragment
-            findNavController().navigate(R.id.perfilUsuarioFragment)
+            val intent = Intent(requireContext(), VerPerfilUsuario::class.java)
+            startActivity(intent)
         }
 
 
