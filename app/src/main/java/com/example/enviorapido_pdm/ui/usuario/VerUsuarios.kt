@@ -80,7 +80,7 @@ class VerUsuarios : AppCompatActivity() {
             }
         }
         val recyclerView: RecyclerView =findViewById(R.id.recyclerView)
-        val adapter= CustomAdapter(IdRecuperado,ApellidosRecuperado,EmailRecuperado,TelefonoRecuperado,UsuarioRecuperado, RolRecuperado)
+        val adapter= CustomAdapter(IdRecuperado,NombresRecuperado,ApellidosRecuperado,EmailRecuperado,TelefonoRecuperado,UsuarioRecuperado,RolRecuperado)
         recyclerView.layoutManager= LinearLayoutManager(this)
         recyclerView.adapter=adapter
         //recyclerView.setAdapter(adapter) // esta linea hace lo mismo es otra forma de asignar el custom adapter

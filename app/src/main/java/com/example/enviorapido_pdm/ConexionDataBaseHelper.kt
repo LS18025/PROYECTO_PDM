@@ -146,7 +146,8 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
                 "$COL_EMAIL_PERSONA text," +
                 "$COL_TELEFONO_PERSONA text," +
                 "$COL_USUARIO text," +
-                "$COL_CONTRASENA text)"
+                "$COL_CONTRASENA text,"+
+                "FOREIGN KEY($COL_ID_ROL) REFERENCES $TABLE_ROL($COL_ID_ROL))"
 
         db.execSQL(createTableUsuarioSQL)
 
@@ -563,7 +564,7 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
                 val Email=cursor.getString(3)
                 val Telefono=cursor.getString(4)
                 val Usuario=cursor.getString(5)
-                //val Rol=cursor.getString(6)
+                val Rol=cursor.getString(6)
             }
         }else
         {
