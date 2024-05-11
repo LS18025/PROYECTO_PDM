@@ -72,11 +72,13 @@
             android:layout_height="wrap_content"
             android:text="Fecha Programada" />
 
-        <DatePicker
-            android:id="@+id/datePickerFechaProgramada"
+        <EditText
+            android:id="@+id/editTextFechaProgramada"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:focusable="false"
+            android:clickable="true" />
         <Button
             android:id="@+id/buttonRegistrarEnvio"
             android:layout_width="match_parent"

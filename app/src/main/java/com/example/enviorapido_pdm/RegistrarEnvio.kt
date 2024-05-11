@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.DatePicker
 import android.widget.Spinner
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
@@ -13,7 +12,9 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.UUID
 import kotlin.math.absoluteValue
-
+import android.app.DatePickerDialog
+import android.widget.EditText
+import java.util.Calendar
 class RegistrarEnvio : AppCompatActivity() {
 
     private lateinit var dbHelper: ConexionDataBaseHelper
@@ -25,11 +26,16 @@ class RegistrarEnvio : AppCompatActivity() {
         dbHelper = ConexionDataBaseHelper(this)
 
         //Obtenemos referencias a los elementos de la interfaz de usuario
+        val editTextFechaProgramada : EditText = findViewById(R.id.editTextFechaProgramada) // Cambiado a EditText
         val buttonRegistrarEnvio : Button = findViewById(R.id.buttonRegistrarEnvio)
-        val datePickerFechaProgramada : DatePicker = findViewById(R.id.datePickerFechaProgramada)
         val spinnerDireccion : Spinner = findViewById(R.id.spinnerDireccion)
         val spinnerDestinatario : Spinner = findViewById(R.id.spinnerDestinatario)
         val spinnerTransportista : Spinner = findViewById(R.id.spinnerTransportista)
+
+        //Configuramos el click listener para el EditText de fecha programada
+        editTextFechaProgramada.setOnClickListener {
+            mostrarDatePickerDialog(editTextFechaProgramada)
+        }
 
         //Configuramos los adaptadores para los Spinner
         configurarAdaptadores(spinnerDireccion,dbHelper.RecuperarTodaslasDirecciones()){
@@ -61,7 +67,7 @@ class RegistrarEnvio : AppCompatActivity() {
             val idTransportista = transportistaSeleccionado.idTransportista
 
             val costoTotalEnvio = 5.0
-            val fechaProgramada = obtenerFechaProgramada(datePickerFechaProgramada)
+            val fechaProgramada = obtenerFechaProgramada(editTextFechaProgramada)
 
             val firebaseAuth = FirebaseAuth.getInstance()
             val currentUser = firebaseAuth.currentUser
@@ -106,23 +112,38 @@ class RegistrarEnvio : AppCompatActivity() {
         }
 
     }
+    private fun mostrarDatePickerDialog(editText: EditText) {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            this,
+            DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+                val selectedDate = Calendar.getInstance()
+                selectedDate.set(Calendar.YEAR, year)
+                selectedDate.set(Calendar.MONTH, monthOfYear)
+                selectedDate.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                val sdf = SimpleDateFormat("dd-MM-yyyy")
+                editText.setText(sdf.format(selectedDate.time))
+            },
+            year,
+            month,
+            day
+        )
+        datePickerDialog.show()
+    }
     private fun <T> configurarAdaptadores(spinner: Spinner, lista: List<T>, campoAMostrar: (T) -> String) {
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, lista.map { campoAMostrar(it) })
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
     }
 
-    private fun obtenerFechaProgramada(datePicker: DatePicker): Date {
-        val day = datePicker.dayOfMonth
-        val month = datePicker.month
-        val year = datePicker.year
-
-        // Construye la fecha utilizando SimpleDateFormat
+    private fun obtenerFechaProgramada(editText: EditText): Date {
+        val dateString = editText.text.toString()
         val sdf = SimpleDateFormat("dd-MM-yyyy")
-        val dateString = "$day-${month + 1}-$year"
-        val date = sdf.parse(dateString)
-
-        return date
+        return sdf.parse(dateString)
     }
 
     private fun obtenerFechaHoy(): Date {

@@ -28,9 +28,7 @@ class HistorialCompletadosFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(HistorialCompletadosViewModel::class.java)
         // TODO: Use the ViewModel
-        // Ocultar el botón en el fragmento
-        val button: Button? = activity?.findViewById(R.id.button2)
-        button?.visibility = View.GONE
+
     }
 
 }

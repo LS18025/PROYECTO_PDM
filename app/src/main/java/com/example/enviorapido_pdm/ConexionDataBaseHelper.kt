@@ -5,7 +5,9 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import java.text.SimpleDateFormat
 import java.util.Date
+
 
 class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null,DATABASE_VERSION)
 {
@@ -296,8 +298,8 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
             put(COL_ID_TRANSPORTISTA, id_Transportista)
             put(COL_ETIQUETA, etiqueta)
             put(COL_COSTO_TOTAL_ENVIO, costo_Total_Envio)
-            put(COL_FECHA_ENVIO, fecha_Envio.time)
-            put(COL_FECHA_PROGRAMADA, fecha_Programada.time)
+            put(COL_FECHA_ENVIO, SimpleDateFormat("dd-MM-yyyy").format(fecha_Envio))
+            put(COL_FECHA_PROGRAMADA, SimpleDateFormat("dd-MM-yyyy").format(fecha_Programada))
             put(COL_NUMERO_CONF, numero_Conf)
         }
         val IdResultado = db.insert(TABLE_ENVIO, null, valores)
