@@ -6,4 +6,136 @@
     android:layout_height="match_parent"
     tools:context=".AgregarPaquete">
 
+    <TextView
+        android:id="@+id/textView13"
+        style="@style/textNormal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="120dp"
+        android:text="ID_PAQUETE"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editIdPaquete"
+        android:layout_width="212dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="112dp"
+        android:background="@drawable/esquinas_redondeadas"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.265"
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView84"
+        style="@style/textNormal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="92dp"
+        android:text="ID_envio"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <EditText
+        android:id="@+id/editIdEnvioPaquete"
+        android:layout_width="197dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/esquinas_redondeadas"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView84"
+        app:layout_constraintTop_toBottomOf="@+id/editIdPaquete" />
+
+    <TextView
+        android:id="@+id/textView85"
+        style="@style/textNormal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="84dp"
+        android:text="Peso"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView84" />
+
+    <TextView
+        android:id="@+id/textView86"
+        style="@style/textNormal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="80dp"
+        android:text="Tamaño"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView85" />
+
+    <EditText
+        android:id="@+id/editPesoPaquete"
+        android:layout_width="214dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="36dp"
+        android:background="@drawable/esquinas_redondeadas"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView85"
+        app:layout_constraintTop_toBottomOf="@+id/editIdEnvioPaquete" />
+
+    <EditText
+        android:id="@+id/editTamanoPaquete"
+        android:layout_width="212dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="68dp"
+        android:background="@drawable/esquinas_redondeadas"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toEndOf="@+id/textView86"
+        app:layout_constraintTop_toBottomOf="@+id/editPesoPaquete" />
+
+    <TextView
+        android:id="@+id/textView87"
+        style="@style/textNormal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="88dp"
+        android:text="Costo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView86" />
+
+    <EditText
+        android:id="@+id/editCostoPaquete"
+        android:layout_width="222dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="68dp"
+        android:background="@drawable/esquinas_redondeadas"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.704"
+        app:layout_constraintStart_toEndOf="@+id/textView87"
+        app:layout_constraintTop_toBottomOf="@+id/editTamanoPaquete" />
+
+    <Button
+        android:id="@+id/btnPaquete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:text="Agregar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editCostoPaquete" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

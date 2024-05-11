@@ -187,6 +187,17 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         db.execSQL(createTableSeguimientoSQL)
 
 
+        // Paquete
+        val createTablePaqueteSQL = "CREATE TABLE $TABLE_PAQUETE (" +
+                "$COL_ID_PAQUETE INTEGER PRIMARY KEY, " +
+                "$COL_ID_ENVIO INTEGER, " +
+                "$COL_COSTO_PAQUETE REAL NOT NULL, " +
+                "$COL_PESO_PAQUETE REAL NOT NULL, " +
+                "$COL_TAMANO_PAQUETE REAL NOT NULL, " +
+                "FOREIGN KEY($COL_ID_ENVIO) REFERENCES $TABLE_ENVIO($COL_ID_ENVIO))"
+
+        db.execSQL(createTablePaqueteSQL)
+
         // Datos de prueba en la tabla Direccion
         db.execSQL("INSERT INTO " + TABLE_DIRECCION + " (" + COL_ID_MUNICIPIO + ", " + COL_DIRECCION + ") VALUES (1, 'Calle Principal #123')");
         db.execSQL("INSERT INTO " + TABLE_DIRECCION + " (" + COL_ID_MUNICIPIO + ", " + COL_DIRECCION + ") VALUES (2, 'Avenida Central #456')");

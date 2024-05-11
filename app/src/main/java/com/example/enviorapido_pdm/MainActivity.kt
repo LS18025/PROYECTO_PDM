@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
         btnDepa.setOnClickListener()
         {
-            val Intent = Intent(this,VistaInsertarDepartamento::class.java)
+            val Intent = Intent(this,AgregarPaquete::class.java)
             startActivity(Intent)
         }
 
