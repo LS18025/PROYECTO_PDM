@@ -2,7 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_margin="8dp"
+    android:elevation="4dp">
+
 
     <TextView
         android:id="@+id/txtFecha"
@@ -10,7 +13,9 @@
         android:layout_height="wrap_content"
         android:text="Fecha:"
         android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_margin="8dp" />
 
     <TextView
         android:id="@+id/txtEstado"
@@ -18,7 +23,8 @@
         android:layout_height="wrap_content"
         android:text="Estado:"
         android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:layout_margin="8dp" />
 
     <TextView
         android:id="@+id/txtUbicacion"
@@ -26,6 +32,7 @@
         android:layout_height="wrap_content"
         android:text="Ubicación:"
         android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:layout_margin="8dp" />
 
 </LinearLayout>
