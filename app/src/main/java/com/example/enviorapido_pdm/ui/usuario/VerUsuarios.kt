@@ -17,7 +17,7 @@ class VerUsuarios : AppCompatActivity() {
     private lateinit var dbHelper:ConexionDataBaseHelper
 
     //Arreglos que serviran para poblar el RecyclerView
-    //private lateinit var IdRecuerado:ArrayList<String>
+    private lateinit var IdRecuperado:ArrayList<String>
     private lateinit var NombresRecuperado:ArrayList<String>
     private lateinit var ApellidosRecuperado:ArrayList<String>
     private lateinit var EmailRecuperado:ArrayList<String>
@@ -31,7 +31,8 @@ class VerUsuarios : AppCompatActivity() {
 
         dbHelper=ConexionDataBaseHelper(this)
 
-        //IdRecuperado=ArrayList()
+
+        IdRecuperado= ArrayList()
         NombresRecuperado= ArrayList()
         ApellidosRecuperado=ArrayList()
         EmailRecuperado=ArrayList()
@@ -69,7 +70,7 @@ class VerUsuarios : AppCompatActivity() {
         {
             for (user in VerUsuarios) {
                 // Accede a los atributos o métodos de cada objeto "Usuario"
-                //IdRecuperado.add(user.id_usuario)
+                IdRecuperado.add(user.id_usuario)
                 NombresRecuperado.add(user.primer_nombre_persona)
                 ApellidosRecuperado.add(user.primer_apellido_persona)
                 EmailRecuperado.add(user.email_persona)
@@ -79,7 +80,7 @@ class VerUsuarios : AppCompatActivity() {
             }
         }
         val recyclerView: RecyclerView =findViewById(R.id.recyclerView)
-        val adapter= CustomAdapter(ApellidosRecuperado,EmailRecuperado,TelefonoRecuperado,UsuarioRecuperado,RolRecuperado)
+        val adapter= CustomAdapter(IdRecuperado,ApellidosRecuperado,EmailRecuperado,TelefonoRecuperado,UsuarioRecuperado, RolRecuperado)
         recyclerView.layoutManager= LinearLayoutManager(this)
         recyclerView.adapter=adapter
         //recyclerView.setAdapter(adapter) // esta linea hace lo mismo es otra forma de asignar el custom adapter

@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 
 /*Sirve para poblar toda la información en el RecyclerView
 Esta clase se modificara para usar los datos de la base de de datos posteriormente*/
-class CustomAdapter(nombreRecuperados:ArrayList<String>,apellidoRecuperado:ArrayList<String>,emailRecuperado:ArrayList<String>,telefonoRecuperado:ArrayList<String>,usuarioRecuperado:ArrayList<String>,rolRecuperado:ArrayList<String>):RecyclerView.Adapter<CustomAdapter.ViewHolder>()
+class CustomAdapter(idRecuperados:ArrayList<String>,nombreRecuperados:ArrayList<String>,apellidoRecuperado:ArrayList<String>,emailRecuperado:ArrayList<String>,telefonoRecuperado:ArrayList<String>,usuarioRecuperado:ArrayList<String>,rolRecuperado:ArrayList<String>):RecyclerView.Adapter<CustomAdapter.ViewHolder>()
     {
 
+        private lateinit var IdRecuperados:ArrayList<String>
         private lateinit var NombreRecuperados:ArrayList<String>
         private lateinit var ApellidoRecuperado:ArrayList<String>
         private lateinit var EmailRecuperado:ArrayList<String>
@@ -21,6 +22,7 @@ class CustomAdapter(nombreRecuperados:ArrayList<String>,apellidoRecuperado:Array
 
         init
         {
+            this.IdRecuperados=idRecuperados
             this.NombreRecuperados=nombreRecuperados
             this.ApellidoRecuperado=apellidoRecuperado
             this.EmailRecuperado=emailRecuperado
@@ -31,6 +33,7 @@ class CustomAdapter(nombreRecuperados:ArrayList<String>,apellidoRecuperado:Array
 
         public class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
         {
+            //var itemIdUser: TextView=itemView.findViewById(R.id.IdUser)
             var itemNombreUser: TextView=itemView.findViewById(R.id.NombreUser)
             var itemApellidoUser: TextView=itemView.findViewById(R.id.ApellidoUser)
             var itemEmailUser: TextView=itemView.findViewById(R.id.EmailUser)
