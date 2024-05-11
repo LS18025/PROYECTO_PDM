@@ -5,8 +5,11 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
+
 
 
 class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null,DATABASE_VERSION)
@@ -129,11 +132,12 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
 
         db.execSQL(createTableDestinatarioSQL)
 
+        //ROL
         val createTableRolSQL = "CREATE TABLE $TABLE_ROL (" +
                 "$COL_ID_ROL INTEGER PRIMARY KEY, " +
                 "$COL_NOMBRE_ROL TEXT NOT NULL, " +
-                "$COL_DECRIPCION_ROL TEXT NOT NULL," +
-                "$COL_EMAIL_DESTINATARIO TEXT NOT NULL)"
+                "$COL_DECRIPCION_ROL TEXT NOT NULL)"
+
 
         db.execSQL(createTableRolSQL)
 
@@ -141,12 +145,14 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
 
         val createTableUsuarioSQL = "CREATE TABLE $TABLE_USUARIO (" +
                 "$COL_ID_USUARIO text PRIMARY KEY, " +
+                "$COL_ID_ROL INTEGER," +
                 "$COL_PRIMER_NOMBRE_PERSONA text," +
                 "$COL_PRIMER_APELLIDO_PERSONA text," +
                 "$COL_EMAIL_PERSONA text," +
                 "$COL_TELEFONO_PERSONA text," +
                 "$COL_USUARIO text," +
-                "$COL_CONTRASENA text)"
+                "$COL_CONTRASENA text,"+
+                "FOREIGN KEY($COL_ID_ROL) REFERENCES $TABLE_ROL($COL_ID_ROL))"
 
 
         db.execSQL(createTableUsuarioSQL)
@@ -200,6 +206,16 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
                 "FOREIGN KEY($COL_ID_ENVIO) REFERENCES $TABLE_ENVIO($COL_ID_ENVIO))"
 
         db.execSQL(createTablePaqueteSQL)
+
+        // Datos de prueba en la tabla Rol
+        db.execSQL("INSERT INTO $TABLE_ROL ($COL_ID_ROL, $COL_NOMBRE_ROL, $COL_DECRIPCION_ROL) VALUES (1, 'Administrador', 'Rol de administrador del sistema')");
+        db.execSQL("INSERT INTO $TABLE_ROL ($COL_ID_ROL, $COL_NOMBRE_ROL, $COL_DECRIPCION_ROL) VALUES (2, 'Remitente', 'Rol del Remitente de Envios')");
+
+        val insertUsuarioSQL = "INSERT INTO $TABLE_USUARIO ($COL_ID_USUARIO, $COL_ID_ROL, $COL_PRIMER_NOMBRE_PERSONA, $COL_PRIMER_APELLIDO_PERSONA, $COL_EMAIL_PERSONA, $COL_TELEFONO_PERSONA, $COL_USUARIO, $COL_CONTRASENA) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+
+        // Insertar usuario administrador
+        db.execSQL("INSERT INTO $TABLE_USUARIO ($COL_ID_USUARIO, $COL_ID_ROL, $COL_PRIMER_NOMBRE_PERSONA, $COL_PRIMER_APELLIDO_PERSONA, $COL_EMAIL_PERSONA, $COL_TELEFONO_PERSONA, $COL_USUARIO, $COL_CONTRASENA) VALUES ('Lkd38FdGd8OHNxuqstiDLEwgDNG2', 1, 'Alexis', 'Orellana', 'od18003@ues.edu.sv', '12345678', 'Admin', 'password')")
+
 
         // Datos de prueba en la tabla Direccion
         db.execSQL("INSERT INTO " + TABLE_DIRECCION + " (" + COL_ID_MUNICIPIO + ", " + COL_DIRECCION + ") VALUES (1, 'Calle Principal #123')");
@@ -353,6 +369,7 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
     //FUNCIONES DE USUARIOS
     fun AgregarUsuario(
         IdUsuario: String,
+        IdRol : Int,
         primerNombre: String,
         primerApellido: String,
         email: String,
@@ -364,6 +381,7 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         val valores = ContentValues()
 
         valores.put(COL_ID_USUARIO, IdUsuario)
+        valores.put(COL_ID_ROL, IdRol)
         valores.put(COL_PRIMER_NOMBRE_PERSONA, primerNombre)
         valores.put(COL_PRIMER_APELLIDO_PERSONA, primerApellido)
         valores.put(COL_EMAIL_PERSONA, email)
@@ -585,13 +603,13 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
 
         while (cursor.moveToNext())
         {
-            val idUsuario = cursor.getString(0)
-            val nombreUsuario = cursor.getString(1)
-            val apellidoUsuario = cursor.getString(2)
-            val emailUsuario = cursor.getString(3)
-            val telefonoUsuario = cursor.getString(4)
-            val usuariousuario = cursor.getString(5)
-            val rolUsuario = cursor.getString(6)
+            val idUsuario = cursor.getString(1)
+            val nombreUsuario = cursor.getString(2)
+            val apellidoUsuario = cursor.getString(3)
+            val emailUsuario = cursor.getString(4)
+            val telefonoUsuario = cursor.getString(5)
+            val usuariousuario = cursor.getString(6)
+            val rolUsuario = cursor.getString(7)
 
 
             val usuario = Usuarios(
@@ -836,13 +854,13 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
 
         if (cursor.moveToFirst()) {
             val usuario = Usuarios(
-                cursor.getString(0),
                 cursor.getString(1),
                 cursor.getString(2),
                 cursor.getString(3),
                 cursor.getString(4),
                 cursor.getString(5),
-                cursor.getString(6)
+                cursor.getString(6),
+                cursor.getString(7)
             )
             cursor.close()
             db.close()
@@ -854,5 +872,59 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         return null
     }
 
+
+    //Funcion getUserRole para obtener el rol de un usuario
+    fun getUserRole(idUsuario: String): String {
+        val db = readableDatabase
+        val query = "SELECT $COL_NOMBRE_ROL FROM $TABLE_ROL WHERE $COL_ID_ROL = (SELECT $COL_ID_ROL FROM $TABLE_USUARIO WHERE $COL_ID_USUARIO = ?)"
+        val cursor = db.rawQuery(query, arrayOf(idUsuario))
+
+        Log.d("getUserRole", "Query: $query")
+
+        cursor.use { cursor ->
+            if (cursor.moveToFirst()) {
+                val rol = cursor.getString(cursor.getColumnIndex(COL_NOMBRE_ROL))
+                Log.d("getUserRole", "Role: $rol")
+                return rol
+            } else {
+                Log.d("getUserRole", "No se encontró ningún rol para el usuario con ID: $idUsuario")
+                return ""
+            }
+        }
+    }
+
+
+
+
+    fun isDatabaseExists(context: Context): Boolean {
+        val dbFile = context.getDatabasePath(DATABASE_NAME)
+        return dbFile.exists()
+    }
+
+    fun isAdministratorUserExists(): Boolean {
+        val db = this.readableDatabase
+        val query =
+            "SELECT COUNT(*) FROM $TABLE_USUARIO WHERE $COL_ID_ROL = 1" // Verificar si hay algún usuario con el rol de administrador
+        val cursor = db.rawQuery(query, null)
+        cursor.moveToFirst()
+        val count = cursor.getInt(0)
+        cursor.close()
+        return count > 0
+    }
+
+    fun insertAdministratorUser() {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(COL_ID_USUARIO, "1")
+        contentValues.put(COL_ID_ROL, 1)
+        contentValues.put(COL_PRIMER_NOMBRE_PERSONA, "Alexis")
+        contentValues.put(COL_PRIMER_APELLIDO_PERSONA, "Orellana")
+        contentValues.put(COL_EMAIL_PERSONA, "od18003@ues.edu.sv")
+        contentValues.put(COL_TELEFONO_PERSONA, "12345678")
+        contentValues.put(COL_USUARIO, "Admin")
+        contentValues.put(COL_CONTRASENA, "password")
+
+        db.insert(TABLE_USUARIO, null, contentValues)
+    }
 
 }

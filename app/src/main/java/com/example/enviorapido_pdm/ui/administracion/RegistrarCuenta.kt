@@ -70,7 +70,7 @@ class RegistrarCuenta : AppCompatActivity() {
                     Toast.makeText(baseContext,"Usuario registrado satisfactoriamente, se necesita verificacion",Toast.LENGTH_SHORT).show()
 
                     val conexionDB = ConexionDataBaseHelper(this)
-                    conexionDB.AgregarUsuario(uid,txtNombreUsuario.text.toString(),txtApellidoUsuario.text.toString(),email,"Telefono",usuario.text.toString(),"Contrasena")
+                    conexionDB.AgregarUsuario(uid,2,txtNombreUsuario.text.toString(),txtApellidoUsuario.text.toString(),email,"Telefono",usuario.text.toString(),"Contrasena")
 
                     val i = Intent (this, LoginActivity::class.java)
                     startActivity(i)

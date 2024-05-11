@@ -28,11 +28,29 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        val userRole = requireActivity().intent.getStringExtra("USER_ROLE")
+
         // Encuentra el ImageButton
         val imageButton4: ImageButton = binding.imageButton4
         val imageButton6: ImageButton = binding.imageButton6
         val imageButton8: ImageButton = binding.imageButton8
         val btnUsuarios: ImageButton = binding.btnUsuarios
+
+        //Establecer visibilidad de botones dependiendo del rol del usuario
+        if (userRole == "Administrador") {
+            btnUsuarios.visibility = View.VISIBLE
+            imageButton4.visibility = View.GONE
+            imageButton6.visibility = View.GONE
+            imageButton8.visibility = View.GONE
+
+        } else {
+            btnUsuarios.visibility = View.GONE
+        }
+
+        btnUsuarios.setOnClickListener {
+            val intent = Intent(requireContext(), VerUsuarios::class.java)
+            startActivity(intent)
+        }
 
         // Establecer el OnClickListener
         imageButton4.setOnClickListener {
@@ -52,12 +70,6 @@ class HomeFragment : Fragment() {
             val intent = Intent(requireContext(), VerPerfilUsuario::class.java)
             startActivity(intent)
         }
-
-        btnUsuarios.setOnClickListener {
-            val intent = Intent(requireContext(), VerUsuarios::class.java)
-            startActivity(intent)
-        }
-
 
         return root
     }
