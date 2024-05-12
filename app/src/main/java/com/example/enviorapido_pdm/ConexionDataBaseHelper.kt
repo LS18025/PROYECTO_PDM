@@ -883,7 +883,7 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
 
         cursor.use { cursor ->
             if (cursor.moveToFirst()) {
-                val rol = cursor.getString(cursor.getColumnIndex(COL_NOMBRE_ROL))
+                val rol = cursor.getString(0)
                 Log.d("getUserRole", "Role: $rol")
                 return rol
             } else {
