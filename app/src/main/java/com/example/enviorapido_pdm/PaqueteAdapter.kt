@@ -7,6 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class PaqueteAdapter(private val listaPaquete: ArrayList<Paquete>) : RecyclerView.Adapter<PaqueteAdapter.PaqueteViewHolder>() {
+
+    interface OnItemClickListener {
+        fun onItemClick(idPaquete: Int)
+    }
     class PaqueteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val idPaquete: TextView = itemView.findViewById(R.id.textIdPaquete)
         val idEnvio: TextView = itemView.findViewById(R.id.textIdEnvio)
