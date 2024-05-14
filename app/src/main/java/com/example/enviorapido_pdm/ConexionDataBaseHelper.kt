@@ -33,7 +33,7 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         //Tabla Direccion
         private const val TABLE_DIRECCION = "Direccion"
         private const val COL_ID_DIRECCION = "ID_DIRECCION"
-        //private const val COL_ID_MUNICIPIO = "ID_MUNICIPIO"
+        private const val COLUMNA_ID_MUNICIPIO = "ID_MUNICIPIO"
         private const val COL_DIRECCION = "DIRECCION"
 
         //Destinatario
@@ -442,7 +442,7 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         val db = writableDatabase
         val valores = ContentValues().apply {
             put(COL_ID_DIRECCION, id_Direccion)
-            put(COL_ID_MUNICIPIO, id_Municipio)
+            put(COLUMNA_ID_MUNICIPIO, id_Municipio)
             put(COL_DIRECCION, direccion)
         }
         val IdResultado = db.insert(TABLE_DIRECCION, null, valores)
@@ -469,6 +469,29 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         cursor.close()
         db.close()
         return DatosDirecciones
+    }
+    fun ActualizarDireccion(
+        id_Direccion: Int,
+        id_Municipio: Int,
+        direccion: String
+    ): Int {
+        val db = writableDatabase
+        val valores = ContentValues().apply {
+            put(COLUMNA_ID_MUNICIPIO, id_Municipio)
+            put(COL_DIRECCION, direccion)
+        }
+        val parametros = arrayOf(id_Direccion.toString())
+        val IdResultado = db.update(TABLE_DIRECCION, valores, "$COL_ID_DIRECCION=?", parametros)
+        db.close()
+        return IdResultado
+    }
+
+    fun EliminarDireccion(id_Direccion: Int): Int {
+        val db = writableDatabase
+        val parametros = arrayOf(id_Direccion.toString())
+        val IdResultado = db.delete(TABLE_DIRECCION, "$COL_ID_DIRECCION=?", parametros)
+        db.close()
+        return IdResultado
     }
 
     //FUNCIONES DE DESTINATARIO
@@ -739,6 +762,28 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         db.close()
         return IdResultado
     }
+    fun RecuperarPaquetePorId(idPaquete: Int): Paquete? {
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_PAQUETE WHERE $COL_ID_PAQUETE = ?"
+        val cursor = db.rawQuery(query, arrayOf(idPaquete.toString()))
+        var paquete: Paquete? = null
+
+        if (cursor.moveToFirst()) {
+            paquete = Paquete(
+                cursor.getInt(0),
+                cursor.getInt(1),
+                cursor.getDouble(2),
+                cursor.getDouble(3),
+                cursor.getDouble(4)
+            )
+        }
+
+        cursor.close()
+        db.close()
+
+        return paquete
+    }
+
 
     //Funciones de Seguimiento
 

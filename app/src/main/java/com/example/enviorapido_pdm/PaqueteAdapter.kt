@@ -6,7 +6,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class PaqueteAdapter(private val listaPaquete: ArrayList<Paquete>) : RecyclerView.Adapter<PaqueteAdapter.PaqueteViewHolder>() {
+class PaqueteAdapter(private val listaPaquete: ArrayList<Paquete> ) : RecyclerView.Adapter<PaqueteAdapter.PaqueteViewHolder>() {
+
+
+
+    interface OnItemClickListener {
+        fun onItemClick(idPaquete: Int)
+    }
     class PaqueteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val idPaquete: TextView = itemView.findViewById(R.id.textIdPaquete)
         val idEnvio: TextView = itemView.findViewById(R.id.textIdEnvio)
@@ -28,9 +34,17 @@ class PaqueteAdapter(private val listaPaquete: ArrayList<Paquete>) : RecyclerVie
         holder.costoPaquete.text = "Costo: ${currentItem.costoPaquete}"
         holder.pesoPaquete.text = "Peso: ${currentItem.pesoPaquete}"
         holder.tamanoPaquete.text = "Tamaño: ${currentItem.tamanoPaquete}"
+        holder.itemView.setOnClickListener {
+            val idPaquete = currentItem.idPaquete
+            val context = holder.itemView.context
+            if (context is VistaPaquete) {
+                context.onItemClick(idPaquete)
+            }
+        }
     }
 
     override fun getItemCount(): Int {
         return listaPaquete.size
     }
+
 }
