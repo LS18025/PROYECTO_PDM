@@ -50,13 +50,13 @@ class MainActivity : AppCompatActivity() {
             //navController.navigate(R.id.envioExitosoFragment)
         //}
 
-        //val btnDepa:Button = findViewById(R.id.btnDepa)
+        val btnDepa:Button = findViewById(R.id.btnJuan)
 
-        //btnDepa.setOnClickListener()
-        //{
-          //  val Intent = Intent(this,VistaPaquete::class.java)
-           // startActivity(Intent)
-        //}
+        btnDepa.setOnClickListener()
+        {
+           val Intent = Intent(this,VistaPaquete::class.java)
+           startActivity(Intent)
+        }
 
 
 

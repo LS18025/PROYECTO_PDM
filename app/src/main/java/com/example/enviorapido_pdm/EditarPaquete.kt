@@ -1,5 +1,7 @@
 package com.example.enviorapido_pdm
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -16,6 +18,7 @@ class EditarPaquete : AppCompatActivity() {
     private lateinit var btnActualizarPaquete: Button
 
     private lateinit var dbHelper: ConexionDataBaseHelper
+    private var idPaquete: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +36,7 @@ class EditarPaquete : AppCompatActivity() {
         dbHelper = ConexionDataBaseHelper(this)
 
         // Obtener ID del paquete a editar de los extras
-        val idPaquete = intent.getIntExtra("id_paquete", -1)
+        idPaquete = intent.getIntExtra("id_paquete", -1)
 
         // Cargar datos del paquete a editar
         cargarDatosPaquete(idPaquete)
