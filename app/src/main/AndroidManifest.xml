@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
 
     <application
         android:allowBackup="true"
@@ -16,6 +16,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.transportista.EliminarTransportista"
+            android:exported="false" />
+        <activity
+            android:name=".ui.transportista.EditarTransportista"
+            android:exported="false" />
+        <activity
+            android:name=".ui.transportista.CrearTransportista"
+            android:exported="false" />
         <activity
             android:name=".ui.usuario.VerUsuarios"
             android:exported="false" />
@@ -36,6 +45,9 @@
             android:exported="false" />
         <activity
             android:name=".RegistrarEnvio"
+            android:exported="false" />
+        <activity
+            android:name=".RegistrarTransportista"
             android:exported="false" />
         <activity
             android:name=".ui.administracion.RecordarContrasena"
