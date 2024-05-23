@@ -7,16 +7,6 @@
     android:layout_height="wrap_content"
     android:paddingTop="5dp">
 
-    <TextView
-        android:id="@+id/text_TituloVertodoslosUsuarios"
-        style="@style/titulo"
-        android:layout_width="wrap_content"
-        android:layout_height="46dp"
-        android:text="Usuarios Registrados"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="129dp"
-        tools:layout_editor_absoluteY="14dp" />
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -129,6 +119,7 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
@@ -161,6 +152,33 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+            <ImageButton
+                android:id="@+id/imageButtonEditar"
+                android:layout_width="41dp"
+                android:layout_height="38dp"
+                android:backgroundTint="#00FFFFFF"
+                android:src="@drawable/baseline_create_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.987"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageButton
+                android:id="@+id/imageButtonEliminar"
+                android:layout_width="41dp"
+                android:layout_height="38dp"
+                android:backgroundTint="#00FFFFFF"
+                android:src="@drawable/baseline_delete_forever_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.988"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.424" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

@@ -972,4 +972,7 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         db.insert(TABLE_USUARIO, null, contentValues)
     }
 
+
+
+
 }

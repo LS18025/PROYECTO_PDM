@@ -48,14 +48,14 @@ class ModificarUsuario : AppCompatActivity() {
             }
         }
     }
-//opciones del menu de items
+    //opciones del menu de items
     override fun onOptionsItemSelected(item:MenuItem): Boolean {
         when(item.itemId)
         {
             R.id.btnUsuarios-> BuscarUsuario()
         }
         return super.onOptionsItemSelected(item)
-}
+    }
     fun VerUsuario()
     {
         Toast.makeText(this,"Ver Usuarios", Toast.LENGTH_SHORT).show()
@@ -65,7 +65,7 @@ class ModificarUsuario : AppCompatActivity() {
 
 
 
-        fun BuscarUsuario()
+    fun BuscarUsuario()
     {
         val email_persona:EditText=findViewById(R.id.txtCorreo_persona)
         val NombreRecuperado:EditText=findViewById(R.id.txtNombreUsuario)

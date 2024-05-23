@@ -50,7 +50,7 @@ class VerUsuarios : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun ModificarProductos()
+    fun ModificarUsuario()
     {
         Toast.makeText(this,"Modificar Usuario", Toast.LENGTH_SHORT).show()
         val intent= Intent(this,ModificarUsuario::class.java)
