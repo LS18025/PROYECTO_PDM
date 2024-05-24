@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -12,7 +13,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.enviorapido_pdm.databinding.FragmentHomeBinding
 import com.example.enviorapido_pdm.R
 import com.example.enviorapido_pdm.RegistrarEnvio
+import com.example.enviorapido_pdm.RegistrarTransportista
 import com.example.enviorapido_pdm.VerPerfilUsuario
+import com.example.enviorapido_pdm.ui.transportista.CrearTransportista
 import com.example.enviorapido_pdm.ui.usuario.VerUsuarios
 
 class HomeFragment : Fragment() {
@@ -35,6 +38,7 @@ class HomeFragment : Fragment() {
         val imageButton6: ImageButton = binding.imageButton6
         val imageButton8: ImageButton = binding.imageButton8
         val btnUsuarios: ImageButton = binding.btnUsuarios
+        val btnTrans: Button = binding.btnTransportista
 
         //Establecer visibilidad de botones dependiendo del rol del usuario
         if (userRole == "Administrador") {
@@ -70,7 +74,10 @@ class HomeFragment : Fragment() {
             val intent = Intent(requireContext(), VerPerfilUsuario::class.java)
             startActivity(intent)
         }
-
+        btnTrans.setOnClickListener {
+            val intent = Intent(requireContext(), CrearTransportista::class.java)
+            startActivity(intent)
+        }
         return root
     }
 
