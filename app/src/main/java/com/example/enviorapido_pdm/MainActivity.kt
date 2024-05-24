@@ -14,7 +14,6 @@ import com.example.enviorapido_pdm.ui.administracion.LoginActivity
 import com.example.enviorapido_pdm.ui.chat.ChatFragment
 import com.example.enviorapido_pdm.ui.departamentos.VistaInsertarDepartamento
 import com.example.enviorapido_pdm.ui.notifications.NotificationsFragment
-import com.example.enviorapido_pdm.ui.transportista.CrearTransportista
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -51,12 +50,12 @@ class MainActivity : AppCompatActivity() {
             //navController.navigate(R.id.envioExitosoFragment)
         //}
 
-        val buttonTrans:Button = findViewById(R.id.btnTransportista)
+        val btnDepa:Button = findViewById(R.id.btnJuan)
 
-        buttonTrans.setOnClickListener()
+        btnDepa.setOnClickListener()
         {
-            val Intent = Intent(this,CrearTransportista::class.java)
-            startActivity(Intent)
+           val Intent = Intent(this,VistaPaquete::class.java)
+           startActivity(Intent)
         }
 
 
