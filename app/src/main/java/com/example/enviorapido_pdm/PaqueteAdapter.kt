@@ -1,37 +1,24 @@
 package com.example.enviorapido_pdm
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class PaqueteAdapter(
-    public val listaPaquete: ArrayList<Paquete>,
-    private val onItemSelectedListener: OnItemSelectedListener
-) : RecyclerView.Adapter<PaqueteAdapter.PaqueteViewHolder>() {
+class PaqueteAdapter(private val listaPaquete: ArrayList<Paquete> ) : RecyclerView.Adapter<PaqueteAdapter.PaqueteViewHolder>() {
 
-    private var selectedPosition = RecyclerView.NO_POSITION
 
-    interface OnItemSelectedListener {
-        fun onItemSelected(paquete: Paquete)
+
+    interface OnItemClickListener {
+        fun onItemClick(idPaquete: Int)
     }
-    inner class PaqueteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class PaqueteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val idPaquete: TextView = itemView.findViewById(R.id.textIdPaquete)
         val idEnvio: TextView = itemView.findViewById(R.id.textIdEnvio)
         val costoPaquete: TextView = itemView.findViewById(R.id.textCosto)
         val pesoPaquete: TextView = itemView.findViewById(R.id.textPeso)
         val tamanoPaquete: TextView = itemView.findViewById(R.id.textTamano)
-
-        init {
-            itemView.setOnClickListener {
-                notifyItemChanged(selectedPosition)
-                selectedPosition = adapterPosition
-                notifyItemChanged(selectedPosition)
-                onItemSelectedListener.onItemSelected(listaPaquete[adapterPosition])
-            }
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PaqueteViewHolder {
@@ -47,15 +34,17 @@ class PaqueteAdapter(
         holder.costoPaquete.text = "Costo: ${currentItem.costoPaquete}"
         holder.pesoPaquete.text = "Peso: ${currentItem.pesoPaquete}"
         holder.tamanoPaquete.text = "Tamaño: ${currentItem.tamanoPaquete}"
-
-        holder.itemView.isSelected = (selectedPosition == position)
+        holder.itemView.setOnClickListener {
+            val idPaquete = currentItem.idPaquete
+            val context = holder.itemView.context
+            if (context is VistaPaquete) {
+                context.onItemClick(idPaquete)
+            }
+        }
     }
 
     override fun getItemCount(): Int {
         return listaPaquete.size
     }
-
-
-
 
 }

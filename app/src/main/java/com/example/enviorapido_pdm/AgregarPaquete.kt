@@ -44,7 +44,6 @@ class AgregarPaquete : AppCompatActivity() {
 
         if (IdResultado != -1L) {
             Toast.makeText(this, "Paquete agregado con éxito", Toast.LENGTH_SHORT).show()
-            finish()
         } else {
             Toast.makeText(this, "Hubo un error al agregar el paquete", Toast.LENGTH_SHORT).show()
         }
