@@ -6,7 +6,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
-import java.io.File
+import com.example.enviorapido_pdm.ui.paquete.Paquete
 import java.text.SimpleDateFormat
 import java.util.Date
 

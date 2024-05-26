@@ -1,17 +1,20 @@
-package com.example.enviorapido_pdm
+package com.example.enviorapido_pdm.ui.paquete
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.enviorapido_pdm.ConexionDataBaseHelper
+import com.example.enviorapido_pdm.R
+import java.util.UUID
+import kotlin.math.absoluteValue
 
 class AgregarPaquete : AppCompatActivity() {
 
-    private lateinit var dbHelper:ConexionDataBaseHelper
+    private lateinit var dbHelper: ConexionDataBaseHelper
 
-    private lateinit var editIdPaquete: EditText
-    private lateinit var editIdEnvioPaquete: EditText
+    private var idEnvio: Int = -1
     private lateinit var editCostoPaquete: EditText
     private lateinit var editPesoPaquete: EditText
     private lateinit var editTamanoPaquete: EditText
@@ -19,10 +22,10 @@ class AgregarPaquete : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_agregar_paquete)
 
+        idEnvio = intent.getIntExtra("ID_ENVIO", -1)
+
         dbHelper = ConexionDataBaseHelper(this)
 
-        editIdPaquete = findViewById(R.id.editIdPaquete)
-        editIdEnvioPaquete = findViewById(R.id.editIdEnvioPaquete)
         editCostoPaquete = findViewById(R.id.editCostoPaquete)
         editPesoPaquete = findViewById(R.id.editPesoPaquete)
         editTamanoPaquete = findViewById(R.id.editTamanoPaquete)
@@ -34,8 +37,7 @@ class AgregarPaquete : AppCompatActivity() {
         }
     }
     private fun guardarPaqueteEnDB() {
-        val idPaquete = editIdPaquete.text.toString().toInt()
-        val idEnvio = editIdEnvioPaquete.text.toString().toInt()
+        val idPaquete = UUID.randomUUID().hashCode().absoluteValue.toString().take(8).toInt()
         val costoPaquete = editCostoPaquete.text.toString().toDouble()
         val pesoPaquete = editPesoPaquete.text.toString().toDouble()
         val tamanoPaquete = editTamanoPaquete.text.toString().toDouble()

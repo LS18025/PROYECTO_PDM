@@ -1,21 +1,20 @@
-    package com.example.enviorapido_pdm
+    package com.example.enviorapido_pdm.ui.paquete
 
-    import android.app.Activity
     import android.content.Intent
     import androidx.appcompat.app.AppCompatActivity
     import android.os.Bundle
-    import android.util.Log
-    import android.widget.Button
     import android.widget.ImageButton
     import android.widget.Toast
     import androidx.recyclerview.widget.LinearLayoutManager
     import androidx.recyclerview.widget.RecyclerView
-    import com.google.android.material.dialog.MaterialAlertDialogBuilder
+    import com.example.enviorapido_pdm.ConexionDataBaseHelper
+    import com.example.enviorapido_pdm.R
 
     class VistaPaquete : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener {
 
         private lateinit var recyclerView: RecyclerView
         private lateinit var adapter: PaqueteAdapter
+        private var idEnvio: Int = -1
         private lateinit var dbHelper: ConexionDataBaseHelper
 
         private var selectedPaquete: Paquete? = null
@@ -23,6 +22,8 @@
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_vista_paquete)
+
+            idEnvio = intent.getIntExtra("ID_ENVIO", -1)
 
             recyclerView = findViewById(R.id.listaPaquete)
             recyclerView.layoutManager = LinearLayoutManager(this)
@@ -38,13 +39,16 @@
 
             btnAgregar.setOnClickListener {
                 val intent = Intent(this, AgregarPaquete::class.java)
+                intent.putExtra("ID_ENVIO", idEnvio)
                 startActivity(intent)
             }
 
             btnEditar.setOnClickListener {
                 selectedPaquete?.let {
                     val intent = Intent(this, EditarPaquete::class.java)
+
                     intent.putExtra("id_paquete", it.idPaquete)
+
                     startActivity(intent)
                 }
             }

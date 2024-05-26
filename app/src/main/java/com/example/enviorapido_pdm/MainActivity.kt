@@ -11,9 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.enviorapido_pdm.databinding.ActivityMainBinding
 import com.example.enviorapido_pdm.ui.administracion.LoginActivity
-import com.example.enviorapido_pdm.ui.chat.ChatFragment
-import com.example.enviorapido_pdm.ui.departamentos.VistaInsertarDepartamento
-import com.example.enviorapido_pdm.ui.notifications.NotificationsFragment
+import com.example.enviorapido_pdm.ui.paquete.VistaPaquete
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -54,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
         btnDepa.setOnClickListener()
         {
-           val Intent = Intent(this,VistaPaquete::class.java)
+           val Intent = Intent(this, VistaPaquete::class.java)
            startActivity(Intent)
         }
 
