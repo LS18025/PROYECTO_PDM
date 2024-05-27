@@ -48,11 +48,11 @@ class MainActivity : AppCompatActivity() {
             //navController.navigate(R.id.envioExitosoFragment)
         //}
 
-        val btnDepa:Button = findViewById(R.id.btnJuan)
+        val btnDepa:Button = findViewById(R.id.btnTransportista)
 
         btnDepa.setOnClickListener()
         {
-           val Intent = Intent(this, VistaPaquete::class.java)
+           val Intent = Intent(this, VistaTransportista::class.java)
            startActivity(Intent)
         }
 

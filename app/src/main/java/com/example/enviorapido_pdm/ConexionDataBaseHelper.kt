@@ -801,12 +801,12 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         return filasAfectadas
     }
 
-    fun eliminarTransportista(transportista: Transportista): Int {
+    fun eliminarTransportista(id_Transportista: Int): Int {
         val db = writableDatabase
-        val parametros = arrayOf(transportista.idTransportista.toString())
-        val filasAfectadas = db.delete(TABLE_TRANSPORTISTA, "$COL_ID_TRANSPORTISTA=?", parametros)
+        val parametros = arrayOf(id_Transportista.toString())
+        val IdResultado = db.delete(TABLE_TRANSPORTISTA, "$COL_ID_TRANSPORTISTA=?", parametros)
         db.close()
-        return filasAfectadas
+        return IdResultado
     }
 
     fun RecuperarTransportistaPorId(idTransportista: Int): Transportista? {

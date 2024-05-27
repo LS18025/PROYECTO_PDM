@@ -6,20 +6,32 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-
+import com.example.enviorapido_pdm.Transportista
+import com.example.enviorapido_pdm.R
 class TransportistaAdapter(
-    private val listaTransportistas: ArrayList<Transportista>,
+    public val listaTransportistas: ArrayList<Transportista>,
+    private val onItemSelectedListener: OnItemSelectedListener
 ) : RecyclerView.Adapter<TransportistaAdapter.TransportistaViewHolder>() {
+    private var selectedPosition = RecyclerView.NO_POSITION
 
-    interface OnItemClickListener {
-        fun onItemClick(idTransportista: Int)
+
+    interface OnItemSelectedListener {
+        fun onItemSelected(idTransportista: Transportista)
     }
 
-    class TransportistaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class TransportistaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val idTransportista: TextView = itemView.findViewById(R.id.textIdTransportista)
         val nombreTransportista: TextView = itemView.findViewById(R.id.textNombreTransportista)
         val apellidoTransportista: TextView = itemView.findViewById(R.id.textApellidoTransportista)
         val telefonoTransportista: TextView = itemView.findViewById(R.id.textTelefonoTransportista)
+        init {
+            itemView.setOnClickListener {
+                notifyItemChanged(selectedPosition)
+                selectedPosition = adapterPosition
+                notifyItemChanged(selectedPosition)
+                onItemSelectedListener.onItemSelected(listaTransportistas[adapterPosition])
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransportistaViewHolder {
@@ -35,13 +47,7 @@ class TransportistaAdapter(
         holder.apellidoTransportista.text = "Apellido: ${currentItem.apellidoTransportista}"
         holder.telefonoTransportista.text = "Teléfono: ${currentItem.telefonoTransportista}"
 
-        holder.itemView.setOnClickListener {
-            val idTransportista = currentItem.idTransportista
-            val context = holder.itemView.context
-            if (context is VistaTransportista) {
-                context.onItemClick(idTransportista)
-            }
-        }
+        holder.itemView.isSelected = (selectedPosition == position)
     }
 
     override fun getItemCount(): Int {

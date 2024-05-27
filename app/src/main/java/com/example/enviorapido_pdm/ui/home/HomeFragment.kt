@@ -16,7 +16,7 @@ import com.example.enviorapido_pdm.R
 import com.example.enviorapido_pdm.RegistrarEnvio
 import com.example.enviorapido_pdm.RegistrarTransportista
 import com.example.enviorapido_pdm.VerPerfilUsuario
-import com.example.enviorapido_pdm.VistaPaquete
+import com.example.enviorapido_pdm.ui.paquete.VistaPaquete
 import com.example.enviorapido_pdm.VistaTransportista
 import com.example.enviorapido_pdm.ui.transportista.CrearTransportista
 import com.example.enviorapido_pdm.ui.usuario.VerUsuarios

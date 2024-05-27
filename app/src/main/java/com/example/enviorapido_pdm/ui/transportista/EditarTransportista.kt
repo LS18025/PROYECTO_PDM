@@ -5,11 +5,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-
+import com.example.enviorapido_pdm.ConexionDataBaseHelper
+import com.example.enviorapido_pdm.R
 
 class EditarTransportista : AppCompatActivity() {
 
-    private lateinit var txtEditIdTransportista: EditText
     private lateinit var txtEditNombreTransportista: EditText
     private lateinit var txtEditApellidoTransportista: EditText
     private lateinit var txtEditTelefonoTransportista: EditText
@@ -23,7 +23,6 @@ class EditarTransportista : AppCompatActivity() {
         setContentView(R.layout.activity_editar_transportista)
 
         // Inicializar vistas
-        txtEditIdTransportista = findViewById(R.id.txtEditIdTransportista)
         txtEditNombreTransportista = findViewById(R.id.txtEditNombreTransportista)
         txtEditApellidoTransportista = findViewById(R.id.txtEditApellidoTransportista)
         txtEditTelefonoTransportista = findViewById(R.id.txtEditTelefonoTransportista)
@@ -61,7 +60,6 @@ class EditarTransportista : AppCompatActivity() {
         val transportista = dbHelper.RecuperarTransportistaPorId(idTransportista)
 
         if (transportista != null) {
-            txtEditIdTransportista.setText(transportista.idTransportista.toString())
             txtEditNombreTransportista.setText(transportista.nombreTransportista)
             txtEditApellidoTransportista.setText(transportista.apellidoTransportista)
             txtEditTelefonoTransportista.setText(transportista.telefonoTransportista)
