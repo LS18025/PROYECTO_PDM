@@ -14,6 +14,7 @@ import java.util.UUID
 import kotlin.math.absoluteValue
 import android.app.DatePickerDialog
 import android.widget.EditText
+import com.example.enviorapido_pdm.ui.paquete.VistaPaquete
 import java.util.Calendar
 class RegistrarEnvio : AppCompatActivity() {
 
@@ -101,9 +102,10 @@ class RegistrarEnvio : AppCompatActivity() {
             if (idResultado != -1L)
             {
                 Toast.makeText(this,"Envio registrado con exito",Toast.LENGTH_SHORT).show()
-
-                val i = Intent (this, MainActivity::class.java)
-                startActivity(i)
+                finish()
+                val intent = Intent(this, VistaPaquete::class.java)
+                intent.putExtra("ID_ENVIO", idEnvio)
+                startActivity(intent)
 
             } else {
                 Toast.makeText(this,"Error al registrar el Envio",Toast.LENGTH_SHORT).show()
