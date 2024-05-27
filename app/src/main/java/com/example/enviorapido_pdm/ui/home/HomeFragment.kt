@@ -10,11 +10,14 @@ import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.enviorapido_pdm.EditarTransportista
 import com.example.enviorapido_pdm.databinding.FragmentHomeBinding
 import com.example.enviorapido_pdm.R
 import com.example.enviorapido_pdm.RegistrarEnvio
 import com.example.enviorapido_pdm.RegistrarTransportista
 import com.example.enviorapido_pdm.VerPerfilUsuario
+import com.example.enviorapido_pdm.VistaPaquete
+import com.example.enviorapido_pdm.VistaTransportista
 import com.example.enviorapido_pdm.ui.transportista.CrearTransportista
 import com.example.enviorapido_pdm.ui.usuario.VerUsuarios
 
@@ -58,7 +61,7 @@ class HomeFragment : Fragment() {
 
         // Establecer el OnClickListener
         imageButton4.setOnClickListener {
-            val intent = Intent(requireContext(), RegistrarEnvio::class.java)
+            val intent = Intent(requireContext(), VistaTransportista::class.java)
             startActivity(intent)
         }
 
@@ -75,7 +78,7 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
         btnTrans.setOnClickListener {
-            val intent = Intent(requireContext(), CrearTransportista::class.java)
+            val intent = Intent(requireContext(), VistaTransportista::class.java)
             startActivity(intent)
         }
         return root

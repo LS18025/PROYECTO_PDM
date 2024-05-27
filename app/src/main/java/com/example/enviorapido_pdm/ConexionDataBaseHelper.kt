@@ -544,32 +544,6 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         return DatosDestinatarios
     }
 
-    fun recuperarTodosLosTransportistas(): ArrayList<Transportista> {
-        val query = "SELECT * FROM $TABLE_TRANSPORTISTA"
-        val db = readableDatabase
-        val cursor: Cursor
-        val datosTransportistas = ArrayList<Transportista>()
-
-        cursor = db.rawQuery(query, null)
-
-        while (cursor.moveToNext()) {
-            val idTransportista = cursor.getInt(0)
-            val nombreTransportista = cursor.getString(1)
-            val apellidoTransportista = cursor.getString(2)
-            val telefonoTransportista = cursor.getString(3)
-
-            val transportista = Transportista(
-                idTransportista,
-                nombreTransportista,
-                apellidoTransportista,
-                telefonoTransportista
-            )
-            datosTransportistas.add(transportista)
-        }
-        cursor.close()
-        db.close()
-        return datosTransportistas
-    }
     fun AgregarTransportistas(
         idTransportista: Int,
         nombre: String,
@@ -782,6 +756,78 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         db.close()
 
         return paquete
+    }
+    fun recuperarTodosLosTransportistas(): ArrayList<Transportista> {
+        val query: String = "SELECT * FROM $TABLE_TRANSPORTISTA"
+        val db = readableDatabase
+        val cursor: Cursor
+        val datosTransportistas = ArrayList<Transportista>()
+
+        cursor = db.rawQuery(query, null)
+
+        while (cursor.moveToNext()) {
+            val idTransportista = cursor.getInt(0)
+            val nombreTransportista = cursor.getString(1)
+            val apellidoTransportista = cursor.getString(2)
+            val telefonoTransportista = cursor.getString(3)
+
+            val transportista = Transportista(
+                idTransportista,
+                nombreTransportista,
+                apellidoTransportista,
+                telefonoTransportista
+            )
+            datosTransportistas.add(transportista)
+        }
+        cursor.close()
+        db.close()
+        return datosTransportistas
+    }
+    fun ActualizarTransportista(
+        idTransportista: Int,
+        nombre: String,
+        apellido: String,
+        telefono: String
+    ): Int {
+        val db = writableDatabase
+        val valores = ContentValues().apply {
+            put(COL_NOMBRE_TRANSPORTISTA, nombre)
+            put(COL_APELLIDO_TRANSPORTISTA, apellido)
+            put(COL_TELEFONO_TRANSPORTISTA, telefono)
+        }
+        val parametros = arrayOf(idTransportista.toString())
+        val filasAfectadas = db.update(TABLE_TRANSPORTISTA, valores, "$COL_ID_TRANSPORTISTA=?", parametros)
+        db.close()
+        return filasAfectadas
+    }
+
+    fun eliminarTransportista(transportista: Transportista): Int {
+        val db = writableDatabase
+        val parametros = arrayOf(transportista.idTransportista.toString())
+        val filasAfectadas = db.delete(TABLE_TRANSPORTISTA, "$COL_ID_TRANSPORTISTA=?", parametros)
+        db.close()
+        return filasAfectadas
+    }
+
+    fun RecuperarTransportistaPorId(idTransportista: Int): Transportista? {
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_TRANSPORTISTA WHERE $COL_ID_TRANSPORTISTA = ?"
+        val cursor = db.rawQuery(query, arrayOf(idTransportista.toString()))
+        var transportista: Transportista? = null
+
+        if (cursor.moveToFirst()) {
+            transportista = Transportista(
+                cursor.getInt(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3)
+            )
+        }
+
+        cursor.close()
+        db.close()
+
+        return transportista
     }
 
 

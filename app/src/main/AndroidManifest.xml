@@ -17,6 +17,15 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".VistaTransportista"
+            android:exported="false" />
+        <activity
+            android:name=".EditarTransportista"
+            android:exported="false" />
+        <activity
+            android:name=".ui.transportista.EliminarTransportista"
+            android:exported="false" />
+        <activity
             android:name=".EditarPaquete"
             android:exported="false" />
         <activity

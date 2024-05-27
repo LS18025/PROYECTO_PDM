@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
 
         buttonTrans.setOnClickListener()
         {
-            val Intent = Intent(this,CrearTransportista::class.java)
+            val Intent = Intent(this,VistaTransportista::class.java)
             startActivity(Intent)
         }
 
