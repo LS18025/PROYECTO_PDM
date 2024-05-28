@@ -21,17 +21,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="16dp"/>
         <TextView
-            android:id="@+id/textViewIdTrans"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="IdTrans" />
-
-        <EditText
-            android:id="@+id/txtIdTrans"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-        <TextView
             android:id="@+id/textViewNombreTrans"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,6 +56,7 @@
             android:inputType="text" />
         <Button
             android:id="@+id/buttonRegistrarTrans"
+            style="@style/EstiloBoton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Registrar Transportista" />
