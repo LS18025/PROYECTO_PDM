@@ -55,11 +55,12 @@ class EditarPaquete : AppCompatActivity() {
 
             if (filasAfectadas > 0) {
                 Toast.makeText(this, "Paquete actualizado correctamente", Toast.LENGTH_SHORT).show()
+                setResult(Activity.RESULT_OK) // Esto indica que la actividad terminó con éxito
                 finish()
-
             } else {
                 Toast.makeText(this, "No se pudo actualizar el paquete", Toast.LENGTH_SHORT).show()
             }
+
         }
     }
     private fun cargarDatosPaquete(idPaquete: Int) {

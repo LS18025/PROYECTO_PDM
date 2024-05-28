@@ -706,13 +706,13 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         return IdResultado
     }
 
-    fun RecuperarTodoslosPaquetes(): ArrayList<Paquete> {
-        val query: String = "SELECT * FROM $TABLE_PAQUETE"
+    fun RecuperarPaquetesPorIdEnvio(idEnvio: Int): ArrayList<Paquete> {
+        val query: String = "SELECT * FROM $TABLE_PAQUETE WHERE $COLUMNA_ID_ENVIO = ?"
         val db = readableDatabase
         val cursor: Cursor
         val datosPaquetes = ArrayList<Paquete>()
 
-        cursor = db.rawQuery(query, null)
+        cursor = db.rawQuery(query, arrayOf(idEnvio.toString()))
 
         while (cursor.moveToNext()) {
             val id_Paquete = cursor.getInt(0)
