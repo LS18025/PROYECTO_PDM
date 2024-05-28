@@ -3,6 +3,7 @@ package com.example.enviorapido_pdm.ui.usuario
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +11,7 @@ import com.example.enviorapido_pdm.ConexionDataBaseHelper
 import com.example.enviorapido_pdm.CustomAdapter
 import com.example.enviorapido_pdm.R
 import com.example.enviorapido_pdm.Usuarios
+import com.example.enviorapido_pdm.VistaTransportista
 
 class VerUsuarios : AppCompatActivity() {
 
@@ -41,7 +43,16 @@ class VerUsuarios : AppCompatActivity() {
         RolRecuperado=ArrayList()
 
         LlenarDatosEnVista()
+
+        //trasladar a vista editar usuario
+        val recicleView:RecyclerView =findViewById(R.id.recyclerView)
+        recicleView.setOnClickListener()
+        {
+            val intento = Intent(this, ModificarUsuario::class.java)
+            startActivity(intento)
+        }
     }
+
 
     fun AgregarUsuario()
     {

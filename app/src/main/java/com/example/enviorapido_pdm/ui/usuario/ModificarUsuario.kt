@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.browser.browseractions.BrowserActionsIntent.BrowserActionsItemId
@@ -24,11 +25,12 @@ class ModificarUsuario : AppCompatActivity() {
         setContentView(R.layout.activity_modificar_usuario)
 
         dbHelper= ConexionDataBaseHelper(this)
-        val btnBuscar:Button=findViewById(R.id.btnBuscar)
+
+       /* val btnBuscar:Button=findViewById(R.id.btnEliminar)
         btnBuscar.setOnClickListener()
         {
             BuscarUsuario()
-        }
+        }*/
         val btnActualizar:Button=findViewById(R.id.btnActualizar)
         btnActualizar.setOnClickListener()
         {
@@ -40,13 +42,14 @@ class ModificarUsuario : AppCompatActivity() {
             val email_persona:EditText=findViewById(R.id.txtCorreo_persona)
             if (email_persona.getText().toString().isEmpty())
             {
-                Toast.makeText(this, "El email esta vacio",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Usuario esta vacio",Toast.LENGTH_SHORT).show()
             }
             else
             {
                 ConfirmacionDialogoEliminar()
             }
         }
+
     }
     //opciones del menu de items
     override fun onOptionsItemSelected(item:MenuItem): Boolean {

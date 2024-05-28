@@ -94,8 +94,8 @@
         android:background="@drawable/esquinas_redondeadas"
         android:ems="10"
         android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/txtApellidoUsuario"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="162dp"
         tools:layout_editor_absoluteY="277dp" />
 
     <EditText
@@ -105,9 +105,9 @@
         android:background="@drawable/esquinas_redondeadas"
         android:ems="10"
         android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/txtusuario"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="174dp"
-        tools:layout_editor_absoluteY="366dp" />
+        tools:layout_editor_absoluteY="365dp" />
 
     <EditText
         android:id="@+id/txtRepetirContrasenaUsuario"
@@ -127,8 +127,8 @@
         android:background="@drawable/esquinas_redondeadas"
         android:ems="10"
         android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/txtcontrasenaUsuario"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="174dp"
         tools:layout_editor_absoluteY="410dp" />
 
     <EditText
@@ -138,8 +138,8 @@
         android:background="@drawable/esquinas_redondeadas"
         android:ems="10"
         android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/txtCorreo_persona"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="174dp"
         tools:layout_editor_absoluteY="321dp" />
 
     <EditText
@@ -154,45 +154,30 @@
         tools:layout_editor_absoluteY="455dp" />
 
     <Button
-        android:id="@+id/btnEliminar"
-        style="@style/EstiloBoton"
-        android:layout_width="110dp"
-        android:layout_height="58dp"
-        android:layout_marginBottom="68dp"
-        android:text="Eliminar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.87"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtRepetirContrasena"
-        app:layout_constraintVertical_bias="0.546" />
-
-    <Button
         android:id="@+id/btnActualizar"
         style="@style/EstiloBoton"
-        android:layout_width="110dp"
-        android:layout_height="58dp"
-        android:layout_marginEnd="79dp"
+        android:layout_width="86dp"
+        android:layout_height="37dp"
         android:text="Actualizar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnEliminar"
-        app:layout_constraintHorizontal_bias="0.821"
+        app:layout_constraintHorizontal_bias="0.437"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView81"
-        app:layout_constraintVertical_bias="0.558" />
+        app:layout_constraintVertical_bias="0.659" />
 
     <Button
-        android:id="@+id/btnBuscar"
+        android:id="@+id/btnEliminar"
         style="@style/EstiloBoton"
         android:layout_width="97dp"
         android:layout_height="37dp"
-        android:text="Buscar"
-        app:layout_constraintBottom_toTopOf="@+id/txtNombreUsuario"
+        android:layout_marginTop="49dp"
+        android:text="Eliminar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintHorizontal_bias="0.805"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.844" />
+        app:layout_constraintTop_toTopOf="@+id/txtRepetirContrasenaUsuario"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
