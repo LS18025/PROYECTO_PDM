@@ -17,16 +17,25 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
-            android:name=".EditarPaquete"
+            android:name=".VistaTransportista"
+            android:exported="false" />
+        <activity
+            android:name=".EditarTransportista"
+            android:exported="false" />
+        <activity
+            android:name=".ui.transportista.EliminarTransportista"
+            android:exported="false" />
+        <activity
+            android:name=".ui.paquete.EditarPaquete"
             android:exported="false" />
         <activity
             android:name=".ui.usuario.VerUsuarios"
             android:exported="false" />
         <activity
-            android:name=".AgregarPaquete"
+            android:name=".ui.paquete.AgregarPaquete"
             android:exported="false" />
         <activity
-            android:name=".VistaPaquete"
+            android:name=".ui.paquete.VistaPaquete"
             android:exported="false" />
         <activity
             android:name=".VerPerfilUsuario"
@@ -45,6 +54,9 @@
             android:exported="false" />
         <activity
             android:name=".ui.administracion.RegistrarCuenta"
+            android:exported="false" />
+        <activity
+            android:name=".ui.transportista.CrearTransportista"
             android:exported="false" />
         <activity
             android:name=".ui.administracion.LoginActivity"

@@ -4,22 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.paquete.VistaPaquete">
+    tools:context=".VistaPaquete">
 
     <ImageButton
-        android:id="@+id/btnEditarPaquete"
+        android:id="@+id/btnEditarTransportista"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:backgroundTint="#00FFFFFF"
         android:src="@drawable/baseline_edit_24"
-        app:layout_constraintEnd_toStartOf="@+id/btnBorrarPaquete"
+        app:layout_constraintEnd_toStartOf="@+id/btnBorrarTransportista"
         app:layout_constraintHorizontal_bias="0.571"
-        app:layout_constraintStart_toEndOf="@+id/btnAgregarPaquete"
+        app:layout_constraintStart_toEndOf="@+id/btnAgregarTransportista"
         app:layout_constraintTop_toBottomOf="@+id/textView83" />
 
     <ImageButton
-        android:id="@+id/btnBorrarPaquete"
+        android:id="@+id/btnBorrarTransportista"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView83" />
 
     <ImageButton
-        android:id="@+id/btnAgregarPaquete"
+        android:id="@+id/btnAgregarTransportista"
         android:layout_width="76dp"
         android:layout_height="71dp"
         android:layout_marginStart="64dp"
@@ -46,17 +46,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
-        android:text="Agregar Paquetes"
+        android:text="Lista de Transportistas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listaPaquete"
+        android:id="@+id/listaTransportista"
         android:layout_width="0dp"
         android:layout_height="598dp"
         android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAgregarPaquete" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAgregarTransportista" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,67 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditarPaquete">
-
-    <TextView
-        android:id="@+id/textViewidpaquete"
-        style="@style/textNormal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="120dp"
-        android:text="ID_PAQUETE"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/txtEditIdPaquete"
-        android:layout_width="212dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="112dp"
-        android:background="@drawable/esquinas_redondeadas"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.265"
-        app:layout_constraintStart_toEndOf="@+id/textViewidpaquete"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView84"
-        style="@style/textNormal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="92dp"
-        android:text="ID_envio"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewidpaquete" />
-
-    <EditText
-        android:id="@+id/txtEditIdEnvioPaquete"
-        android:layout_width="197dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/esquinas_redondeadas"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView84"
-        app:layout_constraintTop_toBottomOf="@+id/textViewidpaquete" />
+    tools:context=".ui.paquete.EditarPaquete">
 
     <TextView
         android:id="@+id/textView85"
         style="@style/textNormal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="136dp"
         android:text="Peso"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView84" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView86"
@@ -81,7 +32,7 @@
         android:id="@+id/txtEditPesoPaquete"
         android:layout_width="214dp"
         android:layout_height="43dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="128dp"
         android:layout_marginEnd="36dp"
         android:background="@drawable/esquinas_redondeadas"
         android:ems="10"
@@ -89,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView85"
-        app:layout_constraintTop_toBottomOf="@+id/txtEditIdEnvioPaquete" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txtEditTamanoPaquete"
