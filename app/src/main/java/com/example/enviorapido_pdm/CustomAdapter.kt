@@ -6,57 +6,56 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
+class CustomAdapter(
+    private val idRecuperados: ArrayList<String>,
+    private val nombreRecuperados: ArrayList<String>,
+    private val apellidoRecuperado: ArrayList<String>,
+    private val emailRecuperado: ArrayList<String>,
+    private val telefonoRecuperado: ArrayList<String>,
+    private val usuarioRecuperado: ArrayList<String>,
+    private val rolRecuperado: ArrayList<String>,
+    private val listener: OnItemClickListener
+) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
-/*Sirve para poblar toda la información en el RecyclerView
-Esta clase se modificara para usar los datos de la base de de datos posteriormente*/
-class CustomAdapter(idRecuperados:ArrayList<String>,nombreRecuperados:ArrayList<String>,apellidoRecuperado:ArrayList<String>,emailRecuperado:ArrayList<String>,telefonoRecuperado:ArrayList<String>,usuarioRecuperado:ArrayList<String>,rolRecuperado:ArrayList<String>):RecyclerView.Adapter<CustomAdapter.ViewHolder>()
-    {
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
 
-        private lateinit var IdRecuperados:ArrayList<String>
-        private lateinit var NombreRecuperados:ArrayList<String>
-        private lateinit var ApellidoRecuperado:ArrayList<String>
-        private lateinit var EmailRecuperado:ArrayList<String>
-        private lateinit var TelefonoRecuperado:ArrayList<String>
-        private lateinit var UsuarioRecuperado:ArrayList<String>
-        private lateinit var RolRecuperado:ArrayList<String>
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        val itemNombreUser: TextView = itemView.findViewById(R.id.NombreUser)
+        val itemApellidoUser: TextView = itemView.findViewById(R.id.ApellidoUser)
+        val itemEmailUser: TextView = itemView.findViewById(R.id.EmailUser)
+        val itemTelefonoUser: TextView = itemView.findViewById(R.id.TelefonolUser)
+        val itemUsuarioUser: TextView = itemView.findViewById(R.id.UsuarioUser)
+        val itemRolUser: TextView = itemView.findViewById(R.id.RolUser)
 
-        init
-        {
-            this.IdRecuperados=idRecuperados
-            this.NombreRecuperados=nombreRecuperados
-            this.ApellidoRecuperado=apellidoRecuperado
-            this.EmailRecuperado=emailRecuperado
-            this.TelefonoRecuperado=telefonoRecuperado
-            this.UsuarioRecuperado=usuarioRecuperado
-            this.RolRecuperado=rolRecuperado
+        init {
+            itemView.setOnClickListener(this)
         }
 
-        public class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
-        {
-            //var itemIdUser: TextView=itemView.findViewById(R.id.IdUser)
-            var itemNombreUser: TextView=itemView.findViewById(R.id.NombreUser)
-            var itemApellidoUser: TextView=itemView.findViewById(R.id.ApellidoUser)
-            var itemEmailUser: TextView=itemView.findViewById(R.id.EmailUser)
-            var itemTelefonoUser: TextView=itemView.findViewById(R.id.TelefonolUser)
-            var itemUsuarioUser: TextView=itemView.findViewById(R.id.UsuarioUser)
-            var itemRolUser: TextView=itemView.findViewById(R.id.RolUser)
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                listener.onItemClick(position)
+            }
         }
+    }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            val v=LayoutInflater.from(parent.context).inflate(R.layout.activity_ver_usuarios,parent,false)
-            return ViewHolder(v)
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.todos_los_usuarios, parent, false)
+        return ViewHolder(v)
+    }
 
-        override fun getItemCount(): Int {
-            return NombreRecuperados.size
-        }
+    override fun getItemCount(): Int {
+        return nombreRecuperados.size
+    }
 
-        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.itemNombreUser.text=NombreRecuperados[position]
-            holder.itemApellidoUser.text=ApellidoRecuperado[position]
-            holder.itemEmailUser.text=EmailRecuperado[position]
-            holder.itemTelefonoUser.text=TelefonoRecuperado[position]
-            holder.itemUsuarioUser.text=UsuarioRecuperado[position]
-            holder.itemRolUser.text=RolRecuperado[position]
-        }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.itemNombreUser.text = nombreRecuperados[position]
+        holder.itemApellidoUser.text = apellidoRecuperado[position]
+        holder.itemEmailUser.text = emailRecuperado[position]
+        holder.itemTelefonoUser.text = telefonoRecuperado[position]
+        holder.itemUsuarioUser.text = usuarioRecuperado[position]
+        holder.itemRolUser.text = rolRecuperado[position]
+    }
 }
