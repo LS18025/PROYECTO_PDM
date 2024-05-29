@@ -43,7 +43,7 @@ class CustomAdapter(idRecuperados:ArrayList<String>,nombreRecuperados:ArrayList<
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            val v=LayoutInflater.from(parent.context).inflate(R.layout.todos_los_usuarios,parent,false)
+            val v=LayoutInflater.from(parent.context).inflate(R.layout.activity_ver_usuarios,parent,false)
             return ViewHolder(v)
         }
 
