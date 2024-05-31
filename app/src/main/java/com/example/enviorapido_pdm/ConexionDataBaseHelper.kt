@@ -590,6 +590,39 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         return DatosUsuario
     }
 
+    //Recuperar usuario por el correo
+    fun RecuperarUsuarioCorreo(correo: String):ArrayList<Usuarios>
+    {
+        val query="SELECT * FROM $TABLE_USUARIO WHERE $COL_EMAIL_PERSONA='$correo'"
+        val db=readableDatabase
+        val cursor:Cursor
+        var DatosUsuario=ArrayList<Usuarios>()
+        cursor=db.rawQuery(query,null)
+        if (cursor.count==1)
+        {
+            if (cursor.moveToFirst())
+            {
+                val id=cursor.getString(0)
+                val Rol=cursor.getString(1)
+                val Nombre=cursor.getString(2)
+                val Apellido=cursor.getString(3)
+                val Email=cursor.getString(4)
+                val Telefono=cursor.getString(5)
+                val Usuario=cursor.getString(6)
+                val Contrasena=cursor.getString(7)
+                val usuario = Usuarios(id,Rol, Nombre, Apellido, Email, Telefono, Usuario,Contrasena )
+                DatosUsuario.add(usuario)
+            }
+
+        }else
+        {
+            println("No encontrado")
+        }
+        cursor.close()
+        db.close()
+        return DatosUsuario
+    }
+
     fun RecuperarTodosLosUsuarios(): ArrayList<Usuarios> {
         val query = "SELECT * FROM $TABLE_USUARIO"
         val db = readableDatabase
@@ -600,23 +633,26 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
 
         while (cursor.moveToNext())
         {
-            val idUsuario = cursor.getString(1)
+            val idUsuario = cursor.getString(0)
+            val rolUsuario = cursor.getString(1)
             val nombreUsuario = cursor.getString(2)
             val apellidoUsuario = cursor.getString(3)
             val emailUsuario = cursor.getString(4)
             val telefonoUsuario = cursor.getString(5)
             val usuariousuario = cursor.getString(6)
-            val rolUsuario = cursor.getString(7)
+            val contrasenausuario = cursor.getString(7)
 
 
             val usuario = Usuarios(
                 idUsuario,
+                rolUsuario,
                 nombreUsuario,
                 apellidoUsuario,
                 emailUsuario,
                 telefonoUsuario,
                 usuariousuario,
-                rolUsuario)
+                contrasenausuario
+                )
             datosUsuarios.add(usuario)
         }
         cursor.close()
@@ -628,22 +664,21 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
     //actualizar usuarios
 
     fun ActualizarUsuario(
-        id_persona:String,
+
         primer_nombre_persona:String,
         primer_apellido_persona:String,
         email_persona:String,
-        telefono_persona: String?,
         usuario:String):Int
     {
         val db=writableDatabase
         val valores=ContentValues()
-        val parametros=arrayOf(id_persona)
+        val parametros=arrayOf(email_persona)
         valores.put(COL_PRIMER_NOMBRE_PERSONA,primer_nombre_persona)
         valores.put(COL_PRIMER_APELLIDO_PERSONA, primer_apellido_persona)
         valores.put(COL_EMAIL_PERSONA,email_persona)
-        valores.put(COL_TELEFONO_PERSONA,telefono_persona)
+        //valores.put(COL_TELEFONO_PERSONA,telefono_persona)
         valores.put(COL_USUARIO,usuario)
-        val IdResultado=db.update (TABLE_USUARIO,valores,"COL_ID_USUARIO=?",parametros)
+        val IdResultado=db.update (TABLE_USUARIO,valores,"$COL_EMAIL_PERSONA=?",parametros)
         db.close()
         return IdResultado
     }
@@ -951,7 +986,8 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
                 cursor.getString(4),
                 cursor.getString(5),
                 cursor.getString(6),
-                cursor.getString(7)
+                cursor.getString(7),
+                cursor.getString(8)
             )
             cursor.close()
             db.close()

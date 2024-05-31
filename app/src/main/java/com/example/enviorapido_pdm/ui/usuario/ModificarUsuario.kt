@@ -5,10 +5,12 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.browser.browseractions.BrowserActionsIntent.BrowserActionsItemId
@@ -25,6 +27,15 @@ class ModificarUsuario : AppCompatActivity() {
         setContentView(R.layout.activity_modificar_usuario)
 
         dbHelper= ConexionDataBaseHelper(this)
+
+        //variable para recibir el correo
+        val correoRecibido = intent.getStringExtra("correo")?: ""
+        Toast.makeText(this, "el correo  es: $correoRecibido", Toast.LENGTH_SHORT).show()
+
+        //Mostrar el correo
+        val campoCorreo: TextView = findViewById(R.id.txtCorreo_persona)
+        MostrarDatosEnCampos(correoRecibido)
+
 
        /* val btnBuscar:Button=findViewById(R.id.btnEliminar)
         btnBuscar.setOnClickListener()
@@ -104,7 +115,8 @@ class ModificarUsuario : AppCompatActivity() {
         val txtApellidoUsuario:EditText=findViewById(R.id.txtApellidoUsuario)
         val txtUsuario:EditText=findViewById(R.id.txtUsuario)
         val txtContrasena:EditText=findViewById(R.id.txtcontrasenaUsuario)
-        val IdResultado= dbHelper.ActualizarUsuario(txtCorreo_persona.text.toString(),txtNombreUsuario.text.toString(),txtApellidoUsuario.text.toString(),txtUsuario.text.toString(),null,txtContrasena.text.toString())
+
+        val IdResultado= dbHelper.ActualizarUsuario(txtNombreUsuario.text.toString(),txtApellidoUsuario.text.toString(),txtCorreo_persona.text.toString(),txtUsuario.text.toString())
         if (IdResultado==0)
         {
             Toast.makeText(this,"Hubo un error, no se pudo actualizar", Toast.LENGTH_SHORT).show()
@@ -155,6 +167,25 @@ class ModificarUsuario : AppCompatActivity() {
                 })
             .show()
             .setCancelable(false)
+    }
+
+    fun MostrarDatosEnCampos(correo: String){
+        val nombre: EditText = findViewById(R.id.txtNombreUsuario)
+        val apellido: EditText = findViewById(R.id.txtApellidoUsuario)
+        val email: EditText = findViewById(R.id.txtCorreo_persona)
+        //val telefono: EditText = findViewById(R.id.txtTelefonoUsuario)
+        val usuario: EditText = findViewById(R.id.txtusuario)
+//        val contrsena: EditText = findViewById(R.id.txtcontrasenaUsuario)
+//        val confirmarContrasena: EditText = findViewById(R.id.txtRepetirContrasenaUsuario)
+
+        val usuarioLista: ArrayList<Usuarios>
+        usuarioLista = dbHelper.RecuperarUsuarioCorreo(correo)
+        if(usuarioLista.isNotEmpty()){
+            nombre.setText(usuarioLista[0].primer_nombre_persona)
+            apellido.setText(usuarioLista[0].primer_apellido_persona)
+            email.setText(usuarioLista[0].email_persona)
+            usuario.setText(usuarioLista[0].usuario)
+        }
     }
 
 

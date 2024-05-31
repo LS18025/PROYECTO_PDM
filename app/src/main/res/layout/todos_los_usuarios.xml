@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:padding="12dp">
 
+
             <TextView
                 android:id="@+id/NombreUser"
                 android:layout_width="wrap_content"
@@ -152,6 +153,28 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+            <ImageButton
+                android:id="@+id/imgEditar"
+                android:layout_width="78dp"
+                android:layout_height="55dp"
+                app:layout_constraintBottom_toTopOf="@+id/imgEliminar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.91"
+                app:layout_constraintStart_toEndOf="@+id/NombreUser"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.38"
+                app:srcCompat="@drawable/baseline_edit_24" />
+
+            <Button
+                android:id="@+id/imgEliminar"
+                android:layout_width="144dp"
+                android:layout_height="41dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="68dp"
+                android:text="Eliminar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

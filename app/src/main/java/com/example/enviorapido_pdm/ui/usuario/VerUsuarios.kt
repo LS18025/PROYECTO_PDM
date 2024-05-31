@@ -41,11 +41,11 @@ class VerUsuarios : AppCompatActivity(), CustomAdapter.OnItemClickListener {
         llenarDatosEnVista()
     }
 
-    override fun onItemClick(position: Int) {
-        val intent = Intent(this, ModificarUsuario::class.java)
-        intent.putExtra("id_usuario", idRecuperado[position])
-        startActivity(intent)
-    }
+   override fun onItemClick(position: Int) {
+//        val intent = Intent(this, ModificarUsuario::class.java)
+//        intent.putExtra("id_usuario", idRecuperado[position])
+//        startActivity(intent)
+   }
 
     private fun llenarDatosEnVista() {
         val verUsuarios: ArrayList<Usuarios> = dbHelper.RecuperarTodosLosUsuarios()
