@@ -52,6 +52,7 @@ class CrearTransportista : AppCompatActivity() {
         if(IdResultado != -1L)
         {
             Toast.makeText(this,"Transportista agregado con éxito", Toast.LENGTH_SHORT).show()
+            finish() // Finaliza la actividad y regresa a la actividad anterior
         }
         else
         {
