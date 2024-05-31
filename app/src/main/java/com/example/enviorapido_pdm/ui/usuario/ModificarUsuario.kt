@@ -131,6 +131,8 @@ class ModificarUsuario : AppCompatActivity() {
     {
         val txtCorreo_persona:EditText=findViewById(R.id.txtCorreo_persona)
         val IdResultado=dbHelper.EliminarUsuario(txtCorreo_persona.text.toString())
+        val intent = Intent(this, ModificarUsuario::class.java) //nuevo
+        startActivity(intent)
         if (IdResultado==0)
         {
             Toast.makeText(this,"Hubo un error, no se pudo eliminar", Toast.LENGTH_SHORT).show()

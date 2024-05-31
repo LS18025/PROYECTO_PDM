@@ -671,13 +671,15 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         usuario:String):Int
     {
         val db=writableDatabase
-        val valores=ContentValues()
+        val valores=ContentValues().apply {
+            put(COL_PRIMER_NOMBRE_PERSONA,primer_nombre_persona)
+            put(COL_PRIMER_APELLIDO_PERSONA, primer_apellido_persona)
+            put(COL_EMAIL_PERSONA,email_persona)
+            //valores.put(COL_TELEFONO_PERSONA,telefono_persona)
+            put(COL_USUARIO,usuario)
+        }
         val parametros=arrayOf(email_persona)
-        valores.put(COL_PRIMER_NOMBRE_PERSONA,primer_nombre_persona)
-        valores.put(COL_PRIMER_APELLIDO_PERSONA, primer_apellido_persona)
-        valores.put(COL_EMAIL_PERSONA,email_persona)
-        //valores.put(COL_TELEFONO_PERSONA,telefono_persona)
-        valores.put(COL_USUARIO,usuario)
+
         val IdResultado=db.update (TABLE_USUARIO,valores,"$COL_EMAIL_PERSONA=?",parametros)
         db.close()
         return IdResultado
@@ -685,11 +687,11 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
 
     //eliminar usuario
 
-    fun EliminarUsuario(id_usuario:String):Int
+    fun EliminarUsuario(email_persona:String):Int
     {
         val db=writableDatabase
-        val parametros=arrayOf(id_usuario)
-        val IdResultado=db.delete(TABLE_USUARIO,"COL_ID_USUARIO=?",parametros)
+        val parametros=arrayOf(email_persona)
+        val IdResultado=db.delete(TABLE_USUARIO,"$COL_EMAIL_PERSONA=?",parametros)
         db.close()
         return IdResultado
     }

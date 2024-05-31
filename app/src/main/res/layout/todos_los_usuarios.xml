@@ -156,8 +156,8 @@
 
             <ImageButton
                 android:id="@+id/imgEditar"
-                android:layout_width="78dp"
-                android:layout_height="55dp"
+                android:layout_width="69dp"
+                android:layout_height="54dp"
                 app:layout_constraintBottom_toTopOf="@+id/imgEliminar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.91"
@@ -166,15 +166,16 @@
                 app:layout_constraintVertical_bias="0.38"
                 app:srcCompat="@drawable/baseline_edit_24" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/imgEliminar"
-                android:layout_width="144dp"
-                android:layout_height="41dp"
-                android:layout_marginEnd="8dp"
+                android:layout_width="68dp"
+                android:layout_height="49dp"
+                android:layout_marginEnd="12dp"
                 android:layout_marginBottom="68dp"
                 android:text="Eliminar"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/baseline_delete_forever_24" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

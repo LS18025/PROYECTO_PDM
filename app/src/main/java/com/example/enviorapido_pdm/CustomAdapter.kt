@@ -47,6 +47,7 @@ class CustomAdapter(
                 itemView.context.startActivity(intent)
             }
             //cod para eliminar
+
            }
 
         override fun onClick(v: View?) {
