@@ -215,6 +215,7 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
 
         // Insertar usuario administrador
         db.execSQL("INSERT INTO $TABLE_USUARIO ($COL_ID_USUARIO, $COL_ID_ROL, $COL_PRIMER_NOMBRE_PERSONA, $COL_PRIMER_APELLIDO_PERSONA, $COL_EMAIL_PERSONA, $COL_TELEFONO_PERSONA, $COL_USUARIO, $COL_CONTRASENA) VALUES ('Lkd38FdGd8OHNxuqstiDLEwgDNG2', 1, 'Alexis', 'Orellana', 'od18003@ues.edu.sv', '12345678', 'Admin', 'password')")
+        db.execSQL("INSERT INTO $TABLE_USUARIO ($COL_ID_USUARIO, $COL_ID_ROL, $COL_PRIMER_NOMBRE_PERSONA, $COL_PRIMER_APELLIDO_PERSONA, $COL_EMAIL_PERSONA, $COL_TELEFONO_PERSONA, $COL_USUARIO, $COL_CONTRASENA) VALUES ('Pkd38FdGd8OHNxuqstiDLEwgDNG2', 2, 'Guillermo', 'Rivera', 'rr10092@ues.edu.sv', '1000000', 'Remitente', '123456')")
 
 
         // Datos de prueba en la tabla Direccion

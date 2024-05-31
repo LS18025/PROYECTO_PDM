@@ -11,7 +11,7 @@ import com.example.enviorapido_pdm.CustomAdapter
 import com.example.enviorapido_pdm.R
 import com.example.enviorapido_pdm.Usuarios
 
-class VerUsuarios : AppCompatActivity(), CustomAdapter.OnItemClickListener {
+class VerUsuarios : AppCompatActivity() {
 
     private lateinit var dbHelper: ConexionDataBaseHelper
 
@@ -41,15 +41,15 @@ class VerUsuarios : AppCompatActivity(), CustomAdapter.OnItemClickListener {
         llenarDatosEnVista()
     }
 
-   override fun onItemClick(position: Int) {
-//        val intent = Intent(this, ModificarUsuario::class.java)
-//        intent.putExtra("id_usuario", idRecuperado[position])
-//        startActivity(intent)
-   }
+//   override fun onItemClick(position: Int) {
+////        val intent = Intent(this, ModificarUsuario::class.java)
+////        intent.putExtra("id_usuario", idRecuperado[position])
+////        startActivity(intent)
+//   }
 
     private fun llenarDatosEnVista() {
         val verUsuarios: ArrayList<Usuarios> = dbHelper.RecuperarTodosLosUsuarios()
-
+        Toast.makeText(this, "cantidad de usuarios: ${verUsuarios.size}", Toast.LENGTH_SHORT).show()
         if (verUsuarios.isEmpty()) {
             Toast.makeText(this, "No hay datos", Toast.LENGTH_SHORT).show()
         } else {
@@ -73,7 +73,7 @@ class VerUsuarios : AppCompatActivity(), CustomAdapter.OnItemClickListener {
             telefonoRecuperado,
             usuarioRecuperado,
             rolRecuperado,
-            this
+//            this
         )
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter

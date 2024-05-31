@@ -47,6 +47,9 @@ class ModificarUsuario : AppCompatActivity() {
         {
             ActualizarUsuario()
         }
+
+        //boton eliminar******************
+
         val btnEliminar:Button=findViewById(R.id.btnEliminar)
         btnEliminar.setOnClickListener()
         {
@@ -114,7 +117,7 @@ class ModificarUsuario : AppCompatActivity() {
         val txtNombreUsuario:EditText=findViewById(R.id.txtNombreUsuario)
         val txtApellidoUsuario:EditText=findViewById(R.id.txtApellidoUsuario)
         val txtUsuario:EditText=findViewById(R.id.txtUsuario)
-        val txtContrasena:EditText=findViewById(R.id.txtcontrasenaUsuario)
+//        val txtContrasena:EditText=findViewById(R.id.txtcontrasenaUsuario)
 
         val IdResultado= dbHelper.ActualizarUsuario(txtNombreUsuario.text.toString(),txtApellidoUsuario.text.toString(),txtCorreo_persona.text.toString(),txtUsuario.text.toString())
         if (IdResultado==0)
@@ -124,15 +127,14 @@ class ModificarUsuario : AppCompatActivity() {
         else
         {
             Toast.makeText(this,"Usuario actualizado con exito", Toast.LENGTH_SHORT).show()
-            LimpiarFormulario()
+//            LimpiarFormulario()
         }
     }
     fun EliminarUsuario()
     {
         val txtCorreo_persona:EditText=findViewById(R.id.txtCorreo_persona)
         val IdResultado=dbHelper.EliminarUsuario(txtCorreo_persona.text.toString())
-        val intent = Intent(this, ModificarUsuario::class.java) //nuevo
-        startActivity(intent)
+
         if (IdResultado==0)
         {
             Toast.makeText(this,"Hubo un error, no se pudo eliminar", Toast.LENGTH_SHORT).show()
@@ -140,7 +142,7 @@ class ModificarUsuario : AppCompatActivity() {
         else
         {
             Toast.makeText(this,"Usuario eliminado con exito", Toast.LENGTH_SHORT).show()
-            LimpiarFormulario()
+//            LimpiarFormulario()
         }
     }
     fun LimpiarFormulario()

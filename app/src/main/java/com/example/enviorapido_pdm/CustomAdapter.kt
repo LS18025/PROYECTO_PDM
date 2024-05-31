@@ -19,14 +19,14 @@ class CustomAdapter(
     private val telefonoRecuperado: ArrayList<String>,
     private val usuarioRecuperado: ArrayList<String>,
     private val rolRecuperado: ArrayList<String>,
-    private val listener: OnItemClickListener
+//    private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
-    interface OnItemClickListener {
-        fun onItemClick(position: Int)
-    }
+//    interface OnItemClickListener {
+//        fun onItemClick(position: Int)
+//    }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val itemNombreUser: TextView = itemView.findViewById(R.id.NombreUser)
         val itemApellidoUser: TextView = itemView.findViewById(R.id.ApellidoUser)
         val itemEmailUser: TextView = itemView.findViewById(R.id.EmailUser)
@@ -38,7 +38,7 @@ class CustomAdapter(
         val btnEditar: ImageButton = itemView.findViewById(R.id.imgEditar)
 
         init {
-            itemView.setOnClickListener(this)
+//            itemView.setOnClickListener(this)
             //Metodo para abrir enviar a la actividad el correo del usuario
             btnEditar.setOnClickListener(){
                 val intent = Intent(itemView.context, ModificarUsuario::class.java).apply {
@@ -48,14 +48,15 @@ class CustomAdapter(
             }
             //cod para eliminar
 
+
            }
 
-        override fun onClick(v: View?) {
-            val position = adapterPosition
-            if (position != RecyclerView.NO_POSITION) {
-                listener.onItemClick(position)
-            }
-        }
+//        override fun onClick(v: View?) {
+//            val position = adapterPosition
+//            if (position != RecyclerView.NO_POSITION) {
+//                listener.onItemClick(position)
+//            }
+//        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
