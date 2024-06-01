@@ -11,8 +11,8 @@
         style="@style/textNormal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="104dp"
         android:text="Peso"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +32,7 @@
         android:id="@+id/txtEditPesoPaquete"
         android:layout_width="214dp"
         android:layout_height="43dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="96dp"
         android:layout_marginEnd="36dp"
         android:background="@drawable/esquinas_redondeadas"
         android:ems="10"
@@ -46,12 +46,12 @@
         android:id="@+id/txtEditTamanoPaquete"
         android:layout_width="212dp"
         android:layout_height="39dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/esquinas_redondeadas"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toEndOf="@+id/textView86"
         app:layout_constraintTop_toBottomOf="@+id/txtEditPesoPaquete" />
 
@@ -60,22 +60,24 @@
         style="@style/textNormal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="80dp"
         android:text="Costo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView86" />
 
     <EditText
         android:id="@+id/txtEditCostoPaquete"
-        android:layout_width="222dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="68dp"
+        android:layout_width="213dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="66dp"
         android:background="@drawable/esquinas_redondeadas"
         android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.704"
+        app:layout_constraintHorizontal_bias="0.568"
         app:layout_constraintStart_toEndOf="@+id/textView87"
         app:layout_constraintTop_toBottomOf="@+id/txtEditTamanoPaquete" />
 
@@ -83,9 +85,21 @@
         android:id="@+id/btnActualizarPaquete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="80dp"
         android:text="Actualizar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.279"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditCostoPaquete" />
+
+    <Button
+        android:id="@+id/btnCancelarEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Cancelar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.341"
+        app:layout_constraintStart_toEndOf="@+id/btnActualizarPaquete"
         app:layout_constraintTop_toBottomOf="@+id/txtEditCostoPaquete" />
 </androidx.constraintlayout.widget.ConstraintLayout>
