@@ -11,7 +11,7 @@
         style="@style/textNormal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
+        android:layout_marginStart="44dp"
         android:layout_marginTop="104dp"
         android:text="Peso"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView85" />
 
     <EditText
-        android:id="@+id/editPesoPaquete"
+        android:id="@+id/txtPesoPaquete"
         android:layout_width="214dp"
         android:layout_height="43dp"
         android:layout_marginTop="96dp"
@@ -43,50 +43,64 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTamanoPaquete"
+        android:id="@+id/txtTamanoPaquete"
         android:layout_width="212dp"
         android:layout_height="39dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/esquinas_redondeadas"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toEndOf="@+id/textView86"
-        app:layout_constraintTop_toBottomOf="@+id/editPesoPaquete" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPesoPaquete" />
 
     <TextView
         android:id="@+id/textView87"
         style="@style/textNormal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="80dp"
         android:text="Costo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView86" />
 
     <EditText
-        android:id="@+id/editCostoPaquete"
-        android:layout_width="222dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="68dp"
+        android:id="@+id/txtCostoPaquete"
+        android:layout_width="213dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="66dp"
         android:background="@drawable/esquinas_redondeadas"
         android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.704"
+        app:layout_constraintHorizontal_bias="0.568"
         app:layout_constraintStart_toEndOf="@+id/textView87"
-        app:layout_constraintTop_toBottomOf="@+id/editTamanoPaquete" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTamanoPaquete" />
 
     <Button
         android:id="@+id/btnPaquete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="80dp"
         android:text="Agregar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.279"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editCostoPaquete" />
+        app:layout_constraintTop_toBottomOf="@+id/txtCostoPaquete" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Cancelar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.341"
+        app:layout_constraintStart_toEndOf="@+id/btnPaquete"
+        app:layout_constraintTop_toBottomOf="@+id/txtCostoPaquete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
