@@ -71,7 +71,7 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         private const val TABLE_ENVIO = "Envio"
         private const val COL_ID_ENVIO = "ID_ENVIO"
         private const val COL_ID_DIRECCION_ENVIO = "ID_DIRECCION_ENVIO"
-        private const val COL_ID_DESTINATARIO_ENVIO = "ID_DESTINATARIO_ENVIO"
+        private const val COL_DESTINATARIO_ENVIO = "ID_DESTINATARIO_ENVIO"
         private const val COL_ID_TRANSPORTISTA_ENVIO = "ID_TRANSPORTISTA_ENVIO"
         private const val COL_ETIQUETA = "ETIQUETA"
         private const val COL_COSTO_TOTAL_ENVIO = "COSTO_TOTAL_ENVIO"
@@ -169,20 +169,19 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         //Envios
         val createTableEnvioSQL = "CREATE TABLE $TABLE_ENVIO (" +
                 "$COL_ID_ENVIO INTEGER PRIMARY KEY, " +
-                "$COL_ID_USUARIO text, " +
-                "$COL_ID_DIRECCION INTEGER,"+
-                "$COL_ID_DESTINATARIO INTEGER,"+
-                "$COL_ID_TRANSPORTISTA INTEGER,"+
+                "$COL_ID_USUARIO TEXT, " +
+                "$COL_DIRECCION TEXT, " +
+                "$COL_DESTINATARIO_ENVIO TEXT, " +
+                "$COL_ID_TRANSPORTISTA INTEGER, " +
                 "$COL_ETIQUETA TEXT, " +
                 "$COL_COSTO_TOTAL_ENVIO REAL, " +
                 "$COL_FECHA_ENVIO DATE, " +
                 "$COL_FECHA_PROGRAMADA DATE, " +
-                "$COL_NUMERO_CONF TEXT,"+
-                "FOREIGN KEY($COL_ID_DIRECCION) REFERENCES $TABLE_DIRECCION($COL_ID_DIRECCION), " +
-                "FOREIGN KEY($COL_ID_DESTINATARIO) REFERENCES $TABLE_DESTINATARIO($COL_ID_DESTINATARIO),"+
+                "$COL_NUMERO_CONF TEXT, " +
                 "FOREIGN KEY($COL_ID_TRANSPORTISTA) REFERENCES $TABLE_TRANSPORTISTA($COL_ID_TRANSPORTISTA))"
 
         db.execSQL(createTableEnvioSQL)
+
 
         // Seguimiento
         val createTableSeguimientoSQL = "CREATE TABLE $TABLE_SEGUIMIENTO (" +
@@ -218,21 +217,9 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         db.execSQL("INSERT INTO $TABLE_USUARIO ($COL_ID_USUARIO, $COL_ID_ROL, $COL_PRIMER_NOMBRE_PERSONA, $COL_PRIMER_APELLIDO_PERSONA, $COL_EMAIL_PERSONA, $COL_TELEFONO_PERSONA, $COL_USUARIO, $COL_CONTRASENA) VALUES ('Pkd38FdGd8OHNxuqstiDLEwgDNG2', 2, 'Guillermo', 'Rivera', 'rr10092@ues.edu.sv', '1000000', 'Remitente', '123456')")
 
 
-        // Datos de prueba en la tabla Direccion
-        db.execSQL("INSERT INTO " + TABLE_DIRECCION + " (" + COL_ID_MUNICIPIO + ", " + COL_DIRECCION + ") VALUES (1, 'Calle Principal #123')");
-        db.execSQL("INSERT INTO " + TABLE_DIRECCION + " (" + COL_ID_MUNICIPIO + ", " + COL_DIRECCION + ") VALUES (2, 'Avenida Central #456')");
-
-        // Datos de prueba en la tabla Destinatario
-        db.execSQL("INSERT INTO " + TABLE_DESTINATARIO + " (" + COL_NOMBRE_DESTINATARIO + ", " + COL_APELLIDO_DESTINATARIO + ", " + COL_TELEFONO_DESTINATARIO + ", " + COL_EMAIL_DESTINATARIO + ") VALUES ('Juan', 'Pérez', '555123456', 'juanperez@example.com')");
-        db.execSQL("INSERT INTO " + TABLE_DESTINATARIO + " (" + COL_NOMBRE_DESTINATARIO + ", " + COL_APELLIDO_DESTINATARIO + ", " + COL_TELEFONO_DESTINATARIO + ", " + COL_EMAIL_DESTINATARIO + ") VALUES ('María', 'Gómez', '555987654', 'mariagomez@example.com')");
-
         // Datos de prueba en la tabla Transportista
         db.execSQL("INSERT INTO " + TABLE_TRANSPORTISTA + " (" + COL_NOMBRE_TRANSPORTISTA + ", " + COL_APELLIDO_TRANSPORTISTA + ", " + COL_TELEFONO_TRANSPORTISTA + ") VALUES ('Carlos', 'Martínez', '555111222')");
         db.execSQL("INSERT INTO " + TABLE_TRANSPORTISTA + " (" + COL_NOMBRE_TRANSPORTISTA + ", " + COL_APELLIDO_TRANSPORTISTA + ", " + COL_TELEFONO_TRANSPORTISTA + ") VALUES ('Ana', 'López', '555333444')");
-
-        val insertEnvio = "INSERT INTO $TABLE_ENVIO ($COL_ID_ENVIO, $COL_ID_USUARIO, $COL_ID_DIRECCION, $COL_ID_DESTINATARIO, $COL_ID_TRANSPORTISTA, $COL_ETIQUETA, $COL_COSTO_TOTAL_ENVIO, $COL_FECHA_ENVIO, $COL_FECHA_PROGRAMADA, $COL_NUMERO_CONF) " +
-                "VALUES (86153528, 'id_usuario_ejemplo', 1, 1, 1, 'etiqueta_ejemplo', 50.0, '2024-05-10', '2024-05-15', 'numero_conf_ejemplo')"
-        db.execSQL(insertEnvio)
 
 
         val insertSeguimiento1 = "INSERT INTO $TABLE_SEGUIMIENTO ($COL_ID_ENVIO, $COL_FECHA_SEGUIMIENTO, $COL_ESTADO_SEGUIMIENTO, $COL_UBICACION_SEGUIMIENTO) " +
@@ -298,8 +285,8 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
     fun AgregarEnvio(
         id_Envio: Int,
         id_Usuario: String,
-        id_Direccion: Int,
-        id_Destinatario: Int,
+        direccion: String,
+        destinatario: String,
         id_Transportista: Int,
         etiqueta: String,
         costo_Total_Envio: Double,
@@ -311,8 +298,8 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         val valores = ContentValues().apply {
             put(COL_ID_ENVIO, id_Envio)
             put(COL_ID_USUARIO, id_Usuario)
-            put(COL_ID_DIRECCION, id_Direccion)
-            put(COL_ID_DESTINATARIO, id_Destinatario)
+            put(COL_DIRECCION, direccion)
+            put(COL_DESTINATARIO_ENVIO, destinatario)
             put(COL_ID_TRANSPORTISTA, id_Transportista)
             put(COL_ETIQUETA, etiqueta)
             put(COL_COSTO_TOTAL_ENVIO, costo_Total_Envio)
@@ -320,11 +307,12 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
             put(COL_FECHA_PROGRAMADA, SimpleDateFormat("dd-MM-yyyy").format(fecha_Programada))
             put(COL_NUMERO_CONF, numero_Conf)
         }
-        val IdResultado = db.insert(TABLE_ENVIO, null, valores)
+        val idResultado = db.insert(TABLE_ENVIO, null, valores)
 
         db.close()
-        return IdResultado
+        return idResultado
     }
+
 
     fun RecuperarTodoslosEnvios(): ArrayList<Envios> {
         val query: String = "SELECT * FROM $TABLE_ENVIO"
