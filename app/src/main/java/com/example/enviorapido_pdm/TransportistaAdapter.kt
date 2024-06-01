@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.enviorapido_pdm.Transportista
 import com.example.enviorapido_pdm.R
 class TransportistaAdapter(
-    public val listaTransportistas: ArrayList<Transportista>,
+    var listaTransportistas: ArrayList<Transportista>,
     private val onItemSelectedListener: OnItemSelectedListener
 ) : RecyclerView.Adapter<TransportistaAdapter.TransportistaViewHolder>() {
     private var selectedPosition = RecyclerView.NO_POSITION

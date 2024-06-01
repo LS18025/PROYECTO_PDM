@@ -9,25 +9,32 @@ import android.widget.Toast
 import com.example.enviorapido_pdm.ConexionDataBaseHelper
 import com.example.enviorapido_pdm.R
 import androidx.appcompat.widget.AppCompatTextView
+import java.util.UUID
+import kotlin.math.absoluteValue
+
 class CrearTransportista : AppCompatActivity() {
     //CONEXION A DB
     private lateinit var dbHelper: ConexionDataBaseHelper
     //CONTROLES DE FORMULARIO
-    private lateinit var txtId: TextView
+    private var idTransportista: Int = -1
     private lateinit var txtNomb: TextView
     private lateinit var txtApell: TextView
     private lateinit var txtNumTel: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crear_transportista)
+        idTransportista = intent.getIntExtra("ID_TRANSPORTISTA", -1)
 
         //Inicializamos el helper de la base de datos
         dbHelper = ConexionDataBaseHelper(this)
 
+        txtNomb = findViewById(R.id.editNombreTrans)
+        txtApell = findViewById(R.id.editTextApellidoTrans)
+        txtNumTel = findViewById(R.id.editTextTel)
+
         val btnGuardar: Button = findViewById(R.id.buttonRegistrarTrans)
 
         btnGuardar.setOnClickListener() {
-            Toast.makeText(this, "Guardando...", Toast.LENGTH_SHORT).show()
             guardarTransportistaEnDB()
 
         }
@@ -35,20 +42,21 @@ class CrearTransportista : AppCompatActivity() {
     }
     private fun guardarTransportistaEnDB()
     {
-        txtId = findViewById(R.id.txtIdTrans)
-        txtNomb = findViewById(R.id.editNombreTrans)
-        txtApell = findViewById(R.id.editTextApellidoTrans)
-        txtNumTel = findViewById(R.id.editTextTel)
+        val idTransportista = UUID.randomUUID().hashCode().absoluteValue.toString().take(8).toInt()
+        val nombreTrans = txtNomb.text.toString()
+        val apellidoTrans = txtApell.text.toString()
+        val numeroTrans = txtNumTel.text.toString()
 
-        val IdResultado = dbHelper.AgregarTransportistas(txtId.text.toString().toInt(),txtNomb.text.toString(),txtApell.text.toString(),txtNumTel.text.toString())
+        val IdResultado = dbHelper.AgregarTransportistas(idTransportista,nombreTrans,apellidoTrans,numeroTrans)
 
-        if(IdResultado==-1.toLong())
+        if(IdResultado != -1L)
         {
-            Toast.makeText(this,"Hubo un error o el codigo del transportista ya existe", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"Transportista agregado con éxito", Toast.LENGTH_SHORT).show()
+            finish() // Finaliza la actividad y regresa a la actividad anterior
         }
         else
         {
-            Toast.makeText(this,"Transportista agregado con exito", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"Hubo un error al agregar el transportista", Toast.LENGTH_SHORT).show()
         }
 
     }
