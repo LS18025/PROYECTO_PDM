@@ -314,46 +314,6 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
     }
 
 
-    fun RecuperarTodoslosEnvios(): ArrayList<Envios> {
-        val query: String = "SELECT * FROM $TABLE_ENVIO"
-        val db = readableDatabase
-        val cursor: Cursor
-        var DatosEnvios = ArrayList<Envios>()
-
-        cursor = db.rawQuery(query, null)
-
-        while (cursor.moveToNext())
-        {
-            val id = cursor.getInt(0)
-            val idUsuario = cursor.getInt(1)
-            val idDireccion = cursor.getInt(2)
-            val idDestinatario = cursor.getInt(3)
-            val idTransportista = cursor.getInt(4)
-            val etiqueta = cursor.getString(5)
-            val costoTotal = cursor.getDouble(6)
-            val fechaEnvio = cursor.getString(7)
-            val fechaProgramada = cursor.getString(8)
-            val numeroConf = cursor.getString(9)
-
-            val envio = Envios(
-                id,
-                idUsuario,
-                idDireccion,
-                idDestinatario,
-                idTransportista,
-                etiqueta,
-                costoTotal,
-                fechaEnvio,
-                fechaProgramada,
-                numeroConf
-            )
-
-            DatosEnvios.add(envio)
-        }
-        cursor.close()
-        db.close()
-        return DatosEnvios
-    }
 
     //FUNCIONES DE USUARIOS
     fun AgregarUsuario(
@@ -1043,6 +1003,84 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         contentValues.put(COL_CONTRASENA, "password")
 
         db.insert(TABLE_USUARIO, null, contentValues)
+    }
+
+    fun RecuperarEnviosPorUsuario(idUsuario: String): ArrayList<Envios> {
+        val query = "SELECT * FROM $TABLE_ENVIO WHERE $COL_ID_USUARIO = ?"
+        val db = readableDatabase
+        val cursor: Cursor
+        val datosEnvios = ArrayList<Envios>()
+
+        cursor = db.rawQuery(query, arrayOf(idUsuario))
+
+        while (cursor.moveToNext()) {
+            val id = cursor.getInt(0)
+            val idUsuario = cursor.getString(1)
+            val direccion = cursor.getString(2)
+            val destinatario = cursor.getString(3)
+            val idTransportista = cursor.getInt(4)
+            val etiqueta = cursor.getString(5)
+            val costoTotal = cursor.getDouble(6)
+            val fechaEnvio = cursor.getString(7)
+            val fechaProgramada = cursor.getString(8)
+            val numeroConf = cursor.getString(9)
+
+            val envio = Envios(
+                id,
+                idUsuario,
+                direccion,
+                destinatario,
+                idTransportista,
+                etiqueta,
+                costoTotal,
+                fechaEnvio,
+                fechaProgramada,
+                numeroConf
+            )
+
+            datosEnvios.add(envio)
+        }
+        cursor.close()
+        db.close()
+        return datosEnvios
+    }
+
+    fun RecuperarEnvioPorId(idEnvio: Int): Envios? {
+        val query = "SELECT * FROM $TABLE_ENVIO WHERE $COL_ID_ENVIO = ?"
+        val db = readableDatabase
+        val cursor: Cursor
+        var envio: Envios? = null
+
+        cursor = db.rawQuery(query, arrayOf(idEnvio.toString()))
+
+        if (cursor.moveToFirst()) {
+            val id = cursor.getInt(0)
+            val idUsuario = cursor.getString(1)
+            val direccion = cursor.getString(2)
+            val destinatario = cursor.getString(3)
+            val idTransportista = cursor.getInt(4)
+            val etiqueta = cursor.getString(5)
+            val costoTotal = cursor.getDouble(6)
+            val fechaEnvio = cursor.getString(7)
+            val fechaProgramada = cursor.getString(8)
+            val numeroConf = cursor.getString(9)
+
+            envio = Envios(
+                id,
+                idUsuario,
+                direccion,
+                destinatario,
+                idTransportista,
+                etiqueta,
+                costoTotal,
+                fechaEnvio,
+                fechaProgramada,
+                numeroConf
+            )
+        }
+        cursor.close()
+        db.close()
+        return envio
     }
 
 
