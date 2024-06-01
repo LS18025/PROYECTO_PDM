@@ -3,10 +3,19 @@ package com.example.enviorapido_pdm
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.enviorapido_pdm.ConexionDataBaseHelper
+import com.example.enviorapido_pdm.R
+import com.example.enviorapido_pdm.ui.paquete.Paquete
+import com.example.enviorapido_pdm.ui.paquete.PaqueteAdapter
+import androidx.appcompat.app.AlertDialog
 
-class DetalleEnvio: AppCompatActivity() {
+
+class DetalleEnvio : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener {
 
     private lateinit var dbHelper: ConexionDataBaseHelper
+    private lateinit var paqueteAdapter: PaqueteAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +36,12 @@ class DetalleEnvio: AppCompatActivity() {
         val textViewEnvioFecha: TextView = findViewById(R.id.textViewEnvioFecha)
         val textViewEnvioFechaProgramada: TextView = findViewById(R.id.textViewEnvioFechaProgramada)
         val textViewEnvioNumeroConf: TextView = findViewById(R.id.textViewEnvioNumeroConf)
+        val recyclerViewPaquetes: RecyclerView = findViewById(R.id.recyclerViewPaquetes)
+
+        // Configurar el RecyclerView para los paquetes
+        recyclerViewPaquetes.layoutManager = LinearLayoutManager(this)
+        paqueteAdapter = PaqueteAdapter(ArrayList(), this)
+        recyclerViewPaquetes.adapter = paqueteAdapter
 
         // Establecer los valores de los elementos de la interfaz de usuario
         textViewEnvioDireccion.text = envio?.direccion
@@ -37,5 +52,22 @@ class DetalleEnvio: AppCompatActivity() {
         textViewEnvioFecha.text = envio?.fechaEnvio
         textViewEnvioFechaProgramada.text = envio?.fechaProgramada
         textViewEnvioNumeroConf.text = envio?.numeroConf
+
+        // Obtener y mostrar la lista de paquetes asociados al envío
+        val paquetes = dbHelper.RecuperarPaquetesPorIdEnvio(envioId)
+        paqueteAdapter.actualizarLista(paquetes)
+    }
+
+    override fun onItemSelected(paquete: Paquete) {
+        val dialog = AlertDialog.Builder(this)
+            .setTitle("Detalles del Paquete")
+            .setMessage("ID Paquete: ${paquete.idPaquete}\n" +
+                    "ID Envío: ${paquete.idEnvio}\n" +
+                    "Costo: ${paquete.costoPaquete}\n" +
+                    "Peso: ${paquete.pesoPaquete}\n" +
+                    "Tamaño: ${paquete.tamanoPaquete}")
+            .setPositiveButton("Aceptar", null)
+            .create()
+        dialog.show()
     }
 }

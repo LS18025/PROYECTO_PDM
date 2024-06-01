@@ -30,6 +30,28 @@
             android:background="@color/black"
             android:layout_marginBottom="16dp" />
 
+        <!-- Botones de Control -->
+        <Button
+            android:id="@+id/btnEditarPaquetes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Editar Paquetes"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnActualizarEstado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Actualizar Estado de Seguimiento"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnEditarPaquete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Editar Paquete"
+            android:layout_marginBottom="16dp"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -157,6 +179,22 @@
             android:textSize="16sp"
             android:layout_marginBottom="8dp"
             android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/textViewDetalleTituloPaquetes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paquetes Relacionados"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPaquetes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"/>
     </LinearLayout>
 
 </ScrollView>

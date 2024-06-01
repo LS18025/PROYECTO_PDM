@@ -79,4 +79,10 @@ class PaqueteAdapter(
         const val VIEW_TYPE_EMPTY = 0
         const val VIEW_TYPE_NORMAL = 1
     }
+
+    fun actualizarLista(nuevaListaPaquete: ArrayList<Paquete>) {
+        listaPaquete.clear()
+        listaPaquete.addAll(nuevaListaPaquete)
+        notifyDataSetChanged()
+    }
 }
