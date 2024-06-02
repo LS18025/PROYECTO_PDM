@@ -43,7 +43,7 @@ class HomeFragment : Fragment() {
         val imageButton6: ImageButton = binding.imageButton6
         val imageButton8: ImageButton = binding.imageButton8
         val btnUsuarios: ImageButton = binding.btnUsuarios
-        val btnTrans: Button = binding.btnTransportista
+        val imageButton: ImageButton = binding.imageButtonTransportista
 
         //Establecer visibilidad de botones dependiendo del rol del usuario
         if (userRole == "Administrador") {
@@ -51,7 +51,7 @@ class HomeFragment : Fragment() {
             imageButton4.visibility = View.GONE
             imageButton6.visibility = View.GONE
             imageButton8.visibility = View.GONE
-
+            imageButton.visibility = View.VISIBLE
         } else {
             btnUsuarios.visibility = View.GONE
         }
@@ -80,7 +80,7 @@ class HomeFragment : Fragment() {
             val intent = Intent(requireContext(), VerPerfilUsuario::class.java)
             startActivity(intent)
         }
-        btnTrans.setOnClickListener {
+        imageButton.setOnClickListener {
             val intent = Intent(requireContext(), VistaTransportista::class.java)
             startActivity(intent)
         }

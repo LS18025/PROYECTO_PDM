@@ -1,22 +1,19 @@
 package com.example.enviorapido_pdm
 
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.enviorapido_pdm.Transportista
-import com.example.enviorapido_pdm.R
+
 class TransportistaAdapter(
     var listaTransportistas: ArrayList<Transportista>,
     private val onItemSelectedListener: OnItemSelectedListener
 ) : RecyclerView.Adapter<TransportistaAdapter.TransportistaViewHolder>() {
     private var selectedPosition = RecyclerView.NO_POSITION
 
-
     interface OnItemSelectedListener {
-        fun onItemSelected(idTransportista: Transportista)
+        fun onItemSelected(transportista: Transportista)
     }
 
     inner class TransportistaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -24,6 +21,7 @@ class TransportistaAdapter(
         val nombreTransportista: TextView = itemView.findViewById(R.id.textNombreTransportista)
         val apellidoTransportista: TextView = itemView.findViewById(R.id.textApellidoTransportista)
         val telefonoTransportista: TextView = itemView.findViewById(R.id.textTelefonoTransportista)
+
         init {
             itemView.setOnClickListener {
                 notifyItemChanged(selectedPosition)
