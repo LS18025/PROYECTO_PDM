@@ -52,7 +52,7 @@ class PaqueteAdapter(
             val currentItem = listaPaquete[position]
             holder.idPaquete.text = "ID Paquete: ${currentItem.idPaquete}"
             holder.idEnvio.text = "ID Envío: ${currentItem.idEnvio}"
-            holder.costoPaquete.text = "Costo: $ ${currentItem.costoPaquete}"
+            holder.costoPaquete.text = "Costo: $${currentItem.costoPaquete}"
             holder.pesoPaquete.text = "Peso: ${currentItem.pesoPaquete} lb"
             holder.tamanoPaquete.text = "Tamaño: ${currentItem.tamanoPaquete}"
             holder.itemView.isSelected = (selectedPosition == position)
