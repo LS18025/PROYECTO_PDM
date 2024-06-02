@@ -30,6 +30,10 @@ class CustomAdapter(
     interface OnUserUpdateListener {
         fun onUserUpdated()
     }
+    fun notifyUserUpdated() {
+        listener.onUserUpdated()
+    }
+
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val itemNombreUser: TextView = itemView.findViewById(R.id.NombreUser)

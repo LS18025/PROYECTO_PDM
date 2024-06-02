@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.browser.browseractions.BrowserActionsIntent.BrowserActionsItemId
 import com.example.enviorapido_pdm.ConexionDataBaseHelper
+import com.example.enviorapido_pdm.CustomAdapter
 import com.example.enviorapido_pdm.R
 import com.example.enviorapido_pdm.Usuarios
 
@@ -127,8 +128,13 @@ class ModificarUsuario : AppCompatActivity() {
         else
         {
             Toast.makeText(this,"Usuario actualizado con exito", Toast.LENGTH_SHORT).show()
-            setResult(RESULT_OK)
             finish()
+            val intent = Intent(this, VerUsuarios::class.java)
+            intent.putExtra("userUpdated", true)
+            startActivity(intent)
+            setResult(RESULT_OK)
+
+
         }
     }
     fun EliminarUsuario()
