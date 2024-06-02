@@ -1,6 +1,5 @@
 package com.example.enviorapido_pdm.ui.usuario
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +10,7 @@ import com.example.enviorapido_pdm.CustomAdapter
 import com.example.enviorapido_pdm.R
 import com.example.enviorapido_pdm.Usuarios
 
-class VerUsuarios : AppCompatActivity() {
+class VerUsuarios : AppCompatActivity(), CustomAdapter.OnUserUpdateListener {
 
     private lateinit var dbHelper: ConexionDataBaseHelper
 
@@ -23,9 +22,19 @@ class VerUsuarios : AppCompatActivity() {
     private lateinit var usuarioRecuperado: ArrayList<String>
     private lateinit var rolRecuperado: ArrayList<String>
 
+    override fun onUserUpdated() {
+        llenarDatosEnVista()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ver_usuarios)
+
+        if (intent.getBooleanExtra("userUpdated", false)) {
+            llenarDatosEnVista()
+        }else if (intent.getBooleanExtra("userDeleted", false)) {
+            llenarDatosEnVista()
+        }
 
         dbHelper = ConexionDataBaseHelper(this)
 
@@ -73,7 +82,7 @@ class VerUsuarios : AppCompatActivity() {
             telefonoRecuperado,
             usuarioRecuperado,
             rolRecuperado,
-//            this
+           this
         )
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter

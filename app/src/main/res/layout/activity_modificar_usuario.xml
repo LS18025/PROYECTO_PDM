@@ -23,7 +23,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/txtNombreUsuario"
+        android:id="@+id/txtEditNombreUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -39,7 +39,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/txtcontrasenaUsuario"
+        android:id="@+id/txtEditcontrasenaUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="272dp"
@@ -55,7 +55,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/txtApellidoUsuario"
+        android:id="@+id/txtEditApellidoUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
@@ -146,7 +146,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/txtCorreo_persona"
+        android:id="@+id/txtEditCorreo_persona"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="160dp"
@@ -162,7 +162,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/txtusuario"
+        android:id="@+id/txtEditUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="264dp"
@@ -203,6 +203,6 @@
         app:layout_constraintHorizontal_bias="0.765"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtcontrasenaUsuario" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEditcontrasenaUsuario" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

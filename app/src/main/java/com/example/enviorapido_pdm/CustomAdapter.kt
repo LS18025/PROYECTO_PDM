@@ -8,6 +8,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.enviorapido_pdm.ui.usuario.ModificarUsuario
+import com.example.enviorapido_pdm.ui.usuario.VerUsuarios
 
 class CustomAdapter(
     private val idRecuperados: ArrayList<String>,
@@ -17,12 +18,22 @@ class CustomAdapter(
     private val telefonoRecuperado: ArrayList<String>,
     private val usuarioRecuperado: ArrayList<String>,
     private val rolRecuperado: ArrayList<String>,
+    private val listener: VerUsuarios
 //    private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
 //    interface OnItemClickListener {
 //        fun onItemClick(position: Int)
 //    }
+
+
+    interface OnUserUpdateListener {
+        fun onUserUpdated()
+    }
+    fun notifyUserUpdated() {
+        listener.onUserUpdated()
+    }
+
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val itemNombreUser: TextView = itemView.findViewById(R.id.NombreUser)
@@ -31,30 +42,16 @@ class CustomAdapter(
         val itemTelefonoUser: TextView = itemView.findViewById(R.id.TelefonolUser)
         val itemUsuarioUser: TextView = itemView.findViewById(R.id.UsuarioUser)
         val itemRolUser: TextView = itemView.findViewById(R.id.RolUser)
-
-        //Codigo para abrir el activity
         val btnEditar: ImageButton = itemView.findViewById(R.id.imgEditar)
 
         init {
-//            itemView.setOnClickListener(this)
-            //Metodo para abrir enviar a la actividad el correo del usuario
-            btnEditar.setOnClickListener(){
+            btnEditar.setOnClickListener {
                 val intent = Intent(itemView.context, ModificarUsuario::class.java).apply {
                     putExtra("correo", itemEmailUser.text.toString())
                 }
                 itemView.context.startActivity(intent)
             }
-            //cod para eliminar
-
-
-           }
-
-//        override fun onClick(v: View?) {
-//            val position = adapterPosition
-//            if (position != RecyclerView.NO_POSITION) {
-//                listener.onItemClick(position)
-//            }
-//        }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

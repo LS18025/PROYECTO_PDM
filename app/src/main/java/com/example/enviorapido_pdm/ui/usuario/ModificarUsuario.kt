@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.browser.browseractions.BrowserActionsIntent.BrowserActionsItemId
 import com.example.enviorapido_pdm.ConexionDataBaseHelper
+import com.example.enviorapido_pdm.CustomAdapter
 import com.example.enviorapido_pdm.R
 import com.example.enviorapido_pdm.Usuarios
 
@@ -33,7 +34,7 @@ class ModificarUsuario : AppCompatActivity() {
         Toast.makeText(this, "el correo  es: $correoRecibido", Toast.LENGTH_SHORT).show()
 
         //Mostrar el correo
-        val campoCorreo: TextView = findViewById(R.id.txtCorreo_persona)
+        val campoCorreo: TextView = findViewById(R.id.txtEditCorreo_persona)
         MostrarDatosEnCampos(correoRecibido)
 
 
@@ -53,7 +54,7 @@ class ModificarUsuario : AppCompatActivity() {
         val btnEliminar:Button=findViewById(R.id.btnEliminar)
         btnEliminar.setOnClickListener()
         {
-            val email_persona:EditText=findViewById(R.id.txtCorreo_persona)
+            val email_persona:EditText=findViewById(R.id.txtEditCorreo_persona)
             if (email_persona.getText().toString().isEmpty())
             {
                 Toast.makeText(this, "Usuario esta vacio",Toast.LENGTH_SHORT).show()
@@ -84,11 +85,11 @@ class ModificarUsuario : AppCompatActivity() {
 
     fun BuscarUsuario()
     {
-        val email_persona:EditText=findViewById(R.id.txtCorreo_persona)
-        val NombreRecuperado:EditText=findViewById(R.id.txtNombreUsuario)
-        val ApellidoRecuperado:EditText=findViewById(R.id.txtApellidoUsuario)
-        val UsuarioRecuperado:EditText=findViewById(R.id.txtUsuario)
-        val ContraseñadRecuperada:EditText=findViewById(R.id.txtcontrasenaUsuario)
+        val email_persona:EditText=findViewById(R.id.txtEditCorreo_persona)
+        val NombreRecuperado:EditText=findViewById(R.id.txtEditNombreUsuario)
+        val ApellidoRecuperado:EditText=findViewById(R.id.txtEditApellidoUsuario)
+        val UsuarioRecuperado:EditText=findViewById(R.id.txtEditUsuario)
+        val ContraseñadRecuperada:EditText=findViewById(R.id.txtEditcontrasenaUsuario)
         if (email_persona.getText().toString().isEmpty())
         {
             Toast.makeText(this,"El correo esta vacio", Toast.LENGTH_SHORT).show()
@@ -113,10 +114,10 @@ class ModificarUsuario : AppCompatActivity() {
     }
     fun ActualizarUsuario()
     {
-        val txtCorreo_persona:EditText=findViewById(R.id.txtCorreo_persona)
-        val txtNombreUsuario:EditText=findViewById(R.id.txtNombreUsuario)
-        val txtApellidoUsuario:EditText=findViewById(R.id.txtApellidoUsuario)
-        val txtUsuario:EditText=findViewById(R.id.txtUsuario)
+        val txtCorreo_persona:EditText=findViewById(R.id.txtEditCorreo_persona)
+        val txtNombreUsuario:EditText=findViewById(R.id.txtEditNombreUsuario)
+        val txtApellidoUsuario:EditText=findViewById(R.id.txtEditApellidoUsuario)
+        val txtUsuario:EditText=findViewById(R.id.txtEditUsuario)
 //        val txtContrasena:EditText=findViewById(R.id.txtcontrasenaUsuario)
 
         val IdResultado= dbHelper.ActualizarUsuario(txtNombreUsuario.text.toString(),txtApellidoUsuario.text.toString(),txtCorreo_persona.text.toString(),txtUsuario.text.toString())
@@ -127,12 +128,18 @@ class ModificarUsuario : AppCompatActivity() {
         else
         {
             Toast.makeText(this,"Usuario actualizado con exito", Toast.LENGTH_SHORT).show()
-//            LimpiarFormulario()
+            finish()
+            val intent = Intent(this, VerUsuarios::class.java)
+            intent.putExtra("userUpdated", true)
+            startActivity(intent)
+
+
+
         }
     }
     fun EliminarUsuario()
     {
-        val txtCorreo_persona:EditText=findViewById(R.id.txtCorreo_persona)
+        val txtCorreo_persona:EditText=findViewById(R.id.txtEditCorreo_persona)
         val IdResultado=dbHelper.EliminarUsuario(txtCorreo_persona.text.toString())
 
         if (IdResultado==0)
@@ -142,16 +149,20 @@ class ModificarUsuario : AppCompatActivity() {
         else
         {
             Toast.makeText(this,"Usuario eliminado con exito", Toast.LENGTH_SHORT).show()
-//            LimpiarFormulario()
+            finish()
+            val intent = Intent(this, VerUsuarios::class.java)
+            intent.putExtra("userDeleted", true)
+            startActivity(intent)
+//
         }
     }
     fun LimpiarFormulario()
     {
-        val txtCorreo_persona:EditText=findViewById(R.id.txtCorreo_persona)
-        val txtNombreUsuario:EditText=findViewById(R.id.txtNombreUsuario)
-        val txtApellidoUsuario:EditText=findViewById(R.id.txtApellidoUsuario)
-        val txtUsuario:EditText=findViewById(R.id.txtUsuario)
-        val txtContrasena:EditText=findViewById(R.id.txtcontrasenaUsuario)
+        val txtCorreo_persona:EditText=findViewById(R.id.txtEditCorreo_persona)
+        val txtNombreUsuario:EditText=findViewById(R.id.txtEditNombreUsuario)
+        val txtApellidoUsuario:EditText=findViewById(R.id.txtEditApellidoUsuario)
+        val txtUsuario:EditText=findViewById(R.id.txtEditUsuario)
+        val txtContrasena:EditText=findViewById(R.id.txtEditcontrasenaUsuario)
         txtCorreo_persona.setText("")
         txtNombreUsuario.setText("")
         txtApellidoUsuario.setText("")
@@ -174,11 +185,11 @@ class ModificarUsuario : AppCompatActivity() {
     }
 
     fun MostrarDatosEnCampos(correo: String){
-        val nombre: EditText = findViewById(R.id.txtNombreUsuario)
-        val apellido: EditText = findViewById(R.id.txtApellidoUsuario)
-        val email: EditText = findViewById(R.id.txtCorreo_persona)
+        val nombre: EditText = findViewById(R.id.txtEditNombreUsuario)
+        val apellido: EditText = findViewById(R.id.txtEditApellidoUsuario)
+        val email: EditText = findViewById(R.id.txtEditCorreo_persona)
         //val telefono: EditText = findViewById(R.id.txtTelefonoUsuario)
-        val usuario: EditText = findViewById(R.id.txtusuario)
+        val usuario: EditText = findViewById(R.id.txtEditUsuario)
 //        val contrsena: EditText = findViewById(R.id.txtcontrasenaUsuario)
 //        val confirmarContrasena: EditText = findViewById(R.id.txtRepetirContrasenaUsuario)
 
