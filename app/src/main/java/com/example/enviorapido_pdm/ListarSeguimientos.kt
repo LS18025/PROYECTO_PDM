@@ -1,6 +1,7 @@
 package com.example.enviorapido_pdm
 
 import SeguimientoAdapter
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,7 @@ class ListarSeguimientos : AppCompatActivity() {
     private lateinit var dbHelper: ConexionDataBaseHelper
     private lateinit var seguimientoAdapter: SeguimientoAdapter
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_listar_seguimientos)
@@ -27,11 +29,11 @@ class ListarSeguimientos : AppCompatActivity() {
         seguimientoAdapter = SeguimientoAdapter(this, seguimientos)
         listViewSeguimientos.adapter = seguimientoAdapter
 
-         //Redirigir a la actividad de CrearSeguimiento
-            buttonAgregarSeguimiento.setOnClickListener {
+        //Redirigir a la actividad de CrearSeguimiento
+        buttonAgregarSeguimiento.setOnClickListener {
             val intent = Intent(this, CrearSeguimiento::class.java)
+            intent.putExtra("ENVIO_ID", idEnvio) // Asegúrate de pasar el ID de envío aquí
             startActivity(intent)
         }
-
     }
 }
