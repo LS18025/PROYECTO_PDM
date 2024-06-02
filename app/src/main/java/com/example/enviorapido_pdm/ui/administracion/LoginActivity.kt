@@ -12,8 +12,6 @@ import com.example.enviorapido_pdm.ConexionDataBaseHelper
 import com.example.enviorapido_pdm.ConsultarSeguimientoPedidos
 import com.example.enviorapido_pdm.MainActivity
 import com.example.enviorapido_pdm.R
-import com.example.enviorapido_pdm.ui.rastreo.DatosRastreoPaqueteFragment
-import com.example.enviorapido_pdm.ui.rastreo.RastrearPaqueteFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
