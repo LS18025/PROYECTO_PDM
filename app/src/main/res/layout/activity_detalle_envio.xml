@@ -49,8 +49,8 @@
             android:id="@+id/btnEditarPaquete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Editar Paquete"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="16dp"
+            android:text="Editar Envio" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -184,11 +184,11 @@
             android:id="@+id/textViewDetalleTituloPaquetes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Paquetes Relacionados"
-            android:textSize="20sp"
-            android:textStyle="bold"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp"
+            android:text="Paquetes:"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewPaquetes"

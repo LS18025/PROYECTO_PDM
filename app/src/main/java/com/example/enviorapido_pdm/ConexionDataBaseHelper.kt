@@ -443,6 +443,7 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         return IdResultado
     }
 
+
     //FUNCIONES DE DESTINATARIO
     fun AgregarDestinatario(
         id_Destinatario: Int,

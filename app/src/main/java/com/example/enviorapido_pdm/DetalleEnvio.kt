@@ -67,6 +67,7 @@ class DetalleEnvio : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener 
         // Configurar clics en los botones
         btnEditarPaquetes.setOnClickListener {
             val intent = Intent(this, VistaPaquete::class.java)
+            intent.putExtra("ID_ENVIO", envioId)
             startActivity(intent)
         }
 

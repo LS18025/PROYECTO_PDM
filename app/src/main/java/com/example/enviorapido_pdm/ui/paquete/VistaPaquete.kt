@@ -4,11 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.enviorapido_pdm.ConexionDataBaseHelper
+import com.example.enviorapido_pdm.DetalleEnvio
 import com.example.enviorapido_pdm.R
 
 class VistaPaquete : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener {
@@ -61,6 +63,7 @@ class VistaPaquete : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener 
         val btnAgregar: ImageButton = findViewById(R.id.btnAgregarPaquete)
         val btnEditar: ImageButton = findViewById(R.id.btnEditarPaquete)
         val btnEliminar: ImageButton = findViewById(R.id.btnBorrarPaquete)
+        val buttonFinalizar: Button = findViewById(R.id.buttonFinalizar)
 
         btnAgregar.setOnClickListener {
             val intent = Intent(this, AgregarPaquete::class.java)
@@ -91,6 +94,12 @@ class VistaPaquete : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener 
             } else {
                 Toast.makeText(this, "Selecciona un paquete para eliminar", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        buttonFinalizar.setOnClickListener {
+            val intent = Intent(this, DetalleEnvio::class.java)
+            intent.putExtra("ENVIO_ID", idEnvio)
+            startActivity(intent)
         }
     }
 
