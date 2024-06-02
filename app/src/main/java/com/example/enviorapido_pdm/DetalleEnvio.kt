@@ -73,6 +73,7 @@ class DetalleEnvio : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener 
 
         btnActualizarEstado.setOnClickListener {
             val intent = Intent(this, ListarSeguimientos::class.java)
+            intent.putExtra("ENVIO_ID", envioId)
             startActivity(intent)
         }
 
