@@ -14,6 +14,7 @@ import java.util.Date
 import java.util.UUID
 import kotlin.math.absoluteValue
 import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import com.example.enviorapido_pdm.ui.paquete.VistaPaquete
 import java.util.Calendar
 
@@ -110,8 +111,22 @@ class RegistrarEnvio : AppCompatActivity() {
                 selectedDate.set(Calendar.YEAR, year)
                 selectedDate.set(Calendar.MONTH, monthOfYear)
                 selectedDate.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                val sdf = SimpleDateFormat("dd-MM-yyyy")
-                editText.setText(sdf.format(selectedDate.time))
+
+                val timePickerDialog = TimePickerDialog(
+                    this,
+                    TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                        selectedDate.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                        selectedDate.set(Calendar.MINUTE, minute)
+
+                        val sdf = SimpleDateFormat("dd-MM-yyyy") // Formato que incluye la hora
+                        editText.setText(sdf.format(selectedDate.time))
+                    },
+                    calendar.get(Calendar.HOUR_OF_DAY), // Hora actual
+                    calendar.get(Calendar.MINUTE), // Minuto actual
+                    false
+                )
+
+                timePickerDialog.show()
             },
             year,
             month,
@@ -119,6 +134,7 @@ class RegistrarEnvio : AppCompatActivity() {
         )
         datePickerDialog.show()
     }
+
 
     private fun <T> configurarAdaptadores(spinner: Spinner, lista: List<T>, campoAMostrar: (T) -> String) {
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, lista.map { campoAMostrar(it) })

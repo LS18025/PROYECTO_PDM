@@ -30,7 +30,7 @@ class SeguimientoAdapter(context: Context, seguimientos: ArrayList<Seguimiento>)
         }
 
         val seguimiento = getItem(position)
-        viewHolder.txtFecha?.text = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault()).format(seguimiento?.fechaSeguimiento)
+        viewHolder.txtFecha?.text = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(seguimiento?.fechaSeguimiento)
         viewHolder.txtEstado?.text = seguimiento?.estadoSeguimiento
         viewHolder.txtUbicacion?.text = seguimiento?.ubicacionSeguimiento
 

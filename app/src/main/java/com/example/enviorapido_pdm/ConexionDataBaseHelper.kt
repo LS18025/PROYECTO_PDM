@@ -1041,7 +1041,12 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
     }
 
     fun RecuperarEnviosPorUsuario(idUsuario: String): ArrayList<Envios> {
-        val query = "SELECT * FROM $TABLE_ENVIO WHERE $COL_ID_USUARIO = ?"
+        val query = """
+        SELECT e.*, t.$COL_NOMBRE_TRANSPORTISTA 
+        FROM $TABLE_ENVIO e
+        JOIN $TABLE_TRANSPORTISTA t ON e.$COL_ID_TRANSPORTISTA = t.$COL_ID_TRANSPORTISTA
+        WHERE e.$COL_ID_USUARIO = ?
+    """
         val db = readableDatabase
         val cursor: Cursor
         val datosEnvios = ArrayList<Envios>()
@@ -1049,16 +1054,17 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         cursor = db.rawQuery(query, arrayOf(idUsuario))
 
         while (cursor.moveToNext()) {
-            val id = cursor.getInt(0)
-            val idUsuario = cursor.getString(1)
-            val direccion = cursor.getString(2)
-            val destinatario = cursor.getString(3)
-            val idTransportista = cursor.getInt(4)
-            val etiqueta = cursor.getString(5)
-            val costoTotal = cursor.getDouble(6)
-            val fechaEnvio = cursor.getString(7)
-            val fechaProgramada = cursor.getString(8)
-            val numeroConf = cursor.getString(9)
+            val id = cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID_ENVIO))
+            val idUsuario = cursor.getString(cursor.getColumnIndexOrThrow(COL_ID_USUARIO))
+            val direccion = cursor.getString(cursor.getColumnIndexOrThrow(COL_DIRECCION))
+            val destinatario = cursor.getString(cursor.getColumnIndexOrThrow(COL_DESTINATARIO_ENVIO))
+            val idTransportista = cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID_TRANSPORTISTA))
+            val nombreTransportista = cursor.getString(cursor.getColumnIndexOrThrow(COL_NOMBRE_TRANSPORTISTA))
+            val etiqueta = cursor.getString(cursor.getColumnIndexOrThrow(COL_ETIQUETA))
+            val costoTotal = cursor.getDouble(cursor.getColumnIndexOrThrow(COL_COSTO_TOTAL_ENVIO))
+            val fechaEnvio = cursor.getString(cursor.getColumnIndexOrThrow(COL_FECHA_ENVIO))
+            val fechaProgramada = cursor.getString(cursor.getColumnIndexOrThrow(COL_FECHA_PROGRAMADA))
+            val numeroConf = cursor.getString(cursor.getColumnIndexOrThrow(COL_NUMERO_CONF))
 
             val envio = Envios(
                 id,
@@ -1066,6 +1072,7 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
                 direccion,
                 destinatario,
                 idTransportista,
+                nombreTransportista,  // Agregar el nombre del transportista aquí
                 etiqueta,
                 costoTotal,
                 fechaEnvio,
@@ -1080,8 +1087,16 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         return datosEnvios
     }
 
+
     fun RecuperarEnvioPorId(idEnvio: Int): Envios? {
-        val query = "SELECT * FROM $TABLE_ENVIO WHERE $COL_ID_ENVIO = ?"
+        val query = """
+        SELECT e.$COL_ID_ENVIO, e.$COL_ID_USUARIO, e.$COL_DIRECCION, e.$COL_DESTINATARIO_ENVIO, 
+               e.$COL_ID_TRANSPORTISTA, t.$COL_NOMBRE_TRANSPORTISTA, t.$COL_APELLIDO_TRANSPORTISTA,
+               e.$COL_ETIQUETA, e.$COL_COSTO_TOTAL_ENVIO, e.$COL_FECHA_ENVIO, e.$COL_FECHA_PROGRAMADA, e.$COL_NUMERO_CONF
+        FROM $TABLE_ENVIO e
+        JOIN $TABLE_TRANSPORTISTA t ON e.$COL_ID_TRANSPORTISTA = t.$COL_ID_TRANSPORTISTA
+        WHERE e.$COL_ID_ENVIO = ?
+    """
         val db = readableDatabase
         val cursor: Cursor
         var envio: Envios? = null
@@ -1094,11 +1109,13 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
             val direccion = cursor.getString(2)
             val destinatario = cursor.getString(3)
             val idTransportista = cursor.getInt(4)
-            val etiqueta = cursor.getString(5)
-            val costoTotal = cursor.getDouble(6)
-            val fechaEnvio = cursor.getString(7)
-            val fechaProgramada = cursor.getString(8)
-            val numeroConf = cursor.getString(9)
+            val nombreTransportista = cursor.getString(5)
+            val apellidoTransportista = cursor.getString(6)
+            val etiqueta = cursor.getString(7)
+            val costoTotal = cursor.getDouble(8)
+            val fechaEnvio = cursor.getString(9)
+            val fechaProgramada = cursor.getString(10)
+            val numeroConf = cursor.getString(11)
 
             envio = Envios(
                 id,
@@ -1106,6 +1123,7 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
                 direccion,
                 destinatario,
                 idTransportista,
+                "$nombreTransportista $apellidoTransportista",
                 etiqueta,
                 costoTotal,
                 fechaEnvio,
@@ -1117,8 +1135,5 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         db.close()
         return envio
     }
-
-
-
 
 }

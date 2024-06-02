@@ -48,7 +48,7 @@ class DetalleEnvio : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener 
         // Establecer los valores de los elementos de la interfaz de usuario
         textViewEnvioDireccion.text = envio?.direccion
         textViewEnvioDestinatario.text = envio?.destinatario
-        textViewEnvioTransportista.text = envio?.idTransportista.toString()
+        textViewEnvioTransportista.text = envio?.nombreTransportista // Mostrar el nombre del transportista
         textViewEnvioEtiqueta.text = envio?.etiqueta
         textViewEnvioCosto.text = envio?.costoTotal.toString()
         textViewEnvioFecha.text = envio?.fechaEnvio
@@ -59,12 +59,12 @@ class DetalleEnvio : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener 
         val paquetes = dbHelper.RecuperarPaquetesPorIdEnvio(envioId)
         paqueteAdapter.actualizarLista(paquetes)
 
+        // Botones y sus listeners
         val btnEditarPaquetes: Button = findViewById(R.id.btnEditarPaquetes)
         val btnActualizarEstado: Button = findViewById(R.id.btnActualizarEstado)
         val btnEditarEnvio: Button = findViewById(R.id.btnEditarEnvio)
         val btnEliminarEnvio: Button = findViewById(R.id.btnEliminarEnvio)
 
-        // Configurar clics en los botones
         btnEditarPaquetes.setOnClickListener {
             val intent = Intent(this, VistaPaquete::class.java)
             intent.putExtra("ID_ENVIO", envioId)
@@ -118,19 +118,17 @@ class DetalleEnvio : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == EDITAR_ENVIO_REQUEST_CODE && resultCode == RESULT_OK) {
-            // Actualizar la información del envío
             val envioId = intent.getIntExtra("ENVIO_ID", -1)
             val envio = dbHelper.RecuperarEnvioPorId(envioId)
-            // Actualizar la información mostrada en la actividad
             val textViewEnvioDireccion: TextView = findViewById(R.id.textViewEnvioDireccion)
             val textViewEnvioDestinatario: TextView = findViewById(R.id.textViewEnvioDestinatario)
             val textViewEnvioFechaProgramada: TextView = findViewById(R.id.textViewEnvioFechaProgramada)
             textViewEnvioDireccion.text = envio?.direccion
             textViewEnvioDestinatario.text = envio?.destinatario
             textViewEnvioFechaProgramada.text = envio?.fechaProgramada
-            // Actualizar cualquier otro elemento necesario
         }
     }
+
     private fun actualizarInterfazUsuario() {
         // Obtener el ID del envío desde el Intent
         val envioId = intent.getIntExtra("ENVIO_ID", -1)
@@ -145,7 +143,9 @@ class DetalleEnvio : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener 
         textViewEnvioFechaProgramada.text = envio?.fechaProgramada
         // Puedes continuar actualizando cualquier otro elemento necesario
     }
+
     companion object {
         private const val EDITAR_ENVIO_REQUEST_CODE = 1
     }
+
 }

@@ -6,12 +6,14 @@ data class Envios(
         val direccion: String,
         val destinatario: String,
         val idTransportista: Int,
+        val nombreTransportista: String, // Nuevo campo
         val etiqueta: String,
         val costoTotal: Double,
         val fechaEnvio: String,
         val fechaProgramada: String,
         val numeroConf: String
 )
- {
+
+{
 
 }
