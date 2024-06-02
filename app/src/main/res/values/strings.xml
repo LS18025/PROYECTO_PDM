@@ -87,18 +87,13 @@
 
 
     /* Chat */
-    
+
     <string name="N_usuario_chat">Nombre de Usuario</string>
     <string name="ET_mensaje">Escriba un mensaje</string>
 
     /* Chat */
 
     <string name="TXT_ver_mensaje">Hola, como estas?</string>
-
-
-    
-    
-    
 
 
 </resources>

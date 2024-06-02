@@ -313,6 +313,32 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         return idResultado
     }
 
+    // Obtener los detalles del envío desde la base de datos y rellenar los campos
+
+
+    //actualizarEnvio
+    fun actualizarEnvio(
+        idEnvio: Int,
+        direccion: String,
+        destinatario: String,
+        fechaProgramada: Date,
+        idTransportista: Int
+    ): Int {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(COL_DIRECCION, direccion)
+            put(COL_DESTINATARIO_ENVIO, destinatario)
+            put(COL_FECHA_PROGRAMADA, SimpleDateFormat("dd-MM-yyyy").format(fechaProgramada))
+            put(COL_ID_TRANSPORTISTA, idTransportista)
+        }
+
+        return db.update(
+            TABLE_ENVIO,
+            values,
+            "$COL_ID_ENVIO = ?",
+            arrayOf(idEnvio.toString())
+        )
+    }
 
 
     //FUNCIONES DE USUARIOS
