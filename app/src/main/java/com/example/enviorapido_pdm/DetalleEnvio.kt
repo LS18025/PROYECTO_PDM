@@ -70,17 +70,12 @@ class DetalleEnvio : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener 
             startActivity(intent)
         }
 
-        /*
+
         btnActualizarEstado.setOnClickListener {
-            val intent = Intent(this, ActualizarEstadoActivity::class.java)
+            val intent = Intent(this, ListarSeguimientos::class.java)
             startActivity(intent)
         }
 
-        btnEditarPaquete.setOnClickListener {
-            val intent = Intent(this, EditarPaqueteActivity::class.java)
-            startActivity(intent)
-        }
-         */
 
 }
 
