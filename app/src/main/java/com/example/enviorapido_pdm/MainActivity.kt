@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             //navController.navigate(R.id.envioExitosoFragment)
         //}
 
-        val btnDepa:Button = findViewById(R.id.btnTransportista)
+        val btnDepa:ImageButton = findViewById(R.id.imageButtonTransportista)
 
         btnDepa.setOnClickListener()
         {
