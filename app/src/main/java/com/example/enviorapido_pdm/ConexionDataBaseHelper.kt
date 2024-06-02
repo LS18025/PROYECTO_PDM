@@ -697,9 +697,13 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
             put(COL_TAMANO_PAQUETE, tamano_Paquete)
         }
         val IdResultado = db.insert(TABLE_PAQUETE, null, valores)
+        if (IdResultado != -1L) {
+            actualizarCostoTotalEnvio(id_Envio)
+        }
         db.close()
         return IdResultado
     }
+
 
     fun RecuperarPaquetesPorIdEnvio(idEnvio: Int): ArrayList<Paquete> {
         val query: String = "SELECT * FROM $TABLE_PAQUETE WHERE $COLUMNA_ID_ENVIO = ?"
@@ -746,17 +750,23 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         }
         val parametros = arrayOf(id_Paquete.toString())
         val IdResultado = db.update(TABLE_PAQUETE, valores, "$COL_ID_PAQUETE=?", parametros)
+        if (IdResultado > 0) {
+            actualizarCostoTotalEnvio(id_Envio)
+        }
         db.close()
         return IdResultado
     }
 
+
     fun EliminarPaquete(id_Paquete: Int): Int {
         val db = writableDatabase
+        val paquete = RecuperarPaquetePorId(id_Paquete)
         val parametros = arrayOf(id_Paquete.toString())
         val IdResultado = db.delete(TABLE_PAQUETE, "$COL_ID_PAQUETE=?", parametros)
         db.close()
         return IdResultado
     }
+
     fun RecuperarPaquetePorId(idPaquete: Int): Paquete? {
         val db = readableDatabase
         val query = "SELECT * FROM $TABLE_PAQUETE WHERE $COL_ID_PAQUETE = ?"
@@ -778,6 +788,25 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
 
         return paquete
     }
+
+    fun actualizarCostoTotalEnvio(idEnvio: Int) {
+        val db = writableDatabase
+        // Consultar la suma de los costos de los paquetes asociados al idEnvio
+        val querySumaCostos = "SELECT SUM($COL_COSTO_PAQUETE) FROM $TABLE_PAQUETE WHERE $COL_ID_ENVIO = ?"
+        val cursor = db.rawQuery(querySumaCostos, arrayOf(idEnvio.toString()))
+
+        if (cursor.moveToFirst()) {
+            val costoTotalEnvio = cursor.getDouble(0)
+            // Actualizar el costo total del envío en la tabla de envíos
+            val valores = ContentValues().apply {
+                put(COL_COSTO_TOTAL_ENVIO, costoTotalEnvio)
+            }
+            db.update(TABLE_ENVIO, valores, "$COL_ID_ENVIO = ?", arrayOf(idEnvio.toString()))
+        }
+        cursor.close()
+        db.close()
+    }
+
     fun recuperarTodosLosTransportistas(): ArrayList<Transportista> {
         val query: String = "SELECT * FROM $TABLE_TRANSPORTISTA"
         val db = readableDatabase

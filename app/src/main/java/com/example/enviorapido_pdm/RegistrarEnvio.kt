@@ -69,7 +69,7 @@ class RegistrarEnvio : AppCompatActivity() {
             val numeroConfi = UUID.randomUUID().hashCode().absoluteValue.toString().take(5)
 
             // Generamos un número de etiqueta único para el envío
-            val numetiqueta = UUID.randomUUID().hashCode().absoluteValue.toString().take(5)
+            val numetiqueta = UUID.randomUUID().hashCode().absoluteValue.toString().take(12)
 
             // Llamamos al método para agregar el envío a la base de datos
             val idResultado = dbHelper.AgregarEnvio(
