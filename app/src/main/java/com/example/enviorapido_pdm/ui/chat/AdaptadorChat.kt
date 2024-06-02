@@ -1,5 +1,6 @@
 package com.example.enviorapido_pdm.ui.chat
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -71,6 +72,7 @@ class AdaptadorChat(contexto : Context, chatLista : List<ChatModelo>,imagenurl :
         return chatLista.size
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
       val chat : ChatModelo = chatLista[position]
