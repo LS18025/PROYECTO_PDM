@@ -1,6 +1,7 @@
 package com.example.enviorapido_pdm.ui.paquete
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,6 +22,7 @@ class VistaPaquete : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener 
     private lateinit var dbHelper: ConexionDataBaseHelper
 
     private var selectedPaquete: Paquete? = null
+    private lateinit var buttonFinalizar: Button
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -42,6 +44,11 @@ class VistaPaquete : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener 
         adapter.listaPaquete.clear()
         adapter.listaPaquete.addAll(dbHelper.RecuperarPaquetesPorIdEnvio(idEnvio))
         adapter.notifyDataSetChanged()
+        toggleFinalizarButton()
+    }
+
+    private fun toggleFinalizarButton() {
+        buttonFinalizar.isEnabled = adapter.listaPaquete.isNotEmpty()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +56,9 @@ class VistaPaquete : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener 
         setContentView(R.layout.activity_vista_paquete)
 
         idEnvio = intent.getIntExtra("ID_ENVIO", -1)
+
+        // Inicializar buttonFinalizar antes de llamar a toggleFinalizarButton
+        buttonFinalizar = findViewById(R.id.buttonFinalizar)
 
         recyclerView = findViewById(R.id.listaPaquete)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -63,7 +73,6 @@ class VistaPaquete : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener 
         val btnAgregar: ImageButton = findViewById(R.id.btnAgregarPaquete)
         val btnEditar: ImageButton = findViewById(R.id.btnEditarPaquete)
         val btnEliminar: ImageButton = findViewById(R.id.btnBorrarPaquete)
-        val buttonFinalizar: Button = findViewById(R.id.buttonFinalizar)
 
         btnAgregar.setOnClickListener {
             val intent = Intent(this, AgregarPaquete::class.java)
@@ -81,16 +90,22 @@ class VistaPaquete : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener 
 
         btnEliminar.setOnClickListener {
             if (selectedPaquete != null) {
-                dbHelper = ConexionDataBaseHelper(this)
-                val idPaquete = selectedPaquete!!.idPaquete
-                val filasAfectadas = dbHelper.EliminarPaquete(idPaquete)
-                if (filasAfectadas > 0) {
-                    adapter.listaPaquete.remove(selectedPaquete!!)
-                    adapter.notifyDataSetChanged()
-                    selectedPaquete = null
-                } else {
-                    Toast.makeText(this, "Error al eliminar el paquete", Toast.LENGTH_SHORT).show()
-                }
+                AlertDialog.Builder(this)
+                    .setTitle("Confirmación")
+                    .setMessage("¿Estás seguro de que quieres eliminar este paquete?")
+                    .setPositiveButton("Sí") { dialog, which ->
+                        val filasAfectadas = dbHelper.EliminarPaquete(selectedPaquete!!.idPaquete)
+                        if (filasAfectadas > 0) {
+                            adapter.listaPaquete.remove(selectedPaquete!!)
+                            adapter.notifyDataSetChanged()
+                            selectedPaquete = null
+                            toggleFinalizarButton()
+                        } else {
+                            Toast.makeText(this, "Error al eliminar el paquete", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    .setNegativeButton("No", null)
+                    .show()
             } else {
                 Toast.makeText(this, "Selecciona un paquete para eliminar", Toast.LENGTH_SHORT).show()
             }
@@ -101,6 +116,9 @@ class VistaPaquete : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener 
             intent.putExtra("ENVIO_ID", idEnvio)
             startActivity(intent)
         }
+
+        // Inicialmente deshabilitar el botón Finalizar
+        toggleFinalizarButton()
     }
 
     override fun onItemSelected(paquete: Paquete) {

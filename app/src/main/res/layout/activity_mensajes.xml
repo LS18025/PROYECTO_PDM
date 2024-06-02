@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.chat.MensajesActivity">
+
+
+    <!--imagen -  Nombre usuario-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_chat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/purple_500">
+            
+            <ImageView
+                android:id="@+id/imagen_perfil_chat"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_imagen_chat"
+                android:scaleType="centerCrop"
+                android:layout_marginStart="10dp"
+
+                />
+
+            <TextView
+                android:id="@+id/N_usuario_chat"
+                android:text="@string/N_usuario_chat"
+                android:textSize="18sp"
+                android:layout_marginStart="10dp"
+                android:textColor="#fff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+    <!--Chat-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RV_Chats"
+        android:layout_below="@+id/toolbar_chat"
+        android:layout_above="@+id/RL_Enviar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"/>
+
+    <RelativeLayout
+        android:id="@+id/RL_Enviar"
+        android:padding="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <!--Adjuntar-->
+
+        <ImageButton
+            android:id="@+id/IB_Adjuntar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_adjuntar_chat"
+            android:layout_alignParentStart="true"/>
+
+        <!--Escribir Mensaje-->
+
+        <EditText
+            android:id="@+id/Et_mensaje"
+
+            android:hint="@string/ET_mensaje"
+            android:layout_toEndOf="@+id/IB_Adjuntar"
+            android:layout_toStartOf="@+id/IB_Enviar"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <!--Enviar Mensaje-->
+
+        <ImageButton
+            android:id="@+id/IB_Enviar"
+            android:layout_alignParentEnd="true"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_enviar_chat"/>
+
+
+    </RelativeLayout>
+
+
+
+
+
+</RelativeLayout>
