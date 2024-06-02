@@ -82,6 +82,24 @@ class DetalleEnvio : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener 
             intent.putExtra("ID_ENVIO", envioId)
             startActivityForResult(intent, EDITAR_ENVIO_REQUEST_CODE)
         }
+        btnEliminarEnvio.setOnClickListener {
+            val dialog = AlertDialog.Builder(this)
+                .setTitle("Eliminar Envío")
+                .setMessage("¿Estás seguro de que quieres eliminar este envío?")
+                .setPositiveButton("Sí") { _, _ ->
+                    if (dbHelper.EliminarEnvioPorId(envioId)) {
+                        Toast.makeText(this, "Envío eliminado exitosamente", Toast.LENGTH_SHORT).show()
+                        finish() // Cierra la actividad después de eliminar el envío
+                        startActivity(Intent(this, HistorialEnvios::class.java)) // Llama a la actividad HistorialEnvios
+                    } else {
+                        Toast.makeText(this, "Error al eliminar el envío", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                .setNegativeButton("No", null)
+                .create()
+            dialog.show()
+        }
+
     }
 
     override fun onItemSelected(paquete: Paquete) {
@@ -113,7 +131,20 @@ class DetalleEnvio : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener 
             // Actualizar cualquier otro elemento necesario
         }
     }
+    private fun actualizarInterfazUsuario() {
+        // Obtener el ID del envío desde el Intent
+        val envioId = intent.getIntExtra("ENVIO_ID", -1)
+        val envio = dbHelper.RecuperarEnvioPorId(envioId)
 
+        // Actualizar la información mostrada en la actividad
+        val textViewEnvioDireccion: TextView = findViewById(R.id.textViewEnvioDireccion)
+        val textViewEnvioDestinatario: TextView = findViewById(R.id.textViewEnvioDestinatario)
+        val textViewEnvioFechaProgramada: TextView = findViewById(R.id.textViewEnvioFechaProgramada)
+        textViewEnvioDireccion.text = envio?.direccion
+        textViewEnvioDestinatario.text = envio?.destinatario
+        textViewEnvioFechaProgramada.text = envio?.fechaProgramada
+        // Puedes continuar actualizando cualquier otro elemento necesario
+    }
     companion object {
         private const val EDITAR_ENVIO_REQUEST_CODE = 1
     }

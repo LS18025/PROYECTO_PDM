@@ -20,6 +20,17 @@ class HistorialEnvios : AppCompatActivity() {
         recyclerViewEnvios = findViewById(R.id.recyclerViewEnvios)
         recyclerViewEnvios.layoutManager = LinearLayoutManager(this)
 
+        // Configurar el adaptador para mostrar los envíos en el RecyclerView
+        // Este código debe estar en onResume para que se actualice cada vez que la actividad se muestre
+        actualizarListaEnvios()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        actualizarListaEnvios()
+    }
+
+    private fun actualizarListaEnvios() {
         // Obtener el usuario actual de Firebase
         val firebaseAuth = FirebaseAuth.getInstance()
         val currentUser = firebaseAuth.currentUser

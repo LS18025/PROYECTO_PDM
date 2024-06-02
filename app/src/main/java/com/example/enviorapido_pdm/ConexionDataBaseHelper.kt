@@ -468,6 +468,14 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
         db.close()
         return IdResultado
     }
+    fun EliminarEnvioPorId(idEnvio: Int): Boolean {
+        val db = this.writableDatabase
+        val whereClause = "$COL_ID_ENVIO = ?"
+        val whereArgs = arrayOf(idEnvio.toString())
+        val result = db.delete(TABLE_ENVIO, whereClause, whereArgs)
+        db.close()
+        return result != -1
+    }
 
 
     //FUNCIONES DE DESTINATARIO
