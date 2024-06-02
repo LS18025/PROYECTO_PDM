@@ -1,6 +1,8 @@
 package com.example.enviorapido_pdm
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,6 +12,7 @@ import com.example.enviorapido_pdm.R
 import com.example.enviorapido_pdm.ui.paquete.Paquete
 import com.example.enviorapido_pdm.ui.paquete.PaqueteAdapter
 import androidx.appcompat.app.AlertDialog
+import com.example.enviorapido_pdm.ui.paquete.VistaPaquete
 
 
 class DetalleEnvio : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener {
@@ -56,18 +59,41 @@ class DetalleEnvio : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener 
         // Obtener y mostrar la lista de paquetes asociados al envío
         val paquetes = dbHelper.RecuperarPaquetesPorIdEnvio(envioId)
         paqueteAdapter.actualizarLista(paquetes)
-    }
 
-    override fun onItemSelected(paquete: Paquete) {
-        val dialog = AlertDialog.Builder(this)
-            .setTitle("Detalles del Paquete")
-            .setMessage("ID Paquete: ${paquete.idPaquete}\n" +
-                    "ID Envío: ${paquete.idEnvio}\n" +
-                    "Costo: ${paquete.costoPaquete}\n" +
-                    "Peso: ${paquete.pesoPaquete}\n" +
-                    "Tamaño: ${paquete.tamanoPaquete}")
-            .setPositiveButton("Aceptar", null)
-            .create()
-        dialog.show()
-    }
+        val btnEditarPaquetes: Button = findViewById(R.id.btnEditarPaquetes)
+        val btnActualizarEstado: Button = findViewById(R.id.btnActualizarEstado)
+        val btnEditarPaquete: Button = findViewById(R.id.btnEditarPaquete)
+
+        // Configurar clics en los botones
+        btnEditarPaquetes.setOnClickListener {
+            val intent = Intent(this, VistaPaquete::class.java)
+            startActivity(intent)
+        }
+
+        /*
+        btnActualizarEstado.setOnClickListener {
+            val intent = Intent(this, ActualizarEstadoActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnEditarPaquete.setOnClickListener {
+            val intent = Intent(this, EditarPaqueteActivity::class.java)
+            startActivity(intent)
+        }
+         */
+
+}
+
+override fun onItemSelected(paquete: Paquete) {
+val dialog = AlertDialog.Builder(this)
+    .setTitle("Detalles del Paquete")
+    .setMessage("ID Paquete: ${paquete.idPaquete}\n" +
+            "ID Envío: ${paquete.idEnvio}\n" +
+            "Costo: ${paquete.costoPaquete}\n" +
+            "Peso: ${paquete.pesoPaquete}\n" +
+            "Tamaño: ${paquete.tamanoPaquete}")
+    .setPositiveButton("Aceptar", null)
+    .create()
+dialog.show()
+}
 }
