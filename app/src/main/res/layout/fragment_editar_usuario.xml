@@ -20,15 +20,16 @@
 
     <EditText
         android:id="@+id/editTextText165"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="172dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="212dp"
         android:background="@drawable/esquinas_redondeadas"
         android:ems="10"
         android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView81" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextText12"
+        app:layout_constraintVertical_bias="0.203" />
 
     <EditText
         android:id="@+id/editTextText13"
@@ -176,21 +177,10 @@
         android:text="Aceptar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.854"
+        app:layout_constraintHorizontal_bias="0.537"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText165"
-        app:layout_constraintVertical_bias="0.484" />
+        app:layout_constraintVertical_bias="1.0" />
 
-    <Button
-        android:id="@+id/btnBuscar"
-        style="@style/EstiloBoton"
-        android:layout_width="115dp"
-        android:layout_height="58dp"
-        android:text="Buscar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.135"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText165"
-        app:layout_constraintVertical_bias="0.371" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

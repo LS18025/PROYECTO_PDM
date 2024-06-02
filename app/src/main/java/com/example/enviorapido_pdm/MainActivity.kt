@@ -3,6 +3,7 @@ package com.example.enviorapido_pdm
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -12,6 +13,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.enviorapido_pdm.databinding.ActivityMainBinding
 import com.example.enviorapido_pdm.ui.administracion.LoginActivity
 import com.example.enviorapido_pdm.ui.paquete.VistaPaquete
+import com.example.enviorapido_pdm.ui.usuario.VerUsuarios
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -48,13 +50,23 @@ class MainActivity : AppCompatActivity() {
             //navController.navigate(R.id.envioExitosoFragment)
         //}
 
-        val btnDepa:Button = findViewById(R.id.btnJuan)
+        val btnDepa:ImageButton = findViewById(R.id.imageButtonTransportista)
 
         btnDepa.setOnClickListener()
         {
-           val Intent = Intent(this, VistaPaquete::class.java)
+           val Intent = Intent(this, VistaTransportista::class.java)
            startActivity(Intent)
         }
+
+        //referencias de botones de usuarios
+        //boton que dirige a todos los usuarios
+        val btnUsuario:ImageButton=findViewById(R.id.btnUsuarios)
+        btnUsuario.setOnClickListener()
+        {
+            val intento = Intent(this, VerUsuarios::class.java)
+            startActivity(intento)
+        }
+
 
 
 
