@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Personaliza los atributos del tema -->
         <item name="android:windowBackground">@drawable/fondo_degradado</item>
@@ -35,7 +35,6 @@
     <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="android:background">@drawable/button_background</item>
     </style>
-
 
 
 </resources>
