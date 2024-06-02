@@ -32,6 +32,8 @@ class VerUsuarios : AppCompatActivity(), CustomAdapter.OnUserUpdateListener {
 
         if (intent.getBooleanExtra("userUpdated", false)) {
             llenarDatosEnVista()
+        }else if (intent.getBooleanExtra("userDeleted", false)) {
+            llenarDatosEnVista()
         }
 
         dbHelper = ConexionDataBaseHelper(this)

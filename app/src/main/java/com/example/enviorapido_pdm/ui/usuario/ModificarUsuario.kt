@@ -132,7 +132,7 @@ class ModificarUsuario : AppCompatActivity() {
             val intent = Intent(this, VerUsuarios::class.java)
             intent.putExtra("userUpdated", true)
             startActivity(intent)
-            setResult(RESULT_OK)
+
 
 
         }
@@ -149,7 +149,11 @@ class ModificarUsuario : AppCompatActivity() {
         else
         {
             Toast.makeText(this,"Usuario eliminado con exito", Toast.LENGTH_SHORT).show()
-//            LimpiarFormulario()
+            finish()
+            val intent = Intent(this, VerUsuarios::class.java)
+            intent.putExtra("userDeleted", true)
+            startActivity(intent)
+//
         }
     }
     fun LimpiarFormulario()
