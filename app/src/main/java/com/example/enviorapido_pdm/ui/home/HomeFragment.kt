@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.enviorapido_pdm.EditarTransportista
 import com.example.enviorapido_pdm.Envios
+import com.example.enviorapido_pdm.HistorialEnvios
 import com.example.enviorapido_pdm.databinding.FragmentHomeBinding
 import com.example.enviorapido_pdm.R
 import com.example.enviorapido_pdm.RegistrarEnvio
@@ -69,7 +70,8 @@ class HomeFragment : Fragment() {
         // Establecer el OnClickListener
         imageButton6.setOnClickListener {
             // Navega hacia el fragmento RegistrarEnvioFragment
-            findNavController().navigate(R.id.historialFragment)
+            val intent = Intent(requireContext(), HistorialEnvios::class.java)
+            startActivity(intent)
         }
 
 

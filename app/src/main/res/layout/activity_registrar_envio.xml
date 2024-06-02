@@ -22,27 +22,16 @@
             android:layout_marginBottom="16dp"/>
 
         <TextView
-            android:id="@+id/textViewUsuario"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Remitente" />
-
-        <EditText
-            android:id="@+id/editTextUsuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-
-        <TextView
             android:id="@+id/textViewDireccion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dirección de Envío" />
 
-        <Spinner
-            android:id="@+id/spinnerDireccion"
+        <EditText
+            android:id="@+id/editTextDireccion"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textPostalAddress" />
 
         <TextView
             android:id="@+id/textViewDestinatario"
@@ -50,10 +39,11 @@
             android:layout_height="wrap_content"
             android:text="Destinatario" />
 
-        <Spinner
-            android:id="@+id/spinnerDestinatario"
+        <EditText
+            android:id="@+id/editTextDestinatario"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/textViewTransportista"
@@ -79,6 +69,7 @@
             android:inputType="none"
             android:focusable="false"
             android:clickable="true" />
+
         <Button
             android:id="@+id/buttonRegistrarEnvio"
             android:layout_width="match_parent"
