@@ -1,6 +1,5 @@
 package com.example.enviorapido_pdm.ui.usuario
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -73,7 +72,7 @@ class VerUsuarios : AppCompatActivity() {
             telefonoRecuperado,
             usuarioRecuperado,
             rolRecuperado,
-//            this
+           this
         )
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
