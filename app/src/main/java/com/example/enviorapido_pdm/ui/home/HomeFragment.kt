@@ -54,6 +54,7 @@ class HomeFragment : Fragment() {
             imageButton.visibility = View.VISIBLE
         } else {
             btnUsuarios.visibility = View.GONE
+            imageButton.visibility = View.GONE
         }
 
         btnUsuarios.setOnClickListener {
