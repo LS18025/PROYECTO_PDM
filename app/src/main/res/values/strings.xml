@@ -76,6 +76,29 @@
     <string name="pruebaHoraS">10:00 AM</string>
     <string name="pruebaFechaS">09/04/2024</string>
     <string name="pruebaDestinat">Laminio Echegoyen</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    /* Usuarios */
+
+    <string name="Item_nombre_usuario">Nombre de Usuario</string>
+    <string name="Item_email_usuario">Email Usuario</string>
+    <string name="Et_buscar_usuario">Buscar Usuario</string>
+
+
+    /* Chat */
+    
+    <string name="N_usuario_chat">Nombre de Usuario</string>
+    <string name="ET_mensaje">Escriba un mensaje</string>
+
+    /* Chat */
+
+    <string name="TXT_ver_mensaje">Hola, como estas?</string>
+
+
+    
+    
+    
 
 
 </resources>

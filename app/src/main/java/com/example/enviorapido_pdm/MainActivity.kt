@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.fragment_chat -> {
 
-                    navController.navigate(R.id.fragment_chat)
+                    mostrarchats()
                     true
                 }
 
@@ -100,5 +100,11 @@ class MainActivity : AppCompatActivity() {
         firebaseAuth.signOut()
         val i = Intent(this, LoginActivity::class.java)
         startActivity(i)
+    }
+    private fun mostrarchats ()
+    {
+
+        val o = Intent(this,VistaChats::class.java)
+        startActivity(o)
     }
 }

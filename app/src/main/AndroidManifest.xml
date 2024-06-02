@@ -17,6 +17,12 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".ui.chat.MensajesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VistaChats"
+            android:exported="false" />
+        <activity
             android:name=".VistaTransportista"
             android:exported="false" />
         <activity
