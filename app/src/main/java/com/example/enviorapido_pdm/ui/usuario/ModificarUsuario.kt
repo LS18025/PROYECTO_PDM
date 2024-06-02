@@ -5,9 +5,12 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.browser.browseractions.BrowserActionsIntent.BrowserActionsItemId
@@ -24,38 +27,52 @@ class ModificarUsuario : AppCompatActivity() {
         setContentView(R.layout.activity_modificar_usuario)
 
         dbHelper= ConexionDataBaseHelper(this)
-        val btnBuscar:Button=findViewById(R.id.btnBuscar)
+
+        //variable para recibir el correo
+        val correoRecibido = intent.getStringExtra("correo")?: ""
+        Toast.makeText(this, "el correo  es: $correoRecibido", Toast.LENGTH_SHORT).show()
+
+        //Mostrar el correo
+        val campoCorreo: TextView = findViewById(R.id.txtCorreo_persona)
+        MostrarDatosEnCampos(correoRecibido)
+
+
+       /* val btnBuscar:Button=findViewById(R.id.btnEliminar)
         btnBuscar.setOnClickListener()
         {
             BuscarUsuario()
-        }
+        }*/
         val btnActualizar:Button=findViewById(R.id.btnActualizar)
         btnActualizar.setOnClickListener()
         {
             ActualizarUsuario()
         }
+
+        //boton eliminar******************
+
         val btnEliminar:Button=findViewById(R.id.btnEliminar)
         btnEliminar.setOnClickListener()
         {
             val email_persona:EditText=findViewById(R.id.txtCorreo_persona)
             if (email_persona.getText().toString().isEmpty())
             {
-                Toast.makeText(this, "El email esta vacio",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Usuario esta vacio",Toast.LENGTH_SHORT).show()
             }
             else
             {
                 ConfirmacionDialogoEliminar()
             }
         }
+
     }
-//opciones del menu de items
+    //opciones del menu de items
     override fun onOptionsItemSelected(item:MenuItem): Boolean {
         when(item.itemId)
         {
             R.id.btnUsuarios-> BuscarUsuario()
         }
         return super.onOptionsItemSelected(item)
-}
+    }
     fun VerUsuario()
     {
         Toast.makeText(this,"Ver Usuarios", Toast.LENGTH_SHORT).show()
@@ -65,7 +82,7 @@ class ModificarUsuario : AppCompatActivity() {
 
 
 
-        fun BuscarUsuario()
+    fun BuscarUsuario()
     {
         val email_persona:EditText=findViewById(R.id.txtCorreo_persona)
         val NombreRecuperado:EditText=findViewById(R.id.txtNombreUsuario)
@@ -100,8 +117,9 @@ class ModificarUsuario : AppCompatActivity() {
         val txtNombreUsuario:EditText=findViewById(R.id.txtNombreUsuario)
         val txtApellidoUsuario:EditText=findViewById(R.id.txtApellidoUsuario)
         val txtUsuario:EditText=findViewById(R.id.txtUsuario)
-        val txtContrasena:EditText=findViewById(R.id.txtcontrasenaUsuario)
-        val IdResultado= dbHelper.ActualizarUsuario(txtCorreo_persona.text.toString(),txtNombreUsuario.text.toString(),txtApellidoUsuario.text.toString(),txtUsuario.text.toString(),null,txtContrasena.text.toString())
+//        val txtContrasena:EditText=findViewById(R.id.txtcontrasenaUsuario)
+
+        val IdResultado= dbHelper.ActualizarUsuario(txtNombreUsuario.text.toString(),txtApellidoUsuario.text.toString(),txtCorreo_persona.text.toString(),txtUsuario.text.toString())
         if (IdResultado==0)
         {
             Toast.makeText(this,"Hubo un error, no se pudo actualizar", Toast.LENGTH_SHORT).show()
@@ -109,13 +127,14 @@ class ModificarUsuario : AppCompatActivity() {
         else
         {
             Toast.makeText(this,"Usuario actualizado con exito", Toast.LENGTH_SHORT).show()
-            LimpiarFormulario()
+//            LimpiarFormulario()
         }
     }
     fun EliminarUsuario()
     {
         val txtCorreo_persona:EditText=findViewById(R.id.txtCorreo_persona)
         val IdResultado=dbHelper.EliminarUsuario(txtCorreo_persona.text.toString())
+
         if (IdResultado==0)
         {
             Toast.makeText(this,"Hubo un error, no se pudo eliminar", Toast.LENGTH_SHORT).show()
@@ -123,7 +142,7 @@ class ModificarUsuario : AppCompatActivity() {
         else
         {
             Toast.makeText(this,"Usuario eliminado con exito", Toast.LENGTH_SHORT).show()
-            LimpiarFormulario()
+//            LimpiarFormulario()
         }
     }
     fun LimpiarFormulario()
@@ -152,6 +171,25 @@ class ModificarUsuario : AppCompatActivity() {
                 })
             .show()
             .setCancelable(false)
+    }
+
+    fun MostrarDatosEnCampos(correo: String){
+        val nombre: EditText = findViewById(R.id.txtNombreUsuario)
+        val apellido: EditText = findViewById(R.id.txtApellidoUsuario)
+        val email: EditText = findViewById(R.id.txtCorreo_persona)
+        //val telefono: EditText = findViewById(R.id.txtTelefonoUsuario)
+        val usuario: EditText = findViewById(R.id.txtusuario)
+//        val contrsena: EditText = findViewById(R.id.txtcontrasenaUsuario)
+//        val confirmarContrasena: EditText = findViewById(R.id.txtRepetirContrasenaUsuario)
+
+        val usuarioLista: ArrayList<Usuarios>
+        usuarioLista = dbHelper.RecuperarUsuarioCorreo(correo)
+        if(usuarioLista.isNotEmpty()){
+            nombre.setText(usuarioLista[0].primer_nombre_persona)
+            apellido.setText(usuarioLista[0].primer_apellido_persona)
+            email.setText(usuarioLista[0].email_persona)
+            usuario.setText(usuarioLista[0].usuario)
+        }
     }
 
 

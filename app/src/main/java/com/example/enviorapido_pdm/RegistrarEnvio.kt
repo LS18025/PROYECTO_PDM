@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
@@ -13,9 +14,9 @@ import java.util.Date
 import java.util.UUID
 import kotlin.math.absoluteValue
 import android.app.DatePickerDialog
-import android.widget.EditText
 import com.example.enviorapido_pdm.ui.paquete.VistaPaquete
 import java.util.Calendar
+
 class RegistrarEnvio : AppCompatActivity() {
 
     private lateinit var dbHelper: ConexionDataBaseHelper
@@ -23,45 +24,31 @@ class RegistrarEnvio : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registrar_envio)
 
-        //Inicializamos el helper de la base de datos
+        // Inicializamos el helper de la base de datos
         dbHelper = ConexionDataBaseHelper(this)
 
-        //Obtenemos referencias a los elementos de la interfaz de usuario
-        val editTextFechaProgramada : EditText = findViewById(R.id.editTextFechaProgramada) // Cambiado a EditText
-        val buttonRegistrarEnvio : Button = findViewById(R.id.buttonRegistrarEnvio)
-        val spinnerDireccion : Spinner = findViewById(R.id.spinnerDireccion)
-        val spinnerDestinatario : Spinner = findViewById(R.id.spinnerDestinatario)
-        val spinnerTransportista : Spinner = findViewById(R.id.spinnerTransportista)
+        // Obtenemos referencias a los elementos de la interfaz de usuario
+        val editTextDireccion: EditText = findViewById(R.id.editTextDireccion)
+        val editTextDestinatario: EditText = findViewById(R.id.editTextDestinatario)
+        val editTextFechaProgramada: EditText = findViewById(R.id.editTextFechaProgramada)
+        val buttonRegistrarEnvio: Button = findViewById(R.id.buttonRegistrarEnvio)
+        val spinnerTransportista: Spinner = findViewById(R.id.spinnerTransportista)
 
-        //Configuramos el click listener para el EditText de fecha programada
+        // Configuramos el click listener para el EditText de fecha programada
         editTextFechaProgramada.setOnClickListener {
             mostrarDatePickerDialog(editTextFechaProgramada)
         }
 
-        //Configuramos los adaptadores para los Spinner
-        configurarAdaptadores(spinnerDireccion,dbHelper.RecuperarTodaslasDirecciones()){
-            direccion -> direccion.direccion
-        }
-        configurarAdaptadores(spinnerDestinatario, dbHelper.RecuperarTodoslosDestinatarios()){
-            destinatarios -> destinatarios.nombre_Destinatario + " " + destinatarios.apellido_Destinatario
+        // Configuramos los adaptadores para el Spinner de transportista
+        configurarAdaptadores(spinnerTransportista, dbHelper.recuperarTodosLosTransportistas()) {
+                transportista -> transportista.nombreTransportista + " " + transportista.apellidoTransportista
         }
 
-        configurarAdaptadores(spinnerTransportista, dbHelper.recuperarTodosLosTransportistas()){
-            transportista -> transportista.nombreTransportista + " " + transportista.apellidoTransportista
-        }
-
-        //Configuramos el click listener para el boton de registro
-
-        buttonRegistrarEnvio.setOnClickListener() {
-
-            //Obtenemos los valores de los campos
-            val direccionSeleccionadaIndex = spinnerDireccion.selectedItemPosition
-            val direccionSeleccionada = dbHelper.RecuperarTodaslasDirecciones()[direccionSeleccionadaIndex]
-            val idDireccion = direccionSeleccionada.id_direccion
-
-            val destinatarioSeleccionadoIndex = spinnerDestinatario.selectedItemPosition
-            val destinatarioSeleccionado = dbHelper.RecuperarTodoslosDestinatarios()[destinatarioSeleccionadoIndex]
-            val idDestinatario = destinatarioSeleccionado.id_Destinatario
+        // Configuramos el click listener para el botón de registro
+        buttonRegistrarEnvio.setOnClickListener {
+            // Obtenemos los valores de los campos
+            val direccionIngresada = editTextDireccion.text.toString()
+            val destinatarioIngresado = editTextDestinatario.text.toString()
 
             val transportistaSeleccionadoIndex = spinnerTransportista.selectedItemPosition
             val transportistaSeleccionado = dbHelper.recuperarTodosLosTransportistas()[transportistaSeleccionadoIndex]
@@ -74,21 +61,21 @@ class RegistrarEnvio : AppCompatActivity() {
             val currentUser = firebaseAuth.currentUser
             val idUsuario = currentUser?.uid ?: ""
 
-            //Generamos un ID unico para el envio
+            // Generamos un ID único para el envío
             val idEnvio = UUID.randomUUID().hashCode().absoluteValue.toString().take(8).toInt()
 
-            //Generamos un numero de confirmacion unico para el envio
+            // Generamos un número de confirmación único para el envío
             val numeroConfi = UUID.randomUUID().hashCode().absoluteValue.toString().take(5)
 
-            //Generamos un numero de etiqueta unico para el envio
+            // Generamos un número de etiqueta único para el envío
             val numetiqueta = UUID.randomUUID().hashCode().absoluteValue.toString().take(5)
 
-            //Llamamos al metodo para agregar el envio a la base de datos
+            // Llamamos al método para agregar el envío a la base de datos
             val idResultado = dbHelper.AgregarEnvio(
                 idEnvio,
                 idUsuario,
-                idDireccion,
-                idDestinatario,
+                direccionIngresada,
+                destinatarioIngresado,
                 idTransportista,
                 numetiqueta,
                 costoTotalEnvio,
@@ -97,23 +84,19 @@ class RegistrarEnvio : AppCompatActivity() {
                 numeroConfi
             )
 
-            //Mostrar un mensaje dependiendo del resultado de la insercion
-
-            if (idResultado != -1L)
-            {
-                Toast.makeText(this,"Envio registrado con exito",Toast.LENGTH_SHORT).show()
+            // Mostrar un mensaje dependiendo del resultado de la inserción
+            if (idResultado != -1L) {
+                Toast.makeText(this, "Envío registrado con éxito", Toast.LENGTH_SHORT).show()
                 finish()
                 val intent = Intent(this, VistaPaquete::class.java)
                 intent.putExtra("ID_ENVIO", idEnvio)
                 startActivity(intent)
-
             } else {
-                Toast.makeText(this,"Error al registrar el Envio",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error al registrar el Envío", Toast.LENGTH_SHORT).show()
             }
-            
         }
-
     }
+
     private fun mostrarDatePickerDialog(editText: EditText) {
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
@@ -136,6 +119,7 @@ class RegistrarEnvio : AppCompatActivity() {
         )
         datePickerDialog.show()
     }
+
     private fun <T> configurarAdaptadores(spinner: Spinner, lista: List<T>, campoAMostrar: (T) -> String) {
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, lista.map { campoAMostrar(it) })
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)

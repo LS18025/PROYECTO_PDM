@@ -7,12 +7,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import android.app.Activity
-import android.widget.Button
 import com.example.enviorapido_pdm.ui.transportista.CrearTransportista
 import com.example.enviorapido_pdm.ConexionDataBaseHelper
 import com.example.enviorapido_pdm.R
-
+import android.app.AlertDialog
+import android.content.DialogInterface
 
 
 class VistaTransportista : AppCompatActivity(), TransportistaAdapter.OnItemSelectedListener {
@@ -22,15 +21,15 @@ class VistaTransportista : AppCompatActivity(), TransportistaAdapter.OnItemSelec
     private lateinit var dbHelper: ConexionDataBaseHelper
     private var selectedTransportista: Transportista? = null
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vista_transportista)
 
-        recyclerView = findViewById(R.id.listaTransportista)
+        recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        adapter = TransportistaAdapter(ConexionDataBaseHelper(this).recuperarTodosLosTransportistas(), this)
+        dbHelper = ConexionDataBaseHelper(this)
+        adapter = TransportistaAdapter(dbHelper.recuperarTodosLosTransportistas() as ArrayList<Transportista>, this)
         recyclerView.adapter = adapter
 
         val btnAgregar: ImageButton = findViewById(R.id.btnAgregarTransportista)
@@ -50,28 +49,42 @@ class VistaTransportista : AppCompatActivity(), TransportistaAdapter.OnItemSelec
         }
         btnEliminar.setOnClickListener {
             if (selectedTransportista != null) {
-                dbHelper = ConexionDataBaseHelper(this)
                 val idTransportista = selectedTransportista!!.idTransportista
-                val filasAfectadas = dbHelper.eliminarTransportista(idTransportista)
-                if (filasAfectadas > 0) {
-                    // Eliminación exitosa, actualiza la lista de paquetes
-                    adapter.listaTransportistas.remove(selectedTransportista!!)
-                    adapter.notifyDataSetChanged()
-                    selectedTransportista = null // Limpia la selección
-                } else {
-                    // Error al eliminar, muestra un mensaje de error
-                    Toast.makeText(this, "Error al eliminar el paquete", Toast.LENGTH_SHORT).show()
-                }
+
+                // Mostrar un cuadro de diálogo de confirmación antes de eliminar
+                AlertDialog.Builder(this)
+                    .setTitle("Confirmación")
+                    .setMessage("¿Estás seguro de que quieres eliminar este transportista?")
+                    .setPositiveButton("Sí") { dialog, which ->
+                        // Si el usuario confirma, procede con la eliminación
+                        val filasAfectadas = dbHelper.eliminarTransportista(idTransportista)
+                        if (filasAfectadas > 0) {
+                            // Eliminación exitosa, actualiza la lista de transportistas
+                            adapter.listaTransportistas = dbHelper.recuperarTodosLosTransportistas() as ArrayList<Transportista>
+                            adapter.notifyDataSetChanged()
+                            selectedTransportista = null // Limpia la selección
+                        } else {
+                            // Error al eliminar, muestra un mensaje de error
+                            Toast.makeText(this, "Error al eliminar el transportista", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    .setNegativeButton("No", null) // Si el usuario cancela, no hace nada
+                    .show()
             } else {
-                // No hay paquete seleccionado, muestra un mensaje de advertencia
-                Toast.makeText(this, "Selecciona un paquete para eliminar", Toast.LENGTH_SHORT).show()
+                // No hay transportista seleccionado, muestra un mensaje de advertencia
+                Toast.makeText(this, "Selecciona un transportista para eliminar", Toast.LENGTH_SHORT).show()
             }
         }
-
     }
 
-    override fun onItemSelected(idTransportista: Transportista) {
-        selectedTransportista = idTransportista
+    override fun onResume() {
+        super.onResume()
+        // Actualiza la lista de transportistas
+        adapter.listaTransportistas = dbHelper.recuperarTodosLosTransportistas() as ArrayList<Transportista>
+        adapter.notifyDataSetChanged()
+    }
 
+    override fun onItemSelected(transportista: Transportista) {
+        selectedTransportista = transportista
     }
 }

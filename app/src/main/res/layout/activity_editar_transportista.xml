@@ -6,46 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".EditarTransportista">
 
-    <TextView
-        android:id="@+id/textViewidtransportista"
-        style="@style/textNormal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="120dp"
-        android:text="ID_TRANSPORTISTA"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/txtEditIdTransportista"
-        android:layout_width="212dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="112dp"
-        android:background="@drawable/esquinas_redondeadas"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.265"
-        app:layout_constraintStart_toEndOf="@+id/textViewidtransportista"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView84"
-        style="@style/textNormal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="92dp"
-        android:text="Nombre"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewidtransportista" />
 
     <EditText
         android:id="@+id/txtEditNombreTransportista"
-        android:layout_width="197dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="76dp"
+        android:layout_width="218dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/esquinas_redondeadas"
         android:ems="10"
@@ -53,30 +19,44 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView84"
-        app:layout_constraintTop_toBottomOf="@+id/textViewidtransportista" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView85"
-        style="@style/textNormal"
+    <Button
+        android:id="@+id/btnActualizarTransportista"
+        style="@style/EstiloBoton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="84dp"
-        android:text="Apellido"
+        android:layout_marginTop="40dp"
+        android:text="Actualizar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView84" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEditTelefonoTransportista" />
+
+    <EditText
+        android:id="@+id/txtEditTelefonoTransportista"
+        android:layout_width="212dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/esquinas_redondeadas"
+        android:ems="10"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintStart_toEndOf="@+id/textView86"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditApellidoTransportista" />
 
     <EditText
         android:id="@+id/txtEditApellidoTransportista"
         android:layout_width="214dp"
         android:layout_height="43dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="36dp"
         android:background="@drawable/esquinas_redondeadas"
         android:ems="10"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.918"
         app:layout_constraintStart_toEndOf="@+id/textView85"
         app:layout_constraintTop_toBottomOf="@+id/txtEditNombreTransportista" />
 
@@ -85,32 +65,32 @@
         style="@style/textNormal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="76dp"
         android:text="Teléfono"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView85" />
 
-    <EditText
-        android:id="@+id/txtEditTelefonoTransportista"
-        android:layout_width="212dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="68dp"
-        android:background="@drawable/esquinas_redondeadas"
-        android:ems="10"
-        android:inputType="phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintStart_toEndOf="@+id/textView86"
-        app:layout_constraintTop_toBottomOf="@+id/txtEditApellidoTransportista" />
-
-    <Button
-        android:id="@+id/btnActualizarTransportista"
+    <TextView
+        android:id="@+id/textView84"
+        style="@style/textNormal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:text="Actualizar"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="56dp"
+        android:text="Nombre"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEditTelefonoTransportista" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView85"
+        style="@style/textNormal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="84dp"
+        android:text="Apellido"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView84" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

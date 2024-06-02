@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.enviorapido_pdm.ConexionDataBaseHelper
 import com.example.enviorapido_pdm.R
+import android.util.Patterns
 
 class EditarTransportista : AppCompatActivity() {
 
@@ -39,19 +40,21 @@ class EditarTransportista : AppCompatActivity() {
 
         // Configurar el click listener para el botón de actualización
         btnActualizarTransportista.setOnClickListener {
-            // Obtener los nuevos valores de los campos de texto
-            val nombre = txtEditNombreTransportista.text.toString()
-            val apellido = txtEditApellidoTransportista.text.toString()
-            val telefono = txtEditTelefonoTransportista.text.toString()
+            if (validarCampos()) {
+                // Obtener los nuevos valores de los campos de texto
+                val nombre = txtEditNombreTransportista.text.toString()
+                val apellido = txtEditApellidoTransportista.text.toString()
+                val telefono = txtEditTelefonoTransportista.text.toString()
 
-            // Actualizar el transportista en la base de datos
-            val filasAfectadas = dbHelper.ActualizarTransportista(idTransportista, nombre, apellido, telefono)
+                // Actualizar el transportista en la base de datos
+                val filasAfectadas = dbHelper.ActualizarTransportista(idTransportista, nombre, apellido, telefono)
 
-            if (filasAfectadas > 0) {
-                Toast.makeText(this, "Transportista actualizado correctamente", Toast.LENGTH_SHORT).show()
-                finish()
-            } else {
-                Toast.makeText(this, "No se pudo actualizar el transportista", Toast.LENGTH_SHORT).show()
+                if (filasAfectadas > 0) {
+                    Toast.makeText(this, "Transportista actualizado correctamente", Toast.LENGTH_SHORT).show()
+                    finish()
+                } else {
+                    Toast.makeText(this, "No se pudo actualizar el transportista", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -66,5 +69,34 @@ class EditarTransportista : AppCompatActivity() {
         } else {
             Toast.makeText(this, "No se encontró ningún transportista con el ID $idTransportista", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun validarCampos(): Boolean {
+        val nombre = txtEditNombreTransportista.text.toString()
+        val apellido = txtEditApellidoTransportista.text.toString()
+        val telefono = txtEditTelefonoTransportista.text.toString()
+
+        if (nombre.isEmpty()) {
+            Toast.makeText(this, "El nombre no puede estar vacío", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (apellido.isEmpty()) {
+            Toast.makeText(this, "El apellido no puede estar vacío", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (telefono.isEmpty()) {
+            Toast.makeText(this, "El número de teléfono no puede estar vacío", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        val phonePattern = Regex("^\\d{8}\$|^\\d{4}-\\d{4}\$")
+        if (!phonePattern.matches(telefono)) {
+            Toast.makeText(this, "El número de teléfono no es válido", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        return true
     }
 }
