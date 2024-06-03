@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
         android:layout_marginTop="104dp"
-        android:text="Peso"
+        android:text="Peso (lb)"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
         android:layout_marginTop="80dp"
-        android:text="Tamaño"
+        android:text="Tamaño(cm)"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView85" />
 
@@ -33,12 +33,11 @@
         android:layout_width="214dp"
         android:layout_height="43dp"
         android:layout_marginTop="96dp"
-        android:layout_marginEnd="36dp"
         android:background="@drawable/esquinas_redondeadas"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.709"
         app:layout_constraintStart_toEndOf="@+id/textView85"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -70,14 +69,14 @@
         android:id="@+id/txtCostoPaquete"
         android:layout_width="213dp"
         android:layout_height="42dp"
-        android:layout_marginTop="66dp"
+        android:layout_marginTop="64dp"
         android:background="@drawable/esquinas_redondeadas"
         android:ems="10"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintHorizontal_bias="0.806"
         app:layout_constraintStart_toEndOf="@+id/textView87"
         app:layout_constraintTop_toBottomOf="@+id/txtTamanoPaquete" />
 

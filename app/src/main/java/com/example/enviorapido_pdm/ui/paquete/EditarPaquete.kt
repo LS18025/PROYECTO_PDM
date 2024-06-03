@@ -64,7 +64,7 @@ class EditarPaquete : AppCompatActivity() {
     private fun calcularCosto() {
         val pesoPaquete = txtEditPesoPaquete.text.toString().toDoubleOrNull() ?: 0.0
         val tamanoPaquete = txtEditTamanoPaquete.text.toString().toDoubleOrNull() ?: 0.0
-        val costoPaquete = (pesoPaquete * 2.00) + (tamanoPaquete * 3.00)
+        val costoPaquete = (pesoPaquete * 1.50) + (tamanoPaquete * 0.05)
 
         val formatoMoneda = NumberFormat.getCurrencyInstance(Locale.US)
         val costoFormateado = formatoMoneda.format(costoPaquete)

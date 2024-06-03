@@ -57,7 +57,7 @@ class AgregarPaquete : AppCompatActivity() {
     private fun calcularCosto() {
         val pesoPaquete = pesoPaquete.text.toString().toDoubleOrNull() ?: 0.0
         val tamanoPaquete = tamanoPaquete.text.toString().toDoubleOrNull() ?: 0.0
-        val costoTotalPaquete = (pesoPaquete * 2.00) + (tamanoPaquete * 3.00)
+        val costoTotalPaquete = (pesoPaquete * 1.50) + (tamanoPaquete * 0.05)
 
         val formatoMoneda = NumberFormat.getCurrencyInstance(Locale.US)
         val costoFormateado = formatoMoneda.format(costoTotalPaquete)
