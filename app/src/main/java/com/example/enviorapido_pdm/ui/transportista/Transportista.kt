@@ -1,4 +1,4 @@
-package com.example.enviorapido_pdm
+package com.example.enviorapido_pdm.ui.transportista
 
 data class Transportista(
     val idTransportista: Int,

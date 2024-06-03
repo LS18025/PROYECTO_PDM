@@ -1,11 +1,11 @@
-package com.example.enviorapido_pdm
+package com.example.enviorapido_pdm.ui.usuario
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import com.example.enviorapido_pdm.ui.BaseDatos.ConexionDataBaseHelper
+import com.example.enviorapido_pdm.R
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 class VerPerfilUsuario : AppCompatActivity() {
 

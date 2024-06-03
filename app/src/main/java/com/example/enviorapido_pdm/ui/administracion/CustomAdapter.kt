@@ -1,4 +1,4 @@
-package com.example.enviorapido_pdm
+package com.example.enviorapido_pdm.ui.administracion
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.enviorapido_pdm.R
 import com.example.enviorapido_pdm.ui.usuario.ModificarUsuario
 import com.example.enviorapido_pdm.ui.usuario.VerUsuarios
 

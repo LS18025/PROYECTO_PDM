@@ -1,4 +1,4 @@
-package com.example.enviorapido_pdm
+package com.example.enviorapido_pdm.ui.envios
 
 data class Destinatarios (
     val id_Destinatario: Int,

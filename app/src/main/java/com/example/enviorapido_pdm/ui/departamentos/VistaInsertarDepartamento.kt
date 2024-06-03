@@ -5,13 +5,13 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.example.enviorapido_pdm.ConexionDataBaseHelper
+import com.example.enviorapido_pdm.ui.BaseDatos.ConexionDataBaseHelper
 import com.example.enviorapido_pdm.R
 
 class VistaInsertarDepartamento : AppCompatActivity() {
 
     //CONEXION A DB
-    private lateinit var dbHelper:ConexionDataBaseHelper
+    private lateinit var dbHelper: ConexionDataBaseHelper
 
     //CONTROLES DE FORMULARIO
     private lateinit var txtId:EditText

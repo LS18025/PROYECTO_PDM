@@ -2,7 +2,6 @@ package com.example.enviorapido_pdm
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageButton
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +11,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.enviorapido_pdm.databinding.ActivityMainBinding
 import com.example.enviorapido_pdm.ui.administracion.LoginActivity
-import com.example.enviorapido_pdm.ui.paquete.VistaPaquete
+import com.example.enviorapido_pdm.ui.chat.VistaChats
+import com.example.enviorapido_pdm.ui.transportista.VistaTransportista
 import com.example.enviorapido_pdm.ui.usuario.VerUsuarios
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity() {
     private fun mostrarchats ()
     {
 
-        val o = Intent(this,VistaChats::class.java)
+        val o = Intent(this, VistaChats::class.java)
         startActivity(o)
     }
 }

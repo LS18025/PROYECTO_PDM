@@ -1,4 +1,4 @@
-package com.example.enviorapido_pdm
+package com.example.enviorapido_pdm.ui.BaseDatos
 
 import android.content.ContentValues
 import android.content.Context
@@ -6,13 +6,23 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
+import com.example.enviorapido_pdm.ui.envios.Departamentos
+import com.example.enviorapido_pdm.ui.envios.Direccion
+import com.example.enviorapido_pdm.ui.envios.Municipios
+import com.example.enviorapido_pdm.ui.envios.Destinatarios
+import com.example.enviorapido_pdm.ui.envios.Envios
 import com.example.enviorapido_pdm.ui.paquete.Paquete
+import com.example.enviorapido_pdm.ui.seguimiento.Seguimiento
+import com.example.enviorapido_pdm.ui.transportista.Transportista
+import com.example.enviorapido_pdm.ui.usuario.Usuarios
 import java.text.SimpleDateFormat
 import java.util.Date
 
 
 
-class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null,DATABASE_VERSION)
+class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null,
+    DATABASE_VERSION
+)
 {
     companion object
     {
@@ -1088,7 +1098,9 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
             val direccion = cursor.getString(cursor.getColumnIndexOrThrow(COL_DIRECCION))
             val destinatario = cursor.getString(cursor.getColumnIndexOrThrow(COL_DESTINATARIO_ENVIO))
             val idTransportista = cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID_TRANSPORTISTA))
-            val nombreTransportista = cursor.getString(cursor.getColumnIndexOrThrow(COL_NOMBRE_TRANSPORTISTA))
+            val nombreTransportista = cursor.getString(cursor.getColumnIndexOrThrow(
+                COL_NOMBRE_TRANSPORTISTA
+            ))
             val etiqueta = cursor.getString(cursor.getColumnIndexOrThrow(COL_ETIQUETA))
             val costoTotal = cursor.getDouble(cursor.getColumnIndexOrThrow(COL_COSTO_TOTAL_ENVIO))
             val fechaEnvio = cursor.getString(cursor.getColumnIndexOrThrow(COL_FECHA_ENVIO))

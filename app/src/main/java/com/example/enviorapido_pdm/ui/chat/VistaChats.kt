@@ -1,4 +1,4 @@
-package com.example.enviorapido_pdm
+package com.example.enviorapido_pdm.ui.chat
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -9,8 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
-import com.example.enviorapido_pdm.ui.chat.FragmentoChatChats
-import com.example.enviorapido_pdm.ui.chat.FragmentoUsuariosChats
+import com.example.enviorapido_pdm.R
 import com.google.android.material.tabs.TabLayout
 
 class VistaChats : AppCompatActivity() {

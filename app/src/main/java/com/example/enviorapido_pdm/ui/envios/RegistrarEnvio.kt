@@ -1,4 +1,4 @@
-package com.example.enviorapido_pdm
+package com.example.enviorapido_pdm.ui.envios
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +15,8 @@ import java.util.UUID
 import kotlin.math.absoluteValue
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import com.example.enviorapido_pdm.ui.BaseDatos.ConexionDataBaseHelper
+import com.example.enviorapido_pdm.R
 import com.example.enviorapido_pdm.ui.paquete.VistaPaquete
 import java.util.Calendar
 

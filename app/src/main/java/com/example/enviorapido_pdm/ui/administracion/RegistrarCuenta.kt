@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
-import com.example.enviorapido_pdm.ConexionDataBaseHelper
+import com.example.enviorapido_pdm.ui.BaseDatos.ConexionDataBaseHelper
 import com.example.enviorapido_pdm.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

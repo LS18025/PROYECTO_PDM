@@ -1,6 +1,5 @@
-package com.example.enviorapido_pdm
+package com.example.enviorapido_pdm.ui.seguimiento
 
-import SeguimientoAdapter
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +8,8 @@ import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.enviorapido_pdm.ui.BaseDatos.ConexionDataBaseHelper
+import com.example.enviorapido_pdm.R
 
 class ListarSeguimientos : AppCompatActivity() {
     private lateinit var dbHelper: ConexionDataBaseHelper

@@ -1,4 +1,4 @@
-package com.example.enviorapido_pdm
+package com.example.enviorapido_pdm.ui.usuario
 
 data class Usuarios(
     val id_usuario: String,

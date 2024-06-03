@@ -1,4 +1,4 @@
-package com.example.enviorapido_pdm
+package com.example.enviorapido_pdm.ui.envios
 
 data class Direccion (
     val id_direccion: Int,

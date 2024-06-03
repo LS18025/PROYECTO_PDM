@@ -1,9 +1,11 @@
-package com.example.enviorapido_pdm
+package com.example.enviorapido_pdm.ui.envios
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.enviorapido_pdm.ui.BaseDatos.ConexionDataBaseHelper
+import com.example.enviorapido_pdm.R
 import com.google.firebase.auth.FirebaseAuth
 
 class HistorialEnvios : AppCompatActivity() {

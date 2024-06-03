@@ -1,23 +1,17 @@
 package com.example.enviorapido_pdm.ui.usuario
 
-import android.content.ClipData.Item
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.browser.browseractions.BrowserActionsIntent.BrowserActionsItemId
-import com.example.enviorapido_pdm.ConexionDataBaseHelper
-import com.example.enviorapido_pdm.CustomAdapter
+import com.example.enviorapido_pdm.ui.BaseDatos.ConexionDataBaseHelper
 import com.example.enviorapido_pdm.R
-import com.example.enviorapido_pdm.Usuarios
 
 class ModificarUsuario : AppCompatActivity() {
 

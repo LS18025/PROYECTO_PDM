@@ -1,11 +1,12 @@
-package com.example.enviorapido_pdm
+package com.example.enviorapido_pdm.ui.seguimiento
 
-import android.content.ContentValues
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.enviorapido_pdm.ui.BaseDatos.ConexionDataBaseHelper
+import com.example.enviorapido_pdm.R
 import java.text.SimpleDateFormat
 import java.util.*
 

@@ -1,4 +1,4 @@
-package com.example.enviorapido_pdm
+package com.example.enviorapido_pdm.ui.envios
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.enviorapido_pdm.ui.paquete.Paquete
 import com.example.enviorapido_pdm.ui.paquete.PaqueteAdapter
 import androidx.appcompat.app.AlertDialog
+import com.example.enviorapido_pdm.ui.BaseDatos.ConexionDataBaseHelper
+import com.example.enviorapido_pdm.ui.seguimiento.ListarSeguimientos
+import com.example.enviorapido_pdm.R
 import com.example.enviorapido_pdm.ui.paquete.VistaPaquete
-import com.example.enviorapido_pdm.EditarEnvio
 
 class DetalleEnvio : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener {
 

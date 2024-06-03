@@ -1,4 +1,4 @@
-package com.example.enviorapido_pdm
+package com.example.enviorapido_pdm.ui.transportista
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,11 +7,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.enviorapido_pdm.ui.transportista.CrearTransportista
-import com.example.enviorapido_pdm.ConexionDataBaseHelper
-import com.example.enviorapido_pdm.R
 import android.app.AlertDialog
-import android.content.DialogInterface
+import com.example.enviorapido_pdm.ui.BaseDatos.ConexionDataBaseHelper
+import com.example.enviorapido_pdm.EditarTransportista
+import com.example.enviorapido_pdm.R
 
 
 class VistaTransportista : AppCompatActivity(), TransportistaAdapter.OnItemSelectedListener {

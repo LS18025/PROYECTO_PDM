@@ -1,10 +1,11 @@
-package com.example.enviorapido_pdm
+package com.example.enviorapido_pdm.ui.transportista
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.enviorapido_pdm.R
 
 class TransportistaAdapter(
     var listaTransportistas: ArrayList<Transportista>,

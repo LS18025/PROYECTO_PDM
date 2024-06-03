@@ -10,8 +10,8 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.enviorapido_pdm.ConexionDataBaseHelper
-import com.example.enviorapido_pdm.DetalleEnvio
+import com.example.enviorapido_pdm.ui.BaseDatos.ConexionDataBaseHelper
+import com.example.enviorapido_pdm.ui.envios.DetalleEnvio
 import com.example.enviorapido_pdm.R
 
 class VistaPaquete : AppCompatActivity(), PaqueteAdapter.OnItemSelectedListener {

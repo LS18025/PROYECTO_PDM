@@ -8,8 +8,8 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
-import com.example.enviorapido_pdm.ConexionDataBaseHelper
-import com.example.enviorapido_pdm.ConsultarSeguimientoPedidos
+import com.example.enviorapido_pdm.ui.BaseDatos.ConexionDataBaseHelper
+import com.example.enviorapido_pdm.ui.seguimiento.ConsultarSeguimientoPedidos
 import com.example.enviorapido_pdm.MainActivity
 import com.example.enviorapido_pdm.R
 import com.google.firebase.auth.FirebaseAuth

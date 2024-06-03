@@ -4,14 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
-import com.example.enviorapido_pdm.ConexionDataBaseHelper
+import com.example.enviorapido_pdm.ui.BaseDatos.ConexionDataBaseHelper
 import com.example.enviorapido_pdm.R
-import androidx.appcompat.widget.AppCompatTextView
 import java.util.UUID
 import kotlin.math.absoluteValue
-import android.util.Patterns
 
 class CrearTransportista : AppCompatActivity() {
     // CONEXION A DB

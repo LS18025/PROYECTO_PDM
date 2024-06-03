@@ -5,10 +5,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.enviorapido_pdm.ConexionDataBaseHelper
-import com.example.enviorapido_pdm.CustomAdapter
+import com.example.enviorapido_pdm.ui.BaseDatos.ConexionDataBaseHelper
+import com.example.enviorapido_pdm.ui.administracion.CustomAdapter
 import com.example.enviorapido_pdm.R
-import com.example.enviorapido_pdm.Usuarios
 
 class VerUsuarios : AppCompatActivity(), CustomAdapter.OnUserUpdateListener {
 

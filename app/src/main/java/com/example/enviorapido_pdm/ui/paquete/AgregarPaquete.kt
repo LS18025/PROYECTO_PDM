@@ -6,7 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
-import com.example.enviorapido_pdm.ConexionDataBaseHelper
+import com.example.enviorapido_pdm.ui.BaseDatos.ConexionDataBaseHelper
 import com.example.enviorapido_pdm.R
 import java.util.UUID
 import kotlin.math.absoluteValue

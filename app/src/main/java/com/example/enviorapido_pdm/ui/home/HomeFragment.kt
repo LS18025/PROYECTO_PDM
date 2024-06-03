@@ -5,22 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import com.example.enviorapido_pdm.EditarTransportista
-import com.example.enviorapido_pdm.Envios
-import com.example.enviorapido_pdm.HistorialEnvios
+import com.example.enviorapido_pdm.ui.envios.HistorialEnvios
 import com.example.enviorapido_pdm.databinding.FragmentHomeBinding
-import com.example.enviorapido_pdm.R
-import com.example.enviorapido_pdm.RegistrarEnvio
-import com.example.enviorapido_pdm.RegistrarTransportista
-import com.example.enviorapido_pdm.VerPerfilUsuario
-import com.example.enviorapido_pdm.ui.paquete.VistaPaquete
-import com.example.enviorapido_pdm.VistaTransportista
-import com.example.enviorapido_pdm.ui.transportista.CrearTransportista
+import com.example.enviorapido_pdm.ui.envios.RegistrarEnvio
+import com.example.enviorapido_pdm.ui.usuario.VerPerfilUsuario
+import com.example.enviorapido_pdm.ui.transportista.VistaTransportista
 import com.example.enviorapido_pdm.ui.usuario.VerUsuarios
 
 class HomeFragment : Fragment() {
