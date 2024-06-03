@@ -54,7 +54,7 @@ class PaqueteAdapter(
             holder.idEnvio.text = "ID Envío: ${currentItem.idEnvio}"
             holder.costoPaquete.text = "Costo: $${currentItem.costoPaquete}"
             holder.pesoPaquete.text = "Peso: ${currentItem.pesoPaquete} lb"
-            holder.tamanoPaquete.text = "Tamaño: ${currentItem.tamanoPaquete}"
+            holder.tamanoPaquete.text = "Tamaño: ${currentItem.tamanoPaquete} cm"
             holder.itemView.isSelected = (selectedPosition == position)
         }
     }
