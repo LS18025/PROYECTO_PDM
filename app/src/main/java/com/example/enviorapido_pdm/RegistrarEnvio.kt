@@ -55,7 +55,7 @@ class RegistrarEnvio : AppCompatActivity() {
             val transportistaSeleccionado = dbHelper.recuperarTodosLosTransportistas()[transportistaSeleccionadoIndex]
             val idTransportista = transportistaSeleccionado.idTransportista
 
-            val costoTotalEnvio = 5.0
+            val costoTotalEnvio = 0.0
             val fechaProgramada = obtenerFechaProgramada(editTextFechaProgramada)
 
             val firebaseAuth = FirebaseAuth.getInstance()
