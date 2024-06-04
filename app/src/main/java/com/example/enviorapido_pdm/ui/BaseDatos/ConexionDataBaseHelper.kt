@@ -770,7 +770,7 @@ class ConexionDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATAB
 
     fun EliminarPaquete(id_Paquete: Int): Int {
         val db = writableDatabase
-        val paquete = RecuperarPaquetePorId(id_Paquete)
+
         val parametros = arrayOf(id_Paquete.toString())
         val IdResultado = db.delete(TABLE_PAQUETE, "$COL_ID_PAQUETE=?", parametros)
         db.close()
